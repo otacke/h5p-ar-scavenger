@@ -25,28 +25,35 @@ export default class ARScavenger extends H5P.Question {
 
     // Sanitize params
     this.params = Util.extend({
-      websiteURL: {
-        protocol: '',
-        url: ''
+      titleScreen: {
+        showTitleScreen: false
+      },
+      markers: [],
+      endScreen: {
+        showEndScreen: false
       },
       behaviour: {
         enableSolutionsButton: false,
         enableRetry: false,
-        showActionOnStartup: true
+        fallbackHeight: 400
       },
       l10n: {
-        submitAnswer: 'Submit'
+        start: 'Start',
+        retry: 'Retry',
+        nothingToSee: 'Find a marker to see an interaction.'
       },
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
         buttonFullscreenExit: 'Exit fullscreen mode',
-        buttonToggleOpenAction: 'Switch to the exercise',
-        buttonToggleCloseAction: 'Switch to the subject',
-        actionOpened: 'The view switched to the action.',
-        actionClosed: 'The view switched to subject.',
+        buttonToggleOpenAction: 'Switch to the action',
+        buttonToggleCloseAction: 'Switch to the camera',
+        actionOpened: 'The view has switched to the action.',
+        actionClosed: 'The view has switched to the camera.',
       },
       minWidthForDualView: ARScavenger.MIN_WIDTH_FOR_DUALVIEW
     }, params);
+
+    console.log(this.params);
 
     // Sanitize extras
     this.extras = Util.extend({

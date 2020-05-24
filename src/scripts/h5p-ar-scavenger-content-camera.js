@@ -2,7 +2,7 @@
 import Util from './h5p-ar-scavenger-util';
 
 /** Class representing the subject */
-export default class ARScavengerContentSubject {
+export default class ARScavengerContentCamera {
   /**
    * @constructor
    *
@@ -16,10 +16,6 @@ export default class ARScavengerContentSubject {
   constructor(params, callbacks) {
     // Sanitize params
     this.params = Util.extend({
-      website: {
-        protocol: '',
-        url: ''
-      },
       fallbackHeight: 400
     }, params || {});
 
@@ -34,14 +30,14 @@ export default class ARScavengerContentSubject {
 
     // Content
     this.content = document.createElement('div');
-    this.content.classList.add('h5p-ar-scavenger-content-subject');
+    this.content.classList.add('h5p-ar-scavenger-content-camera');
 
     this.iframe = this.buildIframe();
     this.content.appendChild(this.iframe);
 
     // Container
     this.container = document.createElement('div');
-    this.container.classList.add('h5p-ar-scavenger-content-subject-container');
+    this.container.classList.add('h5p-ar-scavenger-content-camera-container');
     this.container.appendChild(this.content);
   }
 
@@ -131,7 +127,7 @@ export default class ARScavengerContentSubject {
   buildIframe() {
     // iframe
     const iframe = document.createElement('iframe');
-    iframe.classList.add('h5p-ar-scavenger-content-subject-iframe');
+    iframe.classList.add('h5p-ar-scavenger-content-camera-iframe');
     iframe.addEventListener('load', () => {
       if (!this.iframeLoaded) {
         this.handleIframeLoaded(this.iframe);
@@ -214,7 +210,7 @@ export default class ARScavengerContentSubject {
 
     this.script1 = document.createElement('script');
     this.script1.type = 'text/javascript';
-    this.script1.src = 'https://aframe.io/releases/1.0.0/aframe.min.js';
+    this.script1.src = 'https://aframe.io/releases/1.0.4/aframe.min.js';
 
     this.script2 = document.createElement('script');
     this.script2.type = 'text/javascript';
@@ -244,9 +240,9 @@ export default class ARScavengerContentSubject {
 
       iframeWindow.addEventListener('resize', () => this.resize);
 
-      iframe.contentWindow.document.open();
-      iframe.contentWindow.document.write(this.buildHTML());
-      iframe.contentWindow.document.close();
+      // iframe.contentWindow.document.open();
+      // iframe.contentWindow.document.write(this.buildHTML());
+      // iframe.contentWindow.document.close();
 
       this.iframeDocument = iframe.contentDocument ? iframe.contentDocument: iframeWindow;
 

@@ -1,6 +1,6 @@
 // Import required classes
 import ARScavengerContentTitlebar from './h5p-ar-scavenger-content-titlebar';
-import ARScavengerContentSubject from './h5p-ar-scavenger-content-subject';
+import ARScavengerContentCamera from './h5p-ar-scavenger-content-camera';
 import ARScavengerContentAction from './h5p-ar-scavenger-content-action';
 
 /** Class representing the content */
@@ -126,7 +126,7 @@ export default class ARScavengerContent {
    * @param {boolean} isActionMode Switch for action mode.
    */
   createSubject(params = {}, callbacks = {}, isActionMode = true) {
-    const subject = new ARScavengerContentSubject(params, callbacks);
+    const subject = new ARScavengerContentCamera(params, callbacks);
     const subjectContainer = subject.getDOM();
 
     if (!isActionMode) {
