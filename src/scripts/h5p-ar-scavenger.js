@@ -53,7 +53,14 @@ export default class ARScavenger extends H5P.Question {
       minWidthForDualView: ARScavenger.MIN_WIDTH_FOR_DUALVIEW
     }, params);
 
-    console.log(this.params);
+    // Filter out incomplete markers
+    this.params.markers = this.params.markers.filter(marker =>
+      marker.markerImage && marker.markerPattern &&
+        (
+          marker.actionType === 'h5p' && marker.interaction && marker.interaction.interaction ||
+          marker.actionType === 'model' && marker.model && marker.model.file
+        )
+    );
 
     // Sanitize extras
     this.extras = Util.extend({

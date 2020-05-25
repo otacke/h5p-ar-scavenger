@@ -7,9 +7,7 @@ export default class ARScavengerContentCamera {
    * @constructor
    *
    * @param {object} params Parameter from editor.
-   * @param {object} params.website Website.
-   * @param {string} params.website.protocol Protocol.
-   * @param {string} params.website.url URL.
+   * @param {object[]} params.markers Markers.
    * @param {object} [callbacks] Callbacks.
    * @param {object} [callbacks.onResize] Callbacks.
    */
@@ -25,7 +23,7 @@ export default class ARScavengerContentCamera {
     this.callbacks.onMarkerFound = this.callbacks.onMarkerFound || (() => {});
     this.callbacks.onMarkerLost = this.callbacks.onMarkerLost || (() => {});
 
-    // Maximum height for subject
+    // Maximum height for camera
     this.maxHeight = null;
 
     // Content
@@ -139,69 +137,82 @@ export default class ARScavengerContentCamera {
   }
 
   buildHTML() {
-    this.box1 = document.createElement('a-box');
-    this.box1.setAttribute('position', '0 0.5 0');
-    this.box1.setAttribute('material', 'color: yellow;');
-
-    this.box2 = document.createElement('a-box');
-    this.box2.setAttribute('position', '0 0.5 0');
-    this.box2.setAttribute('material', 'color: red;');
-
-    this.box3 = document.createElement('a-box');
-    this.box3.setAttribute('position', '0 0.5 0');
-    this.box3.setAttribute('material', 'color: green;');
-
-    this.assetItem1 = document.createElement('a-asset-item');
-    this.assetItem1.setAttribute('id', 'robo');
-    this.assetItem1.setAttribute('src', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/robo.gltf');
-
-    this.asset1 = document.createElement('a-asset');
-    this.asset1.appendChild(this.assetItem1);
-
-    this.entity1 = document.createElement('a-entity');
-    this.entity1.setAttribute('gltf-model', '#robo');
-    this.entity1.setAttribute('scale', '1');
-    this.entity1.setAttribute('rotation', '0 -90 0');
-
-    this.entity2 = document.createElement('a-entity');
-    this.entity2.setAttribute('gltf-model', '#animated-asset');
-    this.entity2.setAttribute('scale', '2');
-
-    this.marker1 = document.createElement('a-marker');
-    this.marker1.setAttribute('preset', 'hiro');
-    this.marker1.appendChild(this.entity1);
-    // this.marker1.setAttribute('smooth', 'true');
-
-    this.marker2 = document.createElement('a-marker');
-    this.marker2.setAttribute('type', 'pattern');
-    this.marker2.setAttribute('preset', 'custom');
-    this.marker2.setAttribute('id', 'H5P');
-    this.marker2.setAttribute('url', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/h5p.patt');
-    // this.marker2.appendChild(this.box1);
-
-    this.marker3 = document.createElement('a-marker');
-    this.marker3.setAttribute('type', 'pattern');
-    this.marker3.setAttribute('preset', 'custom');
-    this.marker3.setAttribute('id', 'Minecraft');
-    this.marker3.setAttribute('url', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/grass.patt');
-    this.marker3.appendChild(this.box3);
-
-    this.marker4 = document.createElement('a-marker');
-    this.marker4.setAttribute('preset', 'kanji');
-    this.marker4.appendChild(this.box2);
-
-    this.camera = document.createElement('a-entity');
-    this.camera.setAttribute('camera', '');
-
     this.scene = document.createElement('a-scene');
     this.scene.setAttribute('embedded', '');
     this.scene.setAttribute('arjs', '');
-    this.scene.appendChild(this.asset1);
-    this.scene.appendChild(this.marker1);
-    this.scene.appendChild(this.marker2);
-    this.scene.appendChild(this.marker3);
-    this.scene.appendChild(this.marker4);
+
+    this.params.markers.forEach((marker, index) => {
+      const newMarker = document.createElement('a-marker');
+      newMarker.setAttribute('type', 'pattern');
+      newMarker.setAttribute('preset', 'custom');
+      newMarker.setAttribute('id', index);
+
+      const src = H5P.getPath(marker.markerPattern.path, this.params.contentId);
+      newMarker.setAttribute('url', src);
+
+      this.scene.appendChild(newMarker);
+    });
+
+    // this.box1 = document.createElement('a-box');
+    // this.box1.setAttribute('position', '0 0.5 0');
+    // this.box1.setAttribute('material', 'color: yellow;');
+    //
+    // this.box2 = document.createElement('a-box');
+    // this.box2.setAttribute('position', '0 0.5 0');
+    // this.box2.setAttribute('material', 'color: red;');
+    //
+    // this.box3 = document.createElement('a-box');
+    // this.box3.setAttribute('position', '0 0.5 0');
+    // this.box3.setAttribute('material', 'color: green;');
+    //
+    // this.assetItem1 = document.createElement('a-asset-item');
+    // this.assetItem1.setAttribute('id', 'robo');
+    // this.assetItem1.setAttribute('src', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/robo.gltf');
+
+    // this.asset1 = document.createElement('a-asset');
+    // this.asset1.appendChild(this.assetItem1);
+
+    // this.entity1 = document.createElement('a-entity');
+    // this.entity1.setAttribute('gltf-model', '#robo');
+    // this.entity1.setAttribute('scale', '1');
+    // this.entity1.setAttribute('rotation', '0 -90 0');
+    //
+    // this.entity2 = document.createElement('a-entity');
+    // this.entity2.setAttribute('gltf-model', '#animated-asset');
+    // this.entity2.setAttribute('scale', '2');
+
+    // this.marker1 = document.createElement('a-marker');
+    // this.marker1.setAttribute('preset', 'hiro');
+    // this.marker1.appendChild(this.entity1);
+    // this.marker1.setAttribute('smooth', 'true');
+
+    // this.marker2 = document.createElement('a-marker');
+    // this.marker2.setAttribute('type', 'pattern');
+    // this.marker2.setAttribute('preset', 'custom');
+    // this.marker2.setAttribute('id', 'H5P');
+    // this.marker2.setAttribute('url', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/h5p.patt');
+    // // this.marker2.appendChild(this.box1);
+
+    // this.marker3 = document.createElement('a-marker');
+    // this.marker3.setAttribute('type', 'pattern');
+    // this.marker3.setAttribute('preset', 'custom');
+    // this.marker3.setAttribute('id', 'Minecraft');
+    // this.marker3.setAttribute('url', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/grass.patt');
+    // this.marker3.appendChild(this.box3);
+    //
+    // this.marker4 = document.createElement('a-marker');
+    // this.marker4.setAttribute('preset', 'kanji');
+    // this.marker4.appendChild(this.box2);
+
+    this.camera = document.createElement('a-entity');
+    this.camera.setAttribute('camera', '');
     this.scene.appendChild(this.camera);
+
+    // this.scene.appendChild(this.asset1);
+    // this.scene.appendChild(this.marker1);
+    // this.scene.appendChild(this.marker2);
+    // this.scene.appendChild(this.marker3);
+    // this.scene.appendChild(this.marker4);
 
     this.body = document.createElement('body');
     this.body.style.margin = '0';
@@ -240,9 +251,9 @@ export default class ARScavengerContentCamera {
 
       iframeWindow.addEventListener('resize', () => this.resize);
 
-      // iframe.contentWindow.document.open();
-      // iframe.contentWindow.document.write(this.buildHTML());
-      // iframe.contentWindow.document.close();
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(this.buildHTML());
+      iframe.contentWindow.document.close();
 
       this.iframeDocument = iframe.contentDocument ? iframe.contentDocument: iframeWindow;
 
@@ -257,10 +268,6 @@ export default class ARScavengerContentCamera {
         if (this.iframeDocument.readyState === 'complete') {
           const markers = this.iframeDocument.querySelectorAll('a-marker');
           for (let i = 0; i < markers.length; i++) {
-            if (markers[i].getAttribute('id') !== 'H5P') {
-              continue;
-            }
-
             markers[i].addEventListener('markerFound', (event) => {
               this.callbacks.onMarkerFound(event);
             });

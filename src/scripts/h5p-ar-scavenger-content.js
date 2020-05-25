@@ -37,22 +37,22 @@ export default class ARScavengerContent {
     this.titlebar = this.createTitleBar();
     this.container.appendChild(this.titlebar.getDOM());
 
+    // TODO: params.markers.length === 0
+
     // Subject
-    this.subject = this.createSubject(
+    this.camera = this.createCamera(
       {
-        website: this.params.website,
+        contentId: this.contentId,
+        markers: this.params.markers,
         fallbackHeight: this.params.behaviour.fallbackHeight
       },
       {
         onResize: () => {
           this.resize({fromSubject: true});
         },
-        onMarkerFound: () => {
-          if (this.found) {
-            return;
-          }
-
-          this.found = true;
+        onMarkerFound: (event) => {
+          console.log(this.params.markers[event.target.id].interaction.interaction);
+          this.action.loadContent(this.params.markers[event.target.id].interaction.interaction, this.contentId);
           this.action.showContent();
           this.action.show();
 
@@ -85,7 +85,7 @@ export default class ARScavengerContent {
     // Panel
     const panel = document.createElement('div');
     panel.classList.add('h5p-ar-scavenger-panel');
-    panel.appendChild(this.subject.getDOM());
+    panel.appendChild(this.camera.getDOM());
     panel.appendChild(this.action.getDOM());
 
     this.container.appendChild(panel);
@@ -125,9 +125,9 @@ export default class ARScavengerContent {
    * @param {object} callbacks Callbacks.
    * @param {boolean} isActionMode Switch for action mode.
    */
-  createSubject(params = {}, callbacks = {}, isActionMode = true) {
-    const subject = new ARScavengerContentCamera(params, callbacks);
-    const subjectContainer = subject.getDOM();
+  createCamera(params = {}, callbacks = {}, isActionMode = true) {
+    const camera = new ARScavengerContentCamera(params, callbacks);
+    const subjectContainer = camera.getDOM();
 
     if (!isActionMode) {
       subjectContainer.classList.add('h5p-ar-scavenger-action-mode');
@@ -145,7 +145,7 @@ export default class ARScavengerContent {
       }
     });
 
-    return subject;
+    return camera;
   }
 
   /**
@@ -188,13 +188,13 @@ export default class ARScavengerContent {
         this.isNarrowScreen = true;
 
         // Triggers a transition, display set to none afterwards by listener
-        this.subject.setNarrowView(true);
+        this.camera.setNarrowView(true);
       }
     }
     else {
-      this.subject.show();
+      this.camera.show();
       setTimeout(() => {
-        this.subject.setNarrowView(false);
+        this.camera.setNarrowView(false);
       }, 0);
 
       if (this.isNarrowScreen) {
@@ -203,7 +203,7 @@ export default class ARScavengerContent {
     }
 
     if (!params || params.fromSubject !== true) {
-      this.subject.resize();
+      this.camera.resize();
     }
 
     this.callbacks.onResize();
@@ -218,14 +218,14 @@ export default class ARScavengerContent {
       // Give browser some time to go to fullscreen mode and return proper viewport height
       setTimeout(() => {
         const maxHeight = window.innerHeight - this.titlebar.getDOM().offsetHeight;
-        this.subject.resizeIframeHeight(maxHeight);
+        this.camera.resizeIframeHeight(maxHeight);
         this.action.resizeIframeHeight(maxHeight);
       }, 100);
     }
     else {
       // Give browser some time to exit from fullscreen mode
       setTimeout(() => {
-        this.subject.resizeIframeHeight(null);
+        this.camera.resizeIframeHeight(null);
         this.action.resizeIframeHeight(null);
       }, 100);
     }
@@ -255,12 +255,12 @@ export default class ARScavengerContent {
    */
   toggleView() {
     // Show hidden containers to allow transition
-    this.subject.show();
+    this.camera.show();
     this.action.show();
 
     // Give DOM time to set display property
     setTimeout(() => {
-      this.subject.toggleView();
+      this.camera.toggleView();
       this.action.toggleView();
 
       this.isActionMode = !this.isActionMode;

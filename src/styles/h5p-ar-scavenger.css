@@ -9,7 +9,7 @@
   display: flex;
 }
 
-.h5p-ar-scavenger .h5p-question-content {
+.h5p-ar-scavenger > .h5p-question-content {
   margin: 0;
 }
 

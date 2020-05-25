@@ -23,9 +23,9 @@ export default class ARScavengerContentAction {
     this.callbacks = callbacks || {};
     this.callbacks.onInstanceReady = this.callbacks.onInstanceReady || (() => {});
 
-    if (this.params.action && this.params.action.library) {
-      this.actionMachineName = this.params.action.library.split(' ')[0];
-    }
+    // if (this.params.action && this.params.action.library) {
+    //   this.actionMachineName = this.params.action.library.split(' ')[0];
+    // }
 
     this.message = document.createElement('div');
     this.message.style.fontSize = '1.5em';
@@ -36,22 +36,22 @@ export default class ARScavengerContentAction {
     this.actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
     this.actionWrapper.classList.add('h5p-ar-scavenger-display-none');
 
-    // Create instance or failure message
-    if (this.actionMachineName !== undefined && contentId) {
-      this.instanceAction = H5P.newRunnable(
-        this.params.action,
-        contentId,
-        H5P.jQuery(this.actionWrapper),
-        false,
-        {previousState: this.params.previousState}
-      );
-
-      // Return instance to content
-      this.callbacks.onInstanceReady(this.instanceAction);
-    }
-    else {
-      this.actionWrapper.innerHTML = 'Could not load content.';
-    }
+    // // Create instance or failure message
+    // if (this.actionMachineName !== undefined && contentId) {
+    //   this.instanceAction = H5P.newRunnable(
+    //     this.params.action,
+    //     contentId,
+    //     H5P.jQuery(this.actionWrapper),
+    //     false,
+    //     {previousState: this.params.previousState}
+    //   );
+    //
+    //   // Return instance to content
+    //   this.callbacks.onInstanceReady(this.instanceAction);
+    // }
+    // else {
+    //   this.actionWrapper.innerHTML = 'Could not load content.';
+    // }
 
     // Content
     const content = document.createElement('div');
@@ -105,6 +105,29 @@ export default class ARScavengerContentAction {
     }
     else {
       this.container.classList.remove('h5p-ar-scavenger-action-mode');
+    }
+  }
+
+  loadContent(params, contentId) {
+    if (params.library) {
+      this.actionMachineName = params.library.split(' ')[0];
+    }
+
+    // Create instance or failure message
+    if (this.actionMachineName !== undefined && contentId) {
+      this.instanceAction = H5P.newRunnable(
+        params,
+        contentId,
+        H5P.jQuery(this.actionWrapper),
+        false,
+        {previousState: this.params.previousState}
+      );
+
+      // Return instance to content
+      this.callbacks.onInstanceReady(this.instanceAction);
+    }
+    else {
+      this.actionWrapper.innerHTML = 'Could not load content.';
     }
   }
 
