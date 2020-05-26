@@ -51,7 +51,6 @@ export default class ARScavengerContent {
           this.resize({fromSubject: true});
         },
         onMarkerFound: (event) => {
-          console.log(this.params.markers[event.target.id].interaction.interaction);
           this.action.loadContent(this.params.markers[event.target.id].interaction.interaction, this.contentId);
           this.action.showContent();
           this.action.show();

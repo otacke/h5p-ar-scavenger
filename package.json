@@ -1,7 +1,7 @@
 {
   "name": "h5p-ar-scavenger",
   "version": "0.1.0",
-  "description": "Let learners find a clue on a website and answer related questions",
+  "description": "Let learners explore an augmented reality",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +17,7 @@
     "library"
   ],
   "author": "Oliver Tacke",
-  "license": "Copyright",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",

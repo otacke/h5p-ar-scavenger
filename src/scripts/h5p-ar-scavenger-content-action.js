@@ -109,6 +109,7 @@ export default class ARScavengerContentAction {
   }
 
   loadContent(params, contentId) {
+    // TODO: store instances once loaded and bring them back instead if available
     if (params.library) {
       this.actionMachineName = params.library.split(' ')[0];
     }

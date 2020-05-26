@@ -126,8 +126,10 @@ export default class ARScavengerContentCamera {
     // iframe
     const iframe = document.createElement('iframe');
     iframe.classList.add('h5p-ar-scavenger-content-camera-iframe');
+
     iframe.addEventListener('load', () => {
       if (!this.iframeLoaded) {
+        // Will write the iframe contents
         this.handleIframeLoaded(this.iframe);
       }
       this.iframeLoaded = true;
@@ -136,10 +138,71 @@ export default class ARScavengerContentCamera {
     return iframe;
   }
 
+  /**
+   * Build HTML for iframe.
+   * @return {HTMLElement}
+   */
   buildHTML() {
-    this.scene = document.createElement('a-scene');
-    this.scene.setAttribute('embedded', '');
-    this.scene.setAttribute('arjs', '');
+    const html = document.createElement('html');
+    html.appendChild(this.buildHeader());
+    html.appendChild(this.buildBody());
+
+    return html;
+  }
+
+  /**
+   * Build Header.
+   * @return {HTMLElement} Header.
+   */
+  buildHeader() {
+    const head = document.createElement('head');
+
+    // TODO: There must be a way to build the style dynamically from H5P libraries
+    const stylesheet = document.createElement('style');
+    stylesheet.innerHTML = '#arjsDebugUIContainer {display: none;} .a-enter-vr {display: none;}';
+    head.appendChild(stylesheet);
+
+    // Load AFrame script
+    const scriptAFrame = document.createElement('script');
+    scriptAFrame.text = H5P.AFrame.toString();
+    head.appendChild(scriptAFrame);
+
+    // Load AR.js script
+    const scriptAFrameAR = document.createElement('script');
+    scriptAFrameAR.text = H5P.AFrameAR.toString();
+    head.appendChild(scriptAFrameAR);
+
+    // Start scripts
+    const scriptStarter = document.createElement('script');
+    scriptStarter.text  = 'H5PAFrame();';
+    scriptStarter.text += 'H5PAFrameAR();';
+    head.appendChild(scriptStarter);
+
+    return head;
+  }
+
+  /**
+   * Build body.
+   * @return {HTMLElement} Body.
+   */
+  buildBody() {
+    const body = document.createElement('body');
+    body.style.margin = '0';
+    body.style.overflow = 'hidden';
+
+    body.appendChild(this.buildScene());
+
+    return body;
+  }
+
+  /**
+   * Build Scene.
+   * @return {HTMLElement} Scene.
+   */
+  buildScene() {
+    const scene = document.createElement('a-scene');
+    scene.setAttribute('embedded', '');
+    scene.setAttribute('arjs', '');
 
     this.params.markers.forEach((marker, index) => {
       const newMarker = document.createElement('a-marker');
@@ -150,95 +213,14 @@ export default class ARScavengerContentCamera {
       const src = H5P.getPath(marker.markerPattern.path, this.params.contentId);
       newMarker.setAttribute('url', src);
 
-      this.scene.appendChild(newMarker);
+      scene.appendChild(newMarker);
     });
 
-    // this.box1 = document.createElement('a-box');
-    // this.box1.setAttribute('position', '0 0.5 0');
-    // this.box1.setAttribute('material', 'color: yellow;');
-    //
-    // this.box2 = document.createElement('a-box');
-    // this.box2.setAttribute('position', '0 0.5 0');
-    // this.box2.setAttribute('material', 'color: red;');
-    //
-    // this.box3 = document.createElement('a-box');
-    // this.box3.setAttribute('position', '0 0.5 0');
-    // this.box3.setAttribute('material', 'color: green;');
-    //
-    // this.assetItem1 = document.createElement('a-asset-item');
-    // this.assetItem1.setAttribute('id', 'robo');
-    // this.assetItem1.setAttribute('src', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/robo.gltf');
+    const camera = document.createElement('a-entity');
+    camera.setAttribute('camera', '');
+    scene.appendChild(camera);
 
-    // this.asset1 = document.createElement('a-asset');
-    // this.asset1.appendChild(this.assetItem1);
-
-    // this.entity1 = document.createElement('a-entity');
-    // this.entity1.setAttribute('gltf-model', '#robo');
-    // this.entity1.setAttribute('scale', '1');
-    // this.entity1.setAttribute('rotation', '0 -90 0');
-    //
-    // this.entity2 = document.createElement('a-entity');
-    // this.entity2.setAttribute('gltf-model', '#animated-asset');
-    // this.entity2.setAttribute('scale', '2');
-
-    // this.marker1 = document.createElement('a-marker');
-    // this.marker1.setAttribute('preset', 'hiro');
-    // this.marker1.appendChild(this.entity1);
-    // this.marker1.setAttribute('smooth', 'true');
-
-    // this.marker2 = document.createElement('a-marker');
-    // this.marker2.setAttribute('type', 'pattern');
-    // this.marker2.setAttribute('preset', 'custom');
-    // this.marker2.setAttribute('id', 'H5P');
-    // this.marker2.setAttribute('url', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/h5p.patt');
-    // // this.marker2.appendChild(this.box1);
-
-    // this.marker3 = document.createElement('a-marker');
-    // this.marker3.setAttribute('type', 'pattern');
-    // this.marker3.setAttribute('preset', 'custom');
-    // this.marker3.setAttribute('id', 'Minecraft');
-    // this.marker3.setAttribute('url', '/drupal/sites/default/files/h5p/development/h5p-ar-scavenger/dist/grass.patt');
-    // this.marker3.appendChild(this.box3);
-    //
-    // this.marker4 = document.createElement('a-marker');
-    // this.marker4.setAttribute('preset', 'kanji');
-    // this.marker4.appendChild(this.box2);
-
-    this.camera = document.createElement('a-entity');
-    this.camera.setAttribute('camera', '');
-    this.scene.appendChild(this.camera);
-
-    // this.scene.appendChild(this.asset1);
-    // this.scene.appendChild(this.marker1);
-    // this.scene.appendChild(this.marker2);
-    // this.scene.appendChild(this.marker3);
-    // this.scene.appendChild(this.marker4);
-
-    this.body = document.createElement('body');
-    this.body.style.margin = '0';
-    this.body.style.overflow = 'hidden';
-    this.body.appendChild(this.scene);
-
-    this.script1 = document.createElement('script');
-    this.script1.type = 'text/javascript';
-    this.script1.src = 'https://aframe.io/releases/1.0.4/aframe.min.js';
-
-    this.script2 = document.createElement('script');
-    this.script2.type = 'text/javascript';
-    this.script2.src = 'https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js';
-    this.style = document.createElement('style');
-    this.style.innerHTML = '#arjsDebugUIContainer {display: none;} .a-enter-vr {display: none;}';
-
-    this.head = document.createElement('head');
-    this.head.appendChild(this.script1);
-    this.head.appendChild(this.script2);
-    this.head.appendChild(this.style);
-
-    this.html = document.createElement('html');
-    this.html.appendChild(this.head);
-    this.html.appendChild(this.body);
-
-    return this.html.outerHTML;
+    return scene;
   }
 
   /**
@@ -249,10 +231,10 @@ export default class ARScavengerContentCamera {
     try {
       const iframeWindow = iframe.contentWindow;
 
-      iframeWindow.addEventListener('resize', () => this.resize);
+      iframeWindow.addEventListener('resize', this.resize);
 
       iframe.contentWindow.document.open();
-      iframe.contentWindow.document.write(this.buildHTML());
+      iframe.contentWindow.document.write(this.buildHTML().outerHTML);
       iframe.contentWindow.document.close();
 
       this.iframeDocument = iframe.contentDocument ? iframe.contentDocument: iframeWindow;
@@ -268,6 +250,7 @@ export default class ARScavengerContentCamera {
         if (this.iframeDocument.readyState === 'complete') {
           const markers = this.iframeDocument.querySelectorAll('a-marker');
           for (let i = 0; i < markers.length; i++) {
+            // TODO: filter for only markers with interaction
             markers[i].addEventListener('markerFound', (event) => {
               this.callbacks.onMarkerFound(event);
             });

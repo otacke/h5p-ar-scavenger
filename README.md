@@ -1,5 +1,5 @@
 # H5P.ARScavener
-Let learners find a clue on a website and answer related questions.
+Let learners explore an augmented reality
 
 ## Getting started
 Clone this repository with git and check out the branch that you are interested
