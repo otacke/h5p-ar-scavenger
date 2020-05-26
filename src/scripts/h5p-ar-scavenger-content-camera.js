@@ -122,16 +122,22 @@ export default class ARScavengerContentCamera {
     this.container.classList.toggle('h5p-ar-scavenger-action-mode');
   }
 
+
+  /**
+   * Build iframe.
+   * @param {HTMLElement} iframe.
+   */
   buildIframe() {
-    // iframe
     const iframe = document.createElement('iframe');
     iframe.classList.add('h5p-ar-scavenger-content-camera-iframe');
 
     iframe.addEventListener('load', () => {
-      if (!this.iframeLoaded) {
-        // Will write the iframe contents
-        this.handleIframeLoaded(this.iframe);
+      if (this.iframeLoaded) {
+        return;
       }
+
+      // Will write the iframe contents
+      this.handleIframeLoaded(this.iframe);
       this.iframeLoaded = true;
     });
 
@@ -189,6 +195,7 @@ export default class ARScavengerContentCamera {
     const body = document.createElement('body');
     body.style.margin = '0';
     body.style.overflow = 'hidden';
+    body.style.padding = '0';
 
     body.appendChild(this.buildScene());
 
@@ -224,6 +231,41 @@ export default class ARScavengerContentCamera {
   }
 
   /**
+   * Handle iframe complete. Depends on load timing
+   */
+  handleIframeComplete() {
+    if (this.iframeDocument.readyState !== 'complete') {
+      this.iframeDocument.addEventListener('readystatechange', () => {
+        if (this.iframeDocument.readyState === 'complete') {
+          this.addEventListeners();
+        }
+      });
+    }
+    else {
+      this.addEventListeners();
+    }
+  }
+
+  /**
+   * Add event listeners for markers.
+   */
+  addEventListeners() {
+    const markers = Array.from(this.iframeDocument.querySelectorAll('a-marker'));
+
+    markers.forEach((marker) => {
+      // Marker found
+      marker.addEventListener('markerFound', (event) => {
+        this.callbacks.onMarkerFound(event);
+      });
+
+      // Marker lost
+      marker.addEventListener('markerLost', (event) => {
+        this.callbacks.onMarkerLost(event);
+      });
+    });
+  }
+
+  /**
    * Handle iframe loaded.
    * @param {HTMLElement} iframe Iframe.
    */
@@ -233,33 +275,14 @@ export default class ARScavengerContentCamera {
 
       iframeWindow.addEventListener('resize', this.resize);
 
+      // Write iframe contents
       iframe.contentWindow.document.open();
       iframe.contentWindow.document.write(this.buildHTML().outerHTML);
       iframe.contentWindow.document.close();
 
       this.iframeDocument = iframe.contentDocument ? iframe.contentDocument: iframeWindow;
 
-      this.iframeDocument.addEventListener('readystatechange', () => {
-        if (this.iframeDocument.readyState === 'interactive') {
-          this.iframeBody = this.iframeDocument.body;
-          this.iframeBody.style.margin = 0;
-          this.iframeBody.style.overflow = 'hidden';
-          this.iframeBody.style.padding = 0;
-        }
-
-        if (this.iframeDocument.readyState === 'complete') {
-          const markers = this.iframeDocument.querySelectorAll('a-marker');
-          for (let i = 0; i < markers.length; i++) {
-            // TODO: filter for only markers with interaction
-            markers[i].addEventListener('markerFound', (event) => {
-              this.callbacks.onMarkerFound(event);
-            });
-            markers[i].addEventListener('markerLost', (event) => {
-              this.callbacks.onMarkerLost(event);
-            });
-          }
-        }
-      });
+      this.handleIframeComplete();
 
       setTimeout(() => {
         this.resize();

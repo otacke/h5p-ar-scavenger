@@ -23,10 +23,10 @@ export default class ARScavengerContentAction {
     this.callbacks = callbacks || {};
     this.callbacks.onInstanceReady = this.callbacks.onInstanceReady || (() => {});
 
-    // if (this.params.action && this.params.action.library) {
-    //   this.actionMachineName = this.params.action.library.split(' ')[0];
-    // }
+    this.interactions = new Array(this.params.markersLength);
+    this.interactionsDOMs = new Array(this.params.markersLength);
 
+    // TODO: Move this out of the action wrapper
     this.message = document.createElement('div');
     this.message.style.fontSize = '1.5em';
     this.message.innerHTML = 'Finde den richtigen Marker!';
@@ -36,33 +36,16 @@ export default class ARScavengerContentAction {
     this.actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
     this.actionWrapper.classList.add('h5p-ar-scavenger-display-none');
 
-    // // Create instance or failure message
-    // if (this.actionMachineName !== undefined && contentId) {
-    //   this.instanceAction = H5P.newRunnable(
-    //     this.params.action,
-    //     contentId,
-    //     H5P.jQuery(this.actionWrapper),
-    //     false,
-    //     {previousState: this.params.previousState}
-    //   );
-    //
-    //   // Return instance to content
-    //   this.callbacks.onInstanceReady(this.instanceAction);
-    // }
-    // else {
-    //   this.actionWrapper.innerHTML = 'Could not load content.';
-    // }
-
     // Content
-    const content = document.createElement('div');
-    content.classList.add('h5p-ar-scavenger-content-action');
-    content.appendChild(this.message);
-    content.appendChild(this.actionWrapper);
+    this.content = document.createElement('div');
+    this.content.classList.add('h5p-ar-scavenger-content-action');
+    this.content.appendChild(this.actionWrapper);
+    this.content.appendChild(this.message);
 
     // Container
     this.container = document.createElement('div');
     this.container.classList.add('h5p-ar-scavenger-content-action-container');
-    this.container.appendChild(content);
+    this.container.appendChild(this.content);
   }
 
   /**
@@ -108,35 +91,74 @@ export default class ARScavengerContentAction {
     }
   }
 
-  loadContent(params, contentId) {
-    // TODO: store instances once loaded and bring them back instead if available
-    if (params.library) {
-      this.actionMachineName = params.library.split(' ')[0];
+  loadContent(id, params, contentId) {
+    if (id && id === this.currentInteractionId) {
+      return; // Already displayed
     }
 
-    // Create instance or failure message
-    if (this.actionMachineName !== undefined && contentId) {
-      this.instanceAction = H5P.newRunnable(
-        params,
-        contentId,
-        H5P.jQuery(this.actionWrapper),
-        false,
-        {previousState: this.params.previousState}
-      );
+    // TODO: Clean up the control flow
+
+    if (this.interactions[id]) {
+      // We have an instance for that id already
+
+      // Backup current DOM and restore previous one
+      this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.interactionsDOMs[this.currentInteractionId] || this.actionWrapper);
+      this.content.appendChild(this.interactionsDOMs[id]);
+
+      this.currentInteractionId = id;
 
       // Return instance to content
-      this.callbacks.onInstanceReady(this.instanceAction);
+      this.callbacks.onInstanceReady(this.interactions[id]);
+      return;
     }
     else {
-      this.actionWrapper.innerHTML = 'Could not load content.';
+      if (this.currentInteractionId) {
+        // We have a previous node
+
+        // Backup current DOM and append new blank action wrapper to be replaced by instance DOM
+        this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.interactionsDOMs[this.currentInteractionId] || this.actionWrapper);
+        this.actionWrapper = document.createElement('div');
+        this.actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
+        this.content.appendChild(this.actionWrapper);
+      }
+
+      // Create new instance replacing action wrapper DOM
+      if (params.library) {
+        this.actionMachineName = params.library.split(' ')[0];
+      }
+
+      // Create instance or failure message
+      if (this.actionMachineName !== undefined && contentId) {
+        this.interactions[id] = H5P.newRunnable(
+          params,
+          contentId,
+          H5P.jQuery(this.actionWrapper),
+          false,
+          {previousState: this.params.previousState}
+        );
+
+        // Return instance to content
+        this.callbacks.onInstanceReady(this.interactions[id]);
+      }
+      else {
+        this.actionWrapper.innerHTML = 'Could not load content.';
+      }
+
+      this.currentInteractionId = id;
     }
   }
 
+  /**
+   * Show content.
+   */
   showContent() {
     this.actionWrapper.classList.remove('h5p-ar-scavenger-display-none');
     this.message.classList.add('h5p-ar-scavenger-display-none');
   }
 
+  /**
+   * Hide content.
+   */
   hideContent() {
     this.actionWrapper.classList.add('h5p-ar-scavenger-display-none');
     this.message.classList.remove('h5p-ar-scavenger-display-none');

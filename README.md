@@ -1,4 +1,4 @@
-# H5P.ARScavener
+# H5P.ARScavenger
 Let learners explore an augmented reality
 
 ## Getting started

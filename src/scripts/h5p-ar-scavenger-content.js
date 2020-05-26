@@ -27,7 +27,7 @@ export default class ARScavengerContent {
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
 
     // Action mode = action page active
-    this.isActionMode = !this.params.behaviour.showActionOnStartup;
+    this.isCameraMode = !this.params.behaviour.showActionOnStartup;
 
     // Content
     this.container = document.createElement('div');
@@ -51,25 +51,19 @@ export default class ARScavengerContent {
           this.resize({fromSubject: true});
         },
         onMarkerFound: (event) => {
-          this.action.loadContent(this.params.markers[event.target.id].interaction.interaction, this.contentId);
-          this.action.showContent();
-          this.action.show();
-
-          if (this.isActionMode) {
-            this.toggleView();
-          }
+          this.handleMarkerFound(event);
         },
-        onMarkerLost: () => {
-          // this.action.hideContent();
+        onMarkerLost: (event) => {
+          this.handleMarkerLost(event);
         }
       },
-      this.isActionMode
+      this.isCameraMode
     );
 
     // Action
     this.action = this.createAction(
       {
-        action: this.params.action,
+        markersLength: this.params.markers.length,
         contentId: this.params.contentId,
         previousState: this.previousState,
       },
@@ -78,7 +72,7 @@ export default class ARScavengerContent {
           this.handleInstanceReady(instance);
         }
       },
-      this.isActionMode
+      this.isCameraMode
     );
 
     // Panel
@@ -88,6 +82,35 @@ export default class ARScavengerContent {
     panel.appendChild(this.action.getDOM());
 
     this.container.appendChild(panel);
+  }
+
+  /**
+   * Handle marker found.
+   */
+  handleMarkerFound(event) {
+    if (!this.isCameraMode && this.isNarrowScreen) {
+      return; // Not using camera
+    }
+
+    const markerId = parseInt(event.target.id);
+    const marker = this.params.markers[markerId];
+
+    if (marker.actionType === 'h5p') {
+      this.action.loadContent(markerId, marker.interaction.interaction, this.contentId);
+      this.action.showContent();
+      this.action.show();
+
+      if (this.isCameraMode && !this.isNarrowScreen) {
+        this.toggleView();
+      }
+    }
+  }
+
+  /**
+   * Handle marker lost.
+   */
+  handleMarkerLost(event) {
+    return event; // Dummy
   }
 
   /**
@@ -122,19 +145,19 @@ export default class ARScavengerContent {
    * Create subject DOM.
    * @param {object} params Parameters for Subject.
    * @param {object} callbacks Callbacks.
-   * @param {boolean} isActionMode Switch for action mode.
+   * @param {boolean} isCameraMode Switch for action mode.
    */
-  createCamera(params = {}, callbacks = {}, isActionMode = true) {
+  createCamera(params = {}, callbacks = {}, isCameraMode = true) {
     const camera = new ARScavengerContentCamera(params, callbacks);
     const subjectContainer = camera.getDOM();
 
-    if (!isActionMode) {
+    if (!isCameraMode) {
       subjectContainer.classList.add('h5p-ar-scavenger-action-mode');
     }
 
     // If action is opened and display is too narrow, undisplay subject
     subjectContainer.addEventListener('transitionend', () => {
-      if (!isActionMode) {
+      if (!isCameraMode) {
         if (subjectContainer.offsetWidth === 0) {
           subjectContainer.classList.add('h5p-ar-scavenger-display-none');
         }
@@ -150,13 +173,13 @@ export default class ARScavengerContent {
   /**
    * Create the action DOM.
    * @param {object} params Paremeters for Subject.
-   * @param {boolean} isActionMode Switch for action mode.
+   * @param {boolean} isCameraMode Switch for action mode.
    */
-  createAction(params = {}, callbacks = {}, isActionMode = true) {
+  createAction(params = {}, callbacks = {}, isCameraMode = true) {
     const action = new ARScavengerContentAction(params, this.contentId, callbacks);
     const actionContainer = action.getDOM();
 
-    if (!isActionMode) {
+    if (!isCameraMode) {
       actionContainer.classList.add('h5p-ar-scavenger-action-mode');
     }
     else {
@@ -165,7 +188,7 @@ export default class ARScavengerContent {
 
     // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
     actionContainer.addEventListener('transitionend', () => {
-      if (this.isActionMode) {
+      if (this.isCameraMode) {
         actionContainer.classList.add('h5p-ar-scavenger-display-none');
       }
       setTimeout(() => {
@@ -262,7 +285,7 @@ export default class ARScavengerContent {
       this.camera.toggleView();
       this.action.toggleView();
 
-      this.isActionMode = !this.isActionMode;
+      this.isCameraMode = !this.isCameraMode;
 
       this.resize();
     }, 0);
