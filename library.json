@@ -63,6 +63,11 @@
       "machineName": "H5PEditor.ARMarkerGenerator",
       "majorVersion": 0,
       "minorVersion": 1
+    },
+    {
+      "machineName": "H5PEditor.ThreeDModelLoader",
+      "majorVersion": 0,
+      "minorVersion": 1
     }
   ]
 }

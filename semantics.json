@@ -198,7 +198,11 @@
                 {
                   "name": "file",
                   "label": "3D model file",
-                  "type": "file"
+                  "type": "file",
+                  "widget": "threeDModelLoader",
+                  "threeDModelLoader": {
+                    "fileTypeExtensions": ["gltf", "glb"]
+                  }
                 },
                 {
                   "name": "geometry",
