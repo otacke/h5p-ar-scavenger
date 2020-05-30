@@ -100,7 +100,9 @@ export default class ARScavengerContent {
       this.action.showContent();
       this.action.show();
 
-      if (this.isCameraMode && !this.isNarrowScreen) {
+      console.log(this.isCameraMode, this.isNarrowScreen);
+
+      if (this.isCameraMode) {
         this.toggleView();
       }
     }
