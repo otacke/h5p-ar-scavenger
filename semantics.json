@@ -209,14 +209,6 @@
                     {
                       "name": "scale",
                       "label": "Scale",
-                      "type": "number",
-                      "optional": true,
-                      "default": 1,
-                      "min": 0
-                    },
-                    {
-                      "name": "scale",
-                      "label": "Scale",
                       "type": "group",
                       "optional": true,
                       "fields": [
@@ -225,8 +217,8 @@
                           "label": "Scale",
                           "type": "number",
                           "optional": true,
-                          "default": 1,
-                          "min": 0
+                          "default": 100,
+                          "min": 1
                         },
                         {
                           "name": "dummy",

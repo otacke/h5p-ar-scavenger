@@ -220,7 +220,41 @@ export default class ARScavengerContentCamera {
       const src = H5P.getPath(marker.markerPattern.path, this.params.contentId);
       newMarker.setAttribute('url', src);
 
-      scene.appendChild(newMarker);
+      if (marker.actionType === 'model') {
+        // TODO: Sanitizing
+        const path = marker.model.file.path;
+        const extension = path.split('.').slice(-1)[0];
+        const id = path.split('/').slice(-1)[0].split('.').slice(0, -1).join('-');
+
+        if (extension === 'gltf' || extension === 'glb') {
+          const assetItem = document.createElement('a-asset-item');
+          assetItem.setAttribute('id', id);
+          assetItem.setAttribute('src', H5P.getPath(path, this.params.contentId));
+
+          const asset = document.createElement('a-asset');
+          asset.appendChild(assetItem);
+          scene.appendChild(asset);
+
+          const scale = `${marker.model.geometry.scale.scale / 100} ${marker.model.geometry.scale.scale / 100} ${marker.model.geometry.scale.scale / 100}`;
+          const rotation = `${marker.model.geometry.rotation.x} ${marker.model.geometry.rotation.y} ${marker.model.geometry.rotation.z}`;
+          const position = `${marker.model.geometry.position.x} ${marker.model.geometry.position.y} ${marker.model.geometry.position.z}`;
+
+          const entity = document.createElement('a-entity');
+          entity.setAttribute('gltf-model', '#' + id);
+          entity.setAttribute('scale', scale);
+          entity.setAttribute('rotation', rotation);
+          entity.setAttribute('position', position);
+
+          newMarker.appendChild(entity);
+        }
+        else {
+          console.warn('model type not handled');
+        }
+      }
+
+      if (newMarker) {
+        scene.appendChild(newMarker);
+      }
     });
 
     const camera = document.createElement('a-entity');
