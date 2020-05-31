@@ -103,6 +103,10 @@
   align-self: center;
 }
 
+.h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start:before {
+  content: "\F11D";
+}
+
 .h5p-ar-scavenger .h5p-ar-scavenger-title-bar {
   align-items: center;
   background-color: #fff;
