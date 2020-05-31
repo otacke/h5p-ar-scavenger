@@ -14,13 +14,6 @@
         "optional": true
       },
       {
-        "name": "titleScreenTitle",
-        "label": "Title screen title",
-        "type": "text",
-        "placeholder": "Before we start ...",
-        "importance": "high"
-      },
-      {
         "name": "titleScreenIntroduction",
         "label": "Introduction",
         "type": "text",
@@ -321,19 +314,34 @@
         "optional": true
       },
       {
-        "name": "endScreenTitle",
-        "label": "End screen title",
-        "type": "text",
-        "placeholder": "You did it!",
-        "importance": "high"
-      },
-      {
         "name": "endScreenImage",
         "label": "end screen image",
         "type": "library",
         "optional": true,
         "options": [
           "H5P.Image 1.1"
+        ]
+      },
+      {
+        "name": "endScreenOutro",
+        "label": "Outro",
+        "type": "text",
+        "widget": "html",
+        "placeholder": "You did it!",
+        "optional": true,
+        "enterMode": "div",
+        "tags": [
+          "strong",
+          "em",
+          "u",
+          "a",
+          "ul",
+          "ol",
+          "h2",
+          "h3",
+          "hr",
+          "pre",
+          "code"
         ]
       },
       {

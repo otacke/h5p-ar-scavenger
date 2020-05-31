@@ -93,6 +93,7 @@ export default class ARScavenger extends H5P.Question {
         document.querySelector('.h5p-container').offsetWidth >= ARScavenger.MIN_WIDTH_FOR_DUALVIEW;
 
       this.content = new ARScavengerContent(this.params, this.contentId, this.extras, {
+        onCompleted: this.handleCompleted,
         onRead: this.read,
         onResize: this.resize
       });

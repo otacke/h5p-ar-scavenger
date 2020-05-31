@@ -2,6 +2,7 @@
 import ARScavengerContentTitlebar from './h5p-ar-scavenger-content-titlebar';
 import ARScavengerContentCamera from './h5p-ar-scavenger-content-camera';
 import ARScavengerContentAction from './h5p-ar-scavenger-content-action';
+import ARScavengerScreenEnd from './h5p-ar-scavenger-screen-end';
 import ARScavengerScreenTitle from './h5p-ar-scavenger-screen-title';
 
 /** Class representing the content */
@@ -24,6 +25,7 @@ export default class ARScavengerContent {
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
+    this.callbacks.onRead = this.callbacks.onCompleted || (() => null);
     this.callbacks.onRead = this.callbacks.onRead || (() => {});
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
 
@@ -35,12 +37,22 @@ export default class ARScavengerContent {
     this.container = document.createElement('div');
     this.container.classList.add('h5p-ar-scavenger-screen-content');
 
+    // TODO: For debugging
+    window.addEventListener('keydown', (event) => {
+      if (event.keyCode === 220) { // <
+        this.handleCompleted();
+      }
+    });
+
+
     // Screen: Title
-    this.screenTitle = this.buildTitleScreen();
-    this.container.appendChild(this.screenTitle.getDOM());
+    if (this.params.titleScreen.showTitleScreen) {
+      this.screenTitle = this.buildTitleScreen();
+      this.container.appendChild(this.screenTitle.getDOM());
+    }
 
     // Screen: Content
-    // TODO: Put in separate build function
+    // TODO: Put in separate build function (screenContent as class with show/hide)
     this.screenContent = document.createElement('div');
     this.screenContent.classList.add('h5p-ar-scavenger-content-container');
     this.screenContent.classList.add('h5p-ar-scavenger-display-none');
@@ -95,6 +107,12 @@ export default class ARScavengerContent {
     panel.appendChild(this.action.getDOM());
 
     this.screenContent.appendChild(panel);
+
+    // Screen: End
+    if (this.params.endScreen.showEndScreen) {
+      this.screenEnd = this.buildEndScreen();
+      this.container.appendChild(this.screenEnd.getDOM());
+    }
   }
 
   /**
@@ -176,11 +194,81 @@ export default class ARScavengerContent {
   }
 
   /**
-   * Handle title screen closed
+   * Build title screen
+   */
+  buildEndScreen() {
+    const params = this.params.endScreen;
+    params.l10n = {
+      'retry': this.params.l10n.retry
+    };
+
+    const endScreen = new ARScavengerScreenEnd(
+      params,
+      {
+        onRetry: () => {
+          this.handleRetry();
+        }
+      },
+      this.contentId);
+
+    return endScreen;
+  }
+
+  /**
+   * Handle title screen closed.
    */
   handleTitleScreenClosed() {
-    this.screenTitle.getDOM().classList.add('h5p-ar-scavenger-display-none');
+    this.screenTitle.hide();
     this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+
+    setTimeout(() => {
+      this.callbacks.onResize();
+    }, 0);
+  }
+
+  /**
+   * Handle complete.
+   */
+  handleCompleted() {
+    if (this.params.endScreen.showEndScreen) {
+      const score = this.getScore();
+      const maxScore = this.getMaxScore();
+
+      const scoreText = H5P.Question
+        .determineOverallFeedback(this.params.endScreen.overallFeedback, score / maxScore)
+        .replace('@score', score)
+        .replace('@total', maxScore);
+
+      this.screenEnd.setScoreText(scoreText);
+      this.screenEnd.setMaxScore(this.getMaxScore());
+
+      this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+      this.screenEnd.show();
+
+      // Put this here to allow animation to be visible
+      this.screenEnd.setScore(this.getScore());
+    }
+
+    setTimeout(() => {
+      this.callbacks.onResize();
+    }, 0);
+  }
+
+  /**
+   * Handle retry.
+   */
+  handleRetry() {
+    // Reset all interactions
+    this.reset();
+
+    this.screenEnd.hide();
+
+    if (this.params.titleScreen.showTitleScreen) {
+      this.screenTitle.show();
+    }
+    else {
+      this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+    }
 
     setTimeout(() => {
       this.callbacks.onResize();
@@ -226,6 +314,7 @@ export default class ARScavengerContent {
     const actionContainer = action.getDOM();
 
     if (!isCameraMode) {
+      // TODO: Action.show/hide
       actionContainer.classList.add('h5p-ar-scavenger-action-mode');
     }
     else {
@@ -347,14 +436,7 @@ export default class ARScavengerContent {
     }
 
     this.instanceAction = instance;
-  }
-
-  /**
-   * Get action instance.
-   * @return {object} H5P content type instance.
-   */
-  getInstanceAction() {
-    return this.instanceAction;
+    console.log('instance ready');
   }
 
   /**
@@ -362,8 +444,7 @@ export default class ARScavengerContent {
    * @return {boolean} True, if answer was given.
    */
   getAnswerGiven() {
-    const instance = this.getInstanceAction();
-    return (instance && instance.getAnswerGiven) ? instance.getAnswerGiven() : false;
+    // TODO
   }
 
   /**
@@ -371,16 +452,17 @@ export default class ARScavengerContent {
    * @return {number} latest score.
    */
   getScore() {
-    const instance = this.getInstanceAction();
-    return (instance && instance.getScore) ? instance.getScore() : 0;
+    // TODO
+    return 10;
   }
+
   /**
    * Get maximum possible score
    * @return {number} Score necessary for mastering.
    */
   getMaxScore() {
-    const instance = this.getInstanceAction();
-    return (instance && instance.getMaxScore) ? instance.getMaxScore() : 0;
+    // TODO
+    return 100;
   }
 
   /**
@@ -397,10 +479,7 @@ export default class ARScavengerContent {
    * Reset task.
    */
   reset() {
-    const instance = this.getInstanceAction();
-    if (instance && instance.resetTask) {
-      instance.resetTask();
-    }
+    this.action.resetTask();
   }
 
   /**
@@ -408,7 +487,7 @@ export default class ARScavengerContent {
    * @return {object} CurrentState.
    */
   getCurrentState() {
-    const instance = this.getInstanceAction();
-    return (!instance || !instance.getCurrentState) ? undefined : instance.getCurrentState();
+    // TODO
+    return {};
   }
 }

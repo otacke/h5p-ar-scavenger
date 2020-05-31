@@ -163,4 +163,15 @@ export default class ARScavengerContentAction {
     this.actionWrapper.classList.add('h5p-ar-scavenger-display-none');
     this.message.classList.remove('h5p-ar-scavenger-display-none');
   }
+
+  /**
+   * Reset all interactions.
+   */
+  resetTask() {
+    this.interactions.forEach((interaction) => {
+      if (typeof interaction.resetTask === 'function') {
+        interaction.resetTask();
+      }
+    });
+  }
 }

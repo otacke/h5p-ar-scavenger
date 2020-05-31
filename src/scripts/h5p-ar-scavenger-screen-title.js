@@ -61,4 +61,18 @@ export default class ARScavengerScreenTitle {
   getDOM() {
     return this.screen;
   }
+
+  /**
+   * Show title screen.
+   */
+  show() {
+    this.screen.classList.remove('h5p-ar-scavenger-display-none');
+  }
+
+  /**
+   * Hide title screen.
+   */
+  hide() {
+    this.screen.classList.add('h5p-ar-scavenger-display-none');
+  }
 }
