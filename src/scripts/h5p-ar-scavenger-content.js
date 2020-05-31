@@ -2,6 +2,7 @@
 import ARScavengerContentTitlebar from './h5p-ar-scavenger-content-titlebar';
 import ARScavengerContentCamera from './h5p-ar-scavenger-content-camera';
 import ARScavengerContentAction from './h5p-ar-scavenger-content-action';
+import ARScavengerScreenTitle from './h5p-ar-scavenger-screen-title';
 
 /** Class representing the content */
 export default class ARScavengerContent {
@@ -27,20 +28,32 @@ export default class ARScavengerContent {
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
 
     // Action mode = action page active
+    // TODO: Still required? Should always start with camera mode
     this.isCameraMode = !this.params.behaviour.showActionOnStartup;
 
-    // Content
+    // Screen content (container)
     this.container = document.createElement('div');
-    this.container.classList.add('h5p-ar-scavenger-container');
+    this.container.classList.add('h5p-ar-scavenger-screen-content');
+
+    // Screen: Title
+    this.screenTitle = this.buildTitleScreen();
+    this.container.appendChild(this.screenTitle.getDOM());
+
+    // Screen: Content
+    // TODO: Put in separate build function
+    this.screenContent = document.createElement('div');
+    this.screenContent.classList.add('h5p-ar-scavenger-content-container');
+    this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+    this.container.appendChild(this.screenContent);
 
     // Titlebar
-    this.titlebar = this.createTitleBar();
-    this.container.appendChild(this.titlebar.getDOM());
+    this.titlebar = this.buildTitleBar();
+    this.screenContent.appendChild(this.titlebar.getDOM());
 
     // TODO: params.markers.length === 0
 
     // Subject
-    this.camera = this.createCamera(
+    this.camera = this.buildCamera(
       {
         contentId: this.contentId,
         markers: this.params.markers,
@@ -61,7 +74,7 @@ export default class ARScavengerContent {
     );
 
     // Action
-    this.action = this.createAction(
+    this.action = this.buildAction(
       {
         markersLength: this.params.markers.length,
         contentId: this.params.contentId,
@@ -81,7 +94,7 @@ export default class ARScavengerContent {
     panel.appendChild(this.camera.getDOM());
     panel.appendChild(this.action.getDOM());
 
-    this.container.appendChild(panel);
+    this.screenContent.appendChild(panel);
   }
 
   /**
@@ -125,7 +138,7 @@ export default class ARScavengerContent {
    * Create titlebar.
    * @return {ARScavengerContentTitlebar} Titlebar.
    */
-  createTitleBar() {
+  buildTitleBar() {
     return new ARScavengerContentTitlebar(
       {
         title: this.extras.metadata.title,
@@ -142,12 +155,45 @@ export default class ARScavengerContent {
   }
 
   /**
+   * Build title screen
+   */
+  buildTitleScreen() {
+    const params = this.params.titleScreen;
+    params.l10n = {
+      'start': this.params.l10n.start
+    };
+
+    const titleScreen = new ARScavengerScreenTitle(
+      params,
+      {
+        onClose: () => {
+          this.handleTitleScreenClosed();
+        }
+      },
+      this.contentId);
+
+    return titleScreen;
+  }
+
+  /**
+   * Handle title screen closed
+   */
+  handleTitleScreenClosed() {
+    this.screenTitle.getDOM().classList.add('h5p-ar-scavenger-display-none');
+    this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+
+    setTimeout(() => {
+      this.callbacks.onResize();
+    }, 0);
+  }
+
+  /**
    * Create subject DOM.
    * @param {object} params Parameters for Subject.
    * @param {object} callbacks Callbacks.
    * @param {boolean} isCameraMode Switch for action mode.
    */
-  createCamera(params = {}, callbacks = {}, isCameraMode = true) {
+  buildCamera(params = {}, callbacks = {}, isCameraMode = true) {
     const camera = new ARScavengerContentCamera(params, callbacks);
     const subjectContainer = camera.getDOM();
 
@@ -175,7 +221,7 @@ export default class ARScavengerContent {
    * @param {object} params Paremeters for Subject.
    * @param {boolean} isCameraMode Switch for action mode.
    */
-  createAction(params = {}, callbacks = {}, isCameraMode = true) {
+  buildAction(params = {}, callbacks = {}, isCameraMode = true) {
     const action = new ARScavengerContentAction(params, this.contentId, callbacks);
     const actionContainer = action.getDOM();
 
