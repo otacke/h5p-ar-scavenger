@@ -35,9 +35,11 @@ export default class ARScavengerContent {
     this.instancesInitialized = 0;
     this.instances = [];
     this.instanceDOMs = [];
+    this.instancesH5P = 0;
 
-    // Initialize instances
-    this.params.markers.forEach((marker) => {
+    this.markersFound = new Array(this.params.markers.length);
+
+    this.params.markers.forEach((marker, index) => {
       if (marker.actionType !== 'h5p') {
         this.instances.push(null);
         this.instanceDOMs.push(null);
@@ -52,7 +54,7 @@ export default class ARScavengerContent {
         this.actionMachineName = interaction.library.split(' ')[0];
       }
 
-      // Create instance or failure message
+      // Create instance
       if (this.actionMachineName !== undefined && contentId) {
         const actionWrapper = document.createElement('div');
         actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
@@ -63,9 +65,34 @@ export default class ARScavengerContent {
           H5P.jQuery(actionWrapper),
           true
         );
+
+        // Register initialization of instance
         H5P.externalDispatcher.once('initialized', () => {
+          this.instancesH5P++;
           this.handleInstanceInitialized();
         });
+
+        // Listen for instance completion
+        instance.on('xAPI', (event) => {
+          if (event.getVerb() !== 'answered' && event.getVerb() !== 'completed') {
+            return; // not relevant
+          }
+
+          // Run this after the current event has been sent
+          setTimeout(() => {
+            this.markersFound[index].completed = true;
+
+            const markersCompleted = this.markersFound.reduce((sum, marker) => {
+              return sum + ((marker && marker.completed) ? 1 : 0);
+            }, 0);
+
+            // All instances completed
+            if (markersCompleted === this.instancesH5P) {
+              this.handleCompleted();
+            }
+          }, 0);
+        });
+
         this.instances.push(instance);
         this.instanceDOMs.push(actionWrapper);
       }
@@ -76,15 +103,17 @@ export default class ARScavengerContent {
       }
     });
 
+    // No end screen required if no H5P interactions present
+    if (this.instancesH5P === this.params.markers.length) {
+      this.params.titleScreen.showEndScreen = false;
+    }
+
     // Screen content (container)
     this.container = document.createElement('div');
     this.container.classList.add('h5p-ar-scavenger-screen-content');
 
     // TODO: For debugging
     window.addEventListener('keydown', (event) => {
-      if (event.keyCode === 220) { // <
-        this.handleCompleted();
-      }
       if (event.keyCode === 49) { // 1
         this.handleMarkerFound({target: {id: 0}});
       }
@@ -137,11 +166,7 @@ export default class ARScavengerContent {
     );
 
     // Action
-    this.action = this.buildAction(
-      {
-        markersLength: this.params.markers.length
-      }
-    );
+    this.action = this.buildAction({}, {});
 
     // Panel
     const panel = document.createElement('div');
@@ -168,6 +193,11 @@ export default class ARScavengerContent {
 
     const markerId = parseInt(event.target.id);
     const marker = this.params.markers[markerId];
+
+    this.markersFound[markerId] = this.markersFound[markerId] || {
+      actionType: marker.actionType,
+      completed: false
+    };
 
     if (marker.actionType === 'h5p') {
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
@@ -301,11 +331,13 @@ export default class ARScavengerContent {
 
       // Put this here to allow animation to be visible
       this.screenEnd.setScore(this.getScore());
+
+      setTimeout(() => {
+        this.callbacks.onResize();
+      }, 0);
     }
 
-    setTimeout(() => {
-      this.callbacks.onResize();
-    }, 0);
+    this.callbacks.onCompleted();
   }
 
   /**
@@ -369,10 +401,9 @@ export default class ARScavengerContent {
   /**
    * Create the action DOM.
    * @param {object} params Paremeters for Subject.
-   * @param {boolean} isCameraMode Switch for action mode.
    */
-  buildAction(params = {}) {
-    const action = new ARScavengerContentAction(params);
+  buildAction(params = {}, callbacks = {}) {
+    const action = new ARScavengerContentAction(params, callbacks);
     action.hide();
 
     // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
@@ -523,6 +554,12 @@ export default class ARScavengerContent {
    * Reset task.
    */
   reset() {
+    for (let i = 0; i < this.markersFound.length; i++) {
+      if (this.markersFound[i]) {
+        this.markersFound[i].completed = false;
+      }
+    }
+
     this.instances.forEach((instance) => {
       if (instance && typeof instance.resetTask === 'function') {
         instance.resetTask();

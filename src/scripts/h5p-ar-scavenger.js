@@ -12,7 +12,7 @@ export default class ARScavenger extends H5P.Question {
    * @param {object} [extras={}] Saved state, metadata, etc.
    */
   constructor(params, contentId, extras = {}) {
-    super('ar-scavenger'); // CSS class selector for content's iframe: h5p-ar-scavanger
+    super('ar-scavenger'); // CSS class selector for content's iframe: h5p-ar-scavenger
 
     this.contentId = contentId;
 
@@ -21,6 +21,7 @@ export default class ARScavenger extends H5P.Question {
     // TODO: Loading Spinner
     // TODO: Editor: triplet for rotation / position
     // TODO: Editor: check size attribute for marker
+    // TODO: Camera aspect ratio
     // TODO: (Model viewer in editor)
 
     /*
@@ -160,6 +161,13 @@ export default class ARScavenger extends H5P.Question {
       fullScreenButtonWrapper.appendChild(this.fullScreenButton);
 
       wrapper.insertBefore(fullScreenButtonWrapper, wrapper.firstChild);
+    };
+
+    /**
+     * Handle content completed.
+     */
+    this.handleCompleted = () => {
+      this.trigger(this.getXAPIAnswerEvent());
     };
 
     /**

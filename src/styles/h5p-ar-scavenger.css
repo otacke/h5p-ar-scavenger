@@ -109,6 +109,10 @@
   align-self: center;
 }
 
+.h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start {
+  margin-top: 1em;
+}
+
 .h5p-ar-scavenger .h5p-ar-scavenger-score-text {
   color: #1a73d9;
   font-weight: 700;
@@ -122,6 +126,7 @@
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start:before {
   content: "\F11D";
+  font-weight: bold;
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-end-button-retry:before {

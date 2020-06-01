@@ -11,14 +11,10 @@ export default class ARScavengerContentAction {
   constructor(params, callbacks) {
     // Sanitize params
     this.params = Util.extend({
-      markersLength: 0
     }, params || {});
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
-
-    this.interactions = new Array(this.params.markersLength);
-    this.interactionsDOMs = new Array(this.params.markersLength);
 
     // TODO: Move this out of the action wrapper
     this.message = document.createElement('div');
