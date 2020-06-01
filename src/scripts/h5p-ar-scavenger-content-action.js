@@ -95,33 +95,11 @@ export default class ARScavengerContentAction {
   /**
    * Attach instance to action.
    * @param {H5P.ContentType} instance Instance.
-   * @param {number} id Id of interaction,
    */
-  attachInstance(instance, id) {
-    if (id && id === this.currentInteractionId) {
-      return; // Already attached
-    }
-
-    // Either preserve current DOM and retrieve existing one or create new one for instance.
-    if (this.interactionsDOMs[id]) {
-      this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.interactionsDOMs[this.currentInteractionId] || this.actionWrapper);
-      this.content.appendChild(this.interactionsDOMs[id]);
-    }
-    else {
-      if (this.currentInteractionId) {
-        this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.actionWrapper);
-      }
-      else {
-        this.content.removeChild(this.actionWrapper);
-      }
-
-      this.actionWrapper = document.createElement('div');
-      this.actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
-      instance.attach(H5P.jQuery(this.actionWrapper));
-      this.content.appendChild(this.actionWrapper);
-    }
-
-    this.currentInteractionId = id;
+  attachInstance(instanceDOM) {
+    this.content.removeChild(this.actionWrapper);
+    this.actionWrapper = instanceDOM;
+    this.content.appendChild(this.actionWrapper);
   }
 
   /**

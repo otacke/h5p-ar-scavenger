@@ -34,11 +34,13 @@ export default class ARScavengerContent {
     // Initialize instances
     this.instancesInitialized = 0;
     this.instances = [];
+    this.instanceDOMs = [];
 
     // Initialize instances
     this.params.markers.forEach((marker) => {
       if (marker.actionType !== 'h5p') {
         this.instances.push(null);
+        this.instanceDOMs.push(null);
         this.handleInstanceInitialized();
         return;
       }
@@ -52,19 +54,24 @@ export default class ARScavengerContent {
 
       // Create instance or failure message
       if (this.actionMachineName !== undefined && contentId) {
+        const actionWrapper = document.createElement('div');
+        actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
+
         const instance = H5P.newRunnable(
           interaction,
           contentId,
-          undefined,
+          H5P.jQuery(actionWrapper),
           true
         );
         H5P.externalDispatcher.once('initialized', () => {
           this.handleInstanceInitialized();
         });
         this.instances.push(instance);
+        this.instanceDOMs.push(actionWrapper);
       }
       else {
         this.instances.push(null);
+        this.instanceDOMs.push(null);
         this.handleInstanceInitialized();
       }
     });
@@ -163,7 +170,7 @@ export default class ARScavengerContent {
     const marker = this.params.markers[markerId];
 
     if (marker.actionType === 'h5p') {
-      this.action.attachInstance(this.instances[markerId], markerId);
+      this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
       this.action.show();
 
@@ -505,10 +512,11 @@ export default class ARScavengerContent {
    * Show solutions.
    */
   showSolutions() {
-    const instance = this.getInstanceAction();
-    if (instance && instance.showSolutions) {
-      instance.showSolutions();
-    }
+    this.instances.forEach((instance) => {
+      if (instance && typeof instance.showSolutions === 'function') {
+        instance.showSolutions();
+      }
+    });
   }
 
   /**
