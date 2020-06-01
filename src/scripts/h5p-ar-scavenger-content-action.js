@@ -11,6 +11,9 @@ export default class ARScavengerContentAction {
   constructor(params, callbacks) {
     // Sanitize params
     this.params = Util.extend({
+      l10n: {
+        nothingToSee: ''
+      }
     }, params || {});
 
     // Sanitize callbacks
@@ -19,7 +22,7 @@ export default class ARScavengerContentAction {
     // TODO: Move this out of the action wrapper
     this.message = document.createElement('div');
     this.message.style.fontSize = '1.5em';
-    this.message.innerHTML = 'Finde den richtigen Marker!';
+    this.message.innerHTML = this.params.l10n.nothingToSee;
 
     // Library Wrapper
     this.actionWrapper = document.createElement('div');

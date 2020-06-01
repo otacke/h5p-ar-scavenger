@@ -166,7 +166,11 @@ export default class ARScavengerContent {
     );
 
     // Action
-    this.action = this.buildAction({}, {});
+    this.action = this.buildAction({
+      l10n: {
+        nothingToSee: this.params.l10n.nothingToSee
+      }
+    }, {});
 
     // Panel
     const panel = document.createElement('div');
