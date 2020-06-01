@@ -29,9 +29,45 @@ export default class ARScavengerContent {
     this.callbacks.onRead = this.callbacks.onRead || (() => {});
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
 
-    // Action mode = action page active
-    // TODO: Still required? Should always start with camera mode
-    this.isCameraMode = !this.params.behaviour.showActionOnStartup;
+    this.isCameraMode = true;
+
+    // Initialize instances
+    this.instancesInitialized = 0;
+    this.instances = [];
+
+    // Initialize instances
+    this.params.markers.forEach((marker) => {
+      if (marker.actionType !== 'h5p') {
+        this.instances.push(null);
+        this.handleInstanceInitialized();
+        return;
+      }
+
+      const interaction = marker.interaction.interaction;
+
+      // Create new instance replacing action wrapper DOM
+      if (interaction.library) {
+        this.actionMachineName = interaction.library.split(' ')[0];
+      }
+
+      // Create instance or failure message
+      if (this.actionMachineName !== undefined && contentId) {
+        const instance = H5P.newRunnable(
+          interaction,
+          contentId,
+          undefined,
+          true
+        );
+        H5P.externalDispatcher.once('initialized', () => {
+          this.handleInstanceInitialized();
+        });
+        this.instances.push(instance);
+      }
+      else {
+        this.instances.push(null);
+        this.handleInstanceInitialized();
+      }
+    });
 
     // Screen content (container)
     this.container = document.createElement('div');
@@ -42,8 +78,16 @@ export default class ARScavengerContent {
       if (event.keyCode === 220) { // <
         this.handleCompleted();
       }
+      if (event.keyCode === 49) { // 1
+        this.handleMarkerFound({target: {id: 0}});
+      }
+      if (event.keyCode === 50) { // 2
+        this.handleMarkerFound({target: {id: 1}});
+      }
+      if (event.keyCode === 51) { // 3
+        this.handleMarkerFound({target: {id: 2}});
+      }
     });
-
 
     // Screen: Title
     if (this.params.titleScreen.showTitleScreen) {
@@ -88,16 +132,8 @@ export default class ARScavengerContent {
     // Action
     this.action = this.buildAction(
       {
-        markersLength: this.params.markers.length,
-        contentId: this.params.contentId,
-        previousState: this.previousState,
-      },
-      {
-        onInstanceReady: (instance) => {
-          this.handleInstanceReady(instance);
-        }
-      },
-      this.isCameraMode
+        markersLength: this.params.markers.length
+      }
     );
 
     // Panel
@@ -127,13 +163,24 @@ export default class ARScavengerContent {
     const marker = this.params.markers[markerId];
 
     if (marker.actionType === 'h5p') {
-      this.action.loadContent(markerId, marker.interaction.interaction, this.contentId);
+      this.action.attachInstance(this.instances[markerId], markerId);
       this.action.showContent();
       this.action.show();
 
       if (this.isCameraMode) {
         this.toggleView();
       }
+    }
+  }
+
+  /**
+   * Handle instance initalized.
+   */
+  handleInstanceInitialized() {
+    this.instancesInitialized++;
+    if (this.instancesInitialized === this.params.markers.length) {
+      // TODO: Allow start
+      console.log('All instances initalized');
     }
   }
 
@@ -282,7 +329,15 @@ export default class ARScavengerContent {
    * @param {boolean} isCameraMode Switch for action mode.
    */
   buildCamera(params = {}, callbacks = {}, isCameraMode = true) {
-    const camera = new ARScavengerContentCamera(params, callbacks);
+    const camera = new ARScavengerContentCamera({
+      contentId: params.contentId,
+      fallbackHeight: params.fallbackHeight,
+      markers: params.markers.map(marker => ({
+        actionType: marker.actionType,
+        markerPattern: marker.markerPattern,
+        model: marker.model
+      }))
+    }, callbacks);
     const subjectContainer = camera.getDOM();
 
     if (!isCameraMode) {
@@ -309,22 +364,14 @@ export default class ARScavengerContent {
    * @param {object} params Paremeters for Subject.
    * @param {boolean} isCameraMode Switch for action mode.
    */
-  buildAction(params = {}, callbacks = {}, isCameraMode = true) {
-    const action = new ARScavengerContentAction(params, this.contentId, callbacks);
-    const actionContainer = action.getDOM();
-
-    if (!isCameraMode) {
-      // TODO: Action.show/hide
-      actionContainer.classList.add('h5p-ar-scavenger-action-mode');
-    }
-    else {
-      actionContainer.classList.add('h5p-ar-scavenger-display-none');
-    }
+  buildAction(params = {}) {
+    const action = new ARScavengerContentAction(params);
+    action.hide();
 
     // Hide wrapper after it has been moved out of sight to prevent receiving tab focus
-    actionContainer.addEventListener('transitionend', () => {
+    action.getDOM().addEventListener('transitionend', () => {
       if (this.isCameraMode) {
-        actionContainer.classList.add('h5p-ar-scavenger-display-none');
+        action.hide();
       }
       setTimeout(() => {
         this.resize();
@@ -427,24 +474,11 @@ export default class ARScavengerContent {
   }
 
   /**
-   * Handle instance ready callback.
-   * @param {object} instance H5P content type instance.
-   */
-  handleInstanceReady(instance) {
-    if (!instance || typeof instance !== 'object') {
-      return;
-    }
-
-    this.instanceAction = instance;
-    console.log('instance ready');
-  }
-
-  /**
    * Check if result has been submitted or input has been given.
    * @return {boolean} True, if answer was given.
    */
   getAnswerGiven() {
-    // TODO
+    return this.instances.some((instance => (instance && typeof instance.getAnswerGiven === 'function' && instance.getAnswerGiven())));
   }
 
   /**
@@ -452,8 +486,9 @@ export default class ARScavengerContent {
    * @return {number} latest score.
    */
   getScore() {
-    // TODO
-    return 10;
+    return this.instances.reduce((score, instance) => {
+      return score + ((instance && typeof instance.getScore === 'function') ? instance.getScore() : 0);
+    }, 0);
   }
 
   /**
@@ -461,8 +496,9 @@ export default class ARScavengerContent {
    * @return {number} Score necessary for mastering.
    */
   getMaxScore() {
-    // TODO
-    return 100;
+    return this.instances.reduce((maxScore, instance) => {
+      return maxScore + ((instance && typeof instance.getMaxScore === 'function') ? instance.getMaxScore() : 0);
+    }, 0);
   }
 
   /**
@@ -479,7 +515,11 @@ export default class ARScavengerContent {
    * Reset task.
    */
   reset() {
-    this.action.resetTask();
+    this.instances.forEach((instance) => {
+      if (instance && typeof instance.resetTask === 'function') {
+        instance.resetTask();
+      }
+    });
   }
 
   /**

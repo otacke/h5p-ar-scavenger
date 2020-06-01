@@ -16,6 +16,13 @@ export default class ARScavenger extends H5P.Question {
 
     this.contentId = contentId;
 
+    // TODO: xAPI trigger on completed
+    // TODO: getCurrentState
+    // TODO: Loading Spinner
+    // TODO: Editor: triplet for rotation / position
+    // TODO: Editor: check size attribute for marker
+    // TODO: (Model viewer in editor)
+
     /*
      * this.params.behaviour.enableSolutionsButton and this.params.behaviour.enableRetry
      * are used by H5P's question type contract.

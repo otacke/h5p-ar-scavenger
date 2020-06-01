@@ -7,21 +7,15 @@ export default class ARScavengerContentAction {
    * @constructor
    *
    * @param {object} params Parameter from editor.
-   * @param {object} params.action Library parameters.
-   * @param {number} params.contentId Content Id.
-   * @param {object} [params.previousState] PreviousState.
-   * @param {object} [callbacks] Callbacks.
-   * @param {function} [params.callbacks.onInstanceReady] Callback for instance ready for content.
    */
-  constructor(params, contentId, callbacks) {
+  constructor(params, callbacks) {
     // Sanitize params
     this.params = Util.extend({
-      previousState: {}
+      markersLength: 0
     }, params || {});
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
-    this.callbacks.onInstanceReady = this.callbacks.onInstanceReady || (() => {});
 
     this.interactions = new Array(this.params.markersLength);
     this.interactionsDOMs = new Array(this.params.markersLength);
@@ -70,10 +64,17 @@ export default class ARScavengerContentAction {
   }
 
   /**
-   * Show subject.
+   * Show action.
    */
   show() {
     this.container.classList.remove('h5p-ar-scavenger-display-none');
+  }
+
+  /**
+   * Show action.
+   */
+  hide() {
+    this.container.classList.add('h5p-ar-scavenger-display-none');
   }
 
   /**
@@ -91,61 +92,36 @@ export default class ARScavengerContentAction {
     }
   }
 
-  loadContent(id, params, contentId) {
+  /**
+   * Attach instance to action.
+   * @param {H5P.ContentType} instance Instance.
+   * @param {number} id Id of interaction,
+   */
+  attachInstance(instance, id) {
     if (id && id === this.currentInteractionId) {
-      return; // Already displayed
+      return; // Already attached
     }
 
-    // TODO: Clean up the control flow
-
-    if (this.interactions[id]) {
-      // We have an instance for that id already
-
-      // Backup current DOM and restore previous one
+    // Either preserve current DOM and retrieve existing one or create new one for instance.
+    if (this.interactionsDOMs[id]) {
       this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.interactionsDOMs[this.currentInteractionId] || this.actionWrapper);
       this.content.appendChild(this.interactionsDOMs[id]);
-
-      this.currentInteractionId = id;
-
-      // Return instance to content
-      this.callbacks.onInstanceReady(this.interactions[id]);
-      return;
     }
     else {
       if (this.currentInteractionId) {
-        // We have a previous node
-
-        // Backup current DOM and append new blank action wrapper to be replaced by instance DOM
-        this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.interactionsDOMs[this.currentInteractionId] || this.actionWrapper);
-        this.actionWrapper = document.createElement('div');
-        this.actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
-        this.content.appendChild(this.actionWrapper);
-      }
-
-      // Create new instance replacing action wrapper DOM
-      if (params.library) {
-        this.actionMachineName = params.library.split(' ')[0];
-      }
-
-      // Create instance or failure message
-      if (this.actionMachineName !== undefined && contentId) {
-        this.interactions[id] = H5P.newRunnable(
-          params,
-          contentId,
-          H5P.jQuery(this.actionWrapper),
-          false,
-          {previousState: this.params.previousState}
-        );
-
-        // Return instance to content
-        this.callbacks.onInstanceReady(this.interactions[id]);
+        this.interactionsDOMs[this.currentInteractionId] = this.content.removeChild(this.actionWrapper);
       }
       else {
-        this.actionWrapper.innerHTML = 'Could not load content.';
+        this.content.removeChild(this.actionWrapper);
       }
 
-      this.currentInteractionId = id;
+      this.actionWrapper = document.createElement('div');
+      this.actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
+      instance.attach(H5P.jQuery(this.actionWrapper));
+      this.content.appendChild(this.actionWrapper);
     }
+
+    this.currentInteractionId = id;
   }
 
   /**
@@ -162,16 +138,5 @@ export default class ARScavengerContentAction {
   hideContent() {
     this.actionWrapper.classList.add('h5p-ar-scavenger-display-none');
     this.message.classList.remove('h5p-ar-scavenger-display-none');
-  }
-
-  /**
-   * Reset all interactions.
-   */
-  resetTask() {
-    this.interactions.forEach((interaction) => {
-      if (typeof interaction.resetTask === 'function') {
-        interaction.resetTask();
-      }
-    });
   }
 }
