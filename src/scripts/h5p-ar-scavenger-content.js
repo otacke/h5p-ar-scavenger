@@ -135,7 +135,9 @@ export default class ARScavengerContent {
     // TODO: Put in separate build function (screenContent as class with show/hide)
     this.screenContent = document.createElement('div');
     this.screenContent.classList.add('h5p-ar-scavenger-content-container');
-    this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+    if (this.params.titleScreen.showTitleScreen) {
+      this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+    }
     this.container.appendChild(this.screenContent);
 
     // Titlebar
@@ -249,14 +251,14 @@ export default class ARScavengerContent {
     return new ARScavengerContentTitlebar(
       {
         title: this.extras.metadata.title,
-        toggleButtonActiveOnStartup: this.params.behaviour.showActionOnStartup,
         a11y: {
           buttonSwitchViewAction: this.params.a11y.buttonSwitchViewAction,
           buttonSwitchViewCamera: this.params.a11y.buttonSwitchViewCamera,
           buttonSwitchViewDisabled: this.params.a11y.buttonSwitchViewDisabled,
           buttonQuit: this.params.a11y.buttonQuit,
           buttonQuitDisabled: this.params.a11y.buttonQuitDisabled,
-        }
+        },
+        buttonQuit: this.params.endScreen.showEndScreen
       },
       {
         onClickButtonSwitchView: (event) => this.handleSwitchView(event),

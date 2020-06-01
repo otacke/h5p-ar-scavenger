@@ -51,24 +51,26 @@ export default class ARScavengerContentTitlebar {
     );
     this.titleBar.appendChild(this.buttons['switchView'].getDOM());
 
-    this.buttons['quit'] = new ARScavengerButton(
-      {
-        a11y: {
-          active: this.params.a11y.buttonQuit,
-          disabled: this.params.a11y.buttonQuitDisabled,
+    if (this.params.buttonQuit) {
+      this.buttons['quit'] = new ARScavengerButton(
+        {
+          a11y: {
+            active: this.params.a11y.buttonQuit,
+            disabled: this.params.a11y.buttonQuitDisabled,
+          },
+          classes: [
+            'h5p-ar-scavenger-button',
+            'h5p-ar-scavenger-button-quit'
+          ],
+          disabled: true,
+          type: 'pulse'
         },
-        classes: [
-          'h5p-ar-scavenger-button',
-          'h5p-ar-scavenger-button-quit'
-        ],
-        disabled: true,
-        type: 'pulse'
-      },
-      {
-        onClick: this.callbacks.onClickButtonQuit
-      }
-    );
-    this.titleBar.appendChild(this.buttons['quit'].getDOM());
+        {
+          onClick: this.callbacks.onClickButtonQuit
+        }
+      );
+      this.titleBar.appendChild(this.buttons['quit'].getDOM());
+    }
 
     // Title
     const titleDOM = document.createElement('div');
