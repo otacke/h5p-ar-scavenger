@@ -16,7 +16,6 @@ export default class ARScavenger extends H5P.Question {
 
     this.contentId = contentId;
 
-    // TODO: getCurrentState
     // TODO: Loading Spinner
     // TODO: Editor: triplet for rotation / position
     // TODO: Editor: check size attribute for marker

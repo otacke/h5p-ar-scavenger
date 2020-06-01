@@ -18,10 +18,8 @@ export default class ARScavengerContent {
   constructor(params, contentId, extras, callbacks) {
     this.params = params;
     this.contentId = contentId;
-    this.extras = extras;
-
-    // Previous state
-    this.previousState = extras.previousState || {};
+    this.extras = extras || {};
+    this.extras.previousState = this.extras.previousState || [];
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
@@ -63,7 +61,8 @@ export default class ARScavengerContent {
           interaction,
           contentId,
           H5P.jQuery(actionWrapper),
-          true
+          true,
+          {previousState: this.extras.previousState[index]}
         );
 
         // Register initialization of instance
@@ -223,8 +222,7 @@ export default class ARScavengerContent {
   handleInstanceInitialized() {
     this.instancesInitialized++;
     if (this.instancesInitialized === this.params.markers.length) {
-      // TODO: Allow start
-      console.log('All instances initalized');
+      // TODO: Allow start, hide spinner
     }
   }
 
@@ -598,7 +596,12 @@ export default class ARScavengerContent {
    * @return {object} CurrentState.
    */
   getCurrentState() {
-    // TODO
-    return {};
+    return this.instances.map((instance) => {
+      if (!instance || typeof instance.getCurrentState !== 'function') {
+        return {};
+      }
+
+      return instance.getCurrentState();
+    });
   }
 }
