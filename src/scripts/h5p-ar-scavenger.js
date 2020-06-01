@@ -52,11 +52,12 @@ export default class ARScavenger extends H5P.Question {
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
         buttonFullscreenExit: 'Exit fullscreen mode',
-        buttonSwitchViewAction: 'Switch to the action',
+        buttonSwitchViewAction: 'Switch to an exercise',
         buttonSwitchViewCamera: 'Switch to the camera',
+        buttonSwitchViewDisabled: 'You cannot switch the view right now',
         buttonQuit: 'Quit exercise',
-        buttonDisabled: 'Button is disabled',
-        actionOpened: 'The view has switched to the action.',
+        buttonQuitDisabled: 'You have not yet completed all exercises',
+        actionOpened: 'The view has switched to an exercise.',
         actionClosed: 'The view has switched to the camera.',
       },
       minWidthForDualView: ARScavenger.MIN_WIDTH_FOR_DUALVIEW

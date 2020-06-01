@@ -27,6 +27,15 @@ export default class ARScavengerButton {
       this.params.classes = [this.params.classes];
     }
 
+    if (this.params.type === 'pulse') {
+      if (!this.params.a11y.inactive) {
+        this.params.a11y.inactive = this.params.a11y.active || '';
+      }
+      if (!this.params.a11y.active) {
+        this.params.a11y.active = this.params.a11y.inactive || '';
+      }
+    }
+
     this.active = this.params.active;
     this.disabled = this.params.disabled;
 
@@ -125,13 +134,16 @@ export default class ARScavengerButton {
    * Activate button.
    */
   activate() {
-    if (this.disabled || this.params.type !== 'toggle') {
+    if (this.disabled) {
       return;
     }
 
-    this.button.classList.add('h5p-ar-scavenger-button-active');
+    if (this.params.type === 'toggle') {
+      this.button.classList.add('h5p-ar-scavenger-button-active');
+      this.button.setAttribute('aria-pressed', true);
+    }
+
     this.button.setAttribute('aria-label', this.params.a11y.active);
-    this.button.setAttribute('aria-pressed', true);
     this.button.setAttribute('title', this.params.a11y.active);
 
     this.active = true;
@@ -141,15 +153,18 @@ export default class ARScavengerButton {
    * Deactivate button.
    */
   deactivate() {
-    if (this.disabled || this.params.type !== 'toggle') {
+    if (this.disabled) {
       return;
     }
 
     this.active = false;
 
-    this.button.classList.remove('h5p-ar-scavenger-button-active');
+    if (this.params.type === 'toggle') {
+      this.button.classList.remove('h5p-ar-scavenger-button-active');
+      this.button.setAttribute('aria-pressed', false);
+    }
+
     this.button.setAttribute('aria-label', this.params.a11y.inactive);
-    this.button.setAttribute('aria-pressed', false);
     this.button.setAttribute('title', this.params.a11y.inactive);
   }
 

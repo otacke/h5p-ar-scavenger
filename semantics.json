@@ -497,7 +497,7 @@
         "type": "text",
         "label": "'Switch view' button title (when action closed)",
         "importance": "low",
-        "default": "Switch to action"
+        "default": "Switch to exercise"
       },
       {
         "name": "buttonSwitchViewCamera",
@@ -507,25 +507,32 @@
         "default": "Switch to camera"
       },
       {
+        "name": "buttonSwitchViewDisabled",
+        "type": "text",
+        "label": "'Button disabled' message",
+        "importance": "low",
+        "default": "You cannot switch the view right now"
+      },
+      {
         "name": "buttonQuit",
         "type": "text",
         "label": "'Quit' button title",
         "importance": "low",
-        "default": "Quit exercise"
+        "default": "Quit and show evaluation"
       },
       {
-        "name": "buttonDisabled",
+        "name": "buttonQuitDisabled",
         "type": "text",
         "label": "'Button disabled' message",
         "importance": "low",
-        "default": "Button is disabled"
+        "default": "You have not yet completed all exercises"
       },
       {
         "name": "actionOpened",
         "type": "text",
         "label": "Action opened",
         "importance": "low",
-        "default": "The view has switched to the action."
+        "default": "The view has switched to an exercise."
       },
       {
         "name": "actionClosed",

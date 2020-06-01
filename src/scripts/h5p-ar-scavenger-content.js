@@ -253,8 +253,9 @@ export default class ARScavengerContent {
         a11y: {
           buttonSwitchViewAction: this.params.a11y.buttonSwitchViewAction,
           buttonSwitchViewCamera: this.params.a11y.buttonSwitchViewCamera,
+          buttonSwitchViewDisabled: this.params.a11y.buttonSwitchViewDisabled,
           buttonQuit: this.params.a11y.buttonQuit,
-          buttonDisabled: this.params.a11y.buttonDisabled,
+          buttonQuitDisabled: this.params.a11y.buttonQuitDisabled,
         }
       },
       {

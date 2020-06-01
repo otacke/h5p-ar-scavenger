@@ -19,10 +19,7 @@ export default class ARScavengerContentTitlebar {
     // Set missing params
     this.params = Util.extend({
       title: '',
-      toggleButtonActiveOnStartup: true,
       a11y: {
-        buttonEditActive: 'toggle',
-        buttonEditInactive: 'toggle'
       }
     }, params || {});
 
@@ -40,7 +37,7 @@ export default class ARScavengerContentTitlebar {
         a11y: {
           inactive: this.params.a11y.buttonSwitchViewAction,
           active: this.params.a11y.buttonSwitchViewCamera,
-          disabled: this.params.a11y.buttonDisabled,
+          disabled: this.params.a11y.buttonSwitchViewDisabled,
         },
         classes: [
           'h5p-ar-scavenger-button',
@@ -58,7 +55,7 @@ export default class ARScavengerContentTitlebar {
       {
         a11y: {
           active: this.params.a11y.buttonQuit,
-          disabled: this.params.a11y.buttonDisabled,
+          disabled: this.params.a11y.buttonQuitDisabled,
         },
         classes: [
           'h5p-ar-scavenger-button',
