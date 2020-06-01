@@ -493,18 +493,32 @@
         "default": "Exit fullscreen mode"
       },
       {
-        "name": "buttonToggleOpenAction",
+        "name": "buttonSwitchViewAction",
         "type": "text",
-        "label": "Toggle button title (when action closed)",
+        "label": "'Switch view' button title (when action closed)",
         "importance": "low",
         "default": "Switch to action"
       },
       {
-        "name": "buttonToggleCloseAction",
+        "name": "buttonSwitchViewCamera",
         "type": "text",
-        "label": "Toggle button title (when action opened)",
+        "label": "'Switch view' button title (when action opened)",
         "importance": "low",
         "default": "Switch to camera"
+      },
+      {
+        "name": "buttonQuit",
+        "type": "text",
+        "label": "'Quit' button title",
+        "importance": "low",
+        "default": "Quit exercise"
+      },
+      {
+        "name": "buttonDisabled",
+        "type": "text",
+        "label": "'Button disabled' message",
+        "importance": "low",
+        "default": "Button is disabled"
       },
       {
         "name": "actionOpened",

@@ -143,9 +143,10 @@
   padding: .5em;
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-button-overlay {
+
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button {
   align-items: center;
-  background: url(../images/button-toggle-action-icon-blue.svg);
   background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
@@ -159,17 +160,16 @@
   width: 2.75em;
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-button-overlay:hover {
+.h5p-ar-scavenger .h5p-ar-scavenger-button:not(.h5p-ar-scavenger-button-disabled):hover {
   background-color: rgba(26,115,217,0.05);
   cursor: pointer;
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-button-overlay:active {
+.h5p-ar-scavenger .h5p-ar-scavenger-button:not(.h5p-ar-scavenger-button-disabled):active {
   background-color: rgba(26,115,217,0.1);
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-button-overlay.h5p-ar-scavenger-active {
-  background: url(../images/button-toggle-action-icon-white.svg);
+.h5p-ar-scavenger .h5p-ar-scavenger-button:not(.h5p-ar-scavenger-button-disabled).h5p-ar-scavenger-button-active {
   background-color: #1a73d9;
   background-position: center;
   background-repeat: no-repeat;
@@ -177,13 +177,37 @@
   opacity: 20;
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-button-overlay.h5p-ar-scavenger-active:hover {
+.h5p-ar-scavenger .h5p-ar-scavenger-button:not(.h5p-ar-scavenger-button-disabled).h5p-ar-scavenger-button-active:hover {
   background-color: rgba(26,115,217,0.9);
   cursor: pointer;
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-button-overlay.h5p-ar-scavenger-active:active {
+.h5p-ar-scavenger .h5p-ar-scavenger-button:not(.h5p-ar-scavenger-button-disabled).h5p-ar-scavenger-button-active:active {
   background-color: rgba(26,115,217,0.95);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-switch-view {
+  background-image: url(../images/button-switch-view-icon-blue.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-switch-view.h5p-ar-scavenger-button-active {
+  background-image: url(../images/button-switch-view-icon-white.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-switch-view.h5p-ar-scavenger-button-disabled {
+  background-image: url(../images/button-switch-view-icon-grey.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-quit {
+  background-image: url(../images/button-quit-icon-blue.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-quit.h5p-ar-scavenger-button-active {
+  background-image: url(../images/button-quit-icon-white.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-quit.h5p-ar-scavenger-button-disabled {
+  background-image: url(../images/button-quit-icon-grey.svg);
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-title {

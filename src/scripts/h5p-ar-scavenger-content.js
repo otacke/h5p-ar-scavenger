@@ -25,7 +25,7 @@ export default class ARScavengerContent {
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
-    this.callbacks.onRead = this.callbacks.onCompleted || (() => null);
+    this.callbacks.onRead = this.callbacks.onQuit || (() => null);
     this.callbacks.onRead = this.callbacks.onRead || (() => {});
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
 
@@ -203,6 +203,7 @@ export default class ARScavengerContent {
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
       this.action.show();
+      this.titlebar.toggleButtonActive('switchView', true);
 
       if (this.isCameraMode) {
         this.toggleView();
@@ -246,12 +247,15 @@ export default class ARScavengerContent {
         title: this.extras.metadata.title,
         toggleButtonActiveOnStartup: this.params.behaviour.showActionOnStartup,
         a11y: {
-          buttonToggleActive: this.params.a11y.buttonToggleCloseAction,
-          buttonToggleInactive: this.params.a11y.buttonToggleOpenAction
+          buttonSwitchViewAction: this.params.a11y.buttonSwitchViewAction,
+          buttonSwitchViewCamera: this.params.a11y.buttonSwitchViewCamera,
+          buttonQuit: this.params.a11y.buttonQuit,
+          buttonDisabled: this.params.a11y.buttonDisabled,
         }
       },
       {
-        onButtonToggle: (event) => this.handlebuttonToggle(event)
+        onClickButtonSwitchView: (event) => this.handleSwitchView(event),
+        onClickButtonQuit: (event) => this.handleQuit(event)
       }
     );
   }
@@ -311,9 +315,16 @@ export default class ARScavengerContent {
   }
 
   /**
-   * Handle complete.
+   * Handle completed.
    */
   handleCompleted() {
+    this.titlebar.toggleButtonDisabled('quit', false);
+  }
+
+  /**
+   * Handle quit.
+   */
+  handleQuit() {
     if (this.params.endScreen.showEndScreen) {
       const score = this.getScore();
       const maxScore = this.getMaxScore();
@@ -337,7 +348,7 @@ export default class ARScavengerContent {
       }, 0);
     }
 
-    this.callbacks.onCompleted();
+    this.callbacks.onQuit();
   }
 
   /**
@@ -477,12 +488,12 @@ export default class ARScavengerContent {
    * Handle activation of overlay button.
    * @param {object} event Event that is calling.
    */
-  handlebuttonToggle(event) {
+  handleSwitchView(event) {
     if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
       return;
     }
 
-    const active = this.titlebar.toggleOverlayButton();
+    const active = !this.titlebar.isButtonActive('switchView');
 
     const message = (active) ?
       this.params.a11y.actionOpened :
@@ -558,6 +569,14 @@ export default class ARScavengerContent {
       if (this.markersFound[i]) {
         this.markersFound[i].completed = false;
       }
+    }
+
+    this.titlebar.toggleButtonActive('switchView', false);
+    this.titlebar.toggleButtonActive('quit', false);
+    this.titlebar.toggleButtonDisabled('quit', true);
+
+    if (!this.isCameraMode) {
+      this.toggleView();
     }
 
     this.instances.forEach((instance) => {

@@ -16,7 +16,6 @@ export default class ARScavenger extends H5P.Question {
 
     this.contentId = contentId;
 
-    // TODO: xAPI trigger on completed
     // TODO: getCurrentState
     // TODO: Loading Spinner
     // TODO: Editor: triplet for rotation / position
@@ -53,8 +52,10 @@ export default class ARScavenger extends H5P.Question {
       a11y: {
         buttonFullscreenEnter: 'Enter fullscreen mode',
         buttonFullscreenExit: 'Exit fullscreen mode',
-        buttonToggleOpenAction: 'Switch to the action',
-        buttonToggleCloseAction: 'Switch to the camera',
+        buttonSwitchViewAction: 'Switch to the action',
+        buttonSwitchViewCamera: 'Switch to the camera',
+        buttonQuit: 'Quit exercise',
+        buttonDisabled: 'Button is disabled',
         actionOpened: 'The view has switched to the action.',
         actionClosed: 'The view has switched to the camera.',
       },
@@ -101,7 +102,7 @@ export default class ARScavenger extends H5P.Question {
         document.querySelector('.h5p-container').offsetWidth >= ARScavenger.MIN_WIDTH_FOR_DUALVIEW;
 
       this.content = new ARScavengerContent(this.params, this.contentId, this.extras, {
-        onCompleted: this.handleCompleted,
+        onQuit: this.handleCompleted,
         onRead: this.read,
         onResize: this.resize
       });

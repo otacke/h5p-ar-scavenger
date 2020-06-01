@@ -1,4 +1,5 @@
 // Import required classes
+import ARScavengerButton from './h5p-ar-scavenger-button';
 import Util from './h5p-ar-scavenger-util';
 
 /** Class representing the content */
@@ -9,10 +10,10 @@ export default class ARScavengerContentTitlebar {
    * @param {object} params Parameter from editor.
    * @param {string} params.title Title.
    * @param {object} params.a11y Accessibility strings.
-   * @param {string} params.a11y.buttonToggleActive Text for inactive button.
-   * @param {string} params.a11y.buttonToggleInactive Text for inactive button.
+   * @param {string} params.a11y.buttonEditActive Text for inactive button.
+   * @param {string} params.a11y.buttonEditInactive Text for inactive button.
    * @param {object} [callbacks] Callbacks.
-   * @param {function} [callbacks.onbuttonToggle] Handles click.
+   * @param {function} [callbacks.onbuttonEdit] Handles click.
    */
   constructor(params, callbacks) {
     // Set missing params
@@ -20,43 +21,63 @@ export default class ARScavengerContentTitlebar {
       title: '',
       toggleButtonActiveOnStartup: true,
       a11y: {
-        buttonToggleActive: 'toggle',
-        buttonToggleInactive: 'toggle'
+        buttonEditActive: 'toggle',
+        buttonEditInactive: 'toggle'
       }
     }, params || {});
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
-    this.callbacks.onButtonToggle = this.callbacks.onButtonToggle || (() => {});
+    this.callbacks.onClickButtonEdit = this.callbacks.onClickButtonEdit || (() => {});
 
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-ar-scavenger-title-bar');
 
-    // Toggle button
-    this.buttonToggle = document.createElement('div');
-    this.buttonToggle.classList.add('h5p-ar-scavenger-button-overlay');
-    this.buttonToggle.setAttribute('aria-pressed', this.params.toggleButtonActiveOnStartup);
-    this.buttonToggle.setAttribute('role', 'button');
-    this.buttonToggle.setAttribute('tabindex', '0');
-    if (this.params.toggleButtonActiveOnStartup === true) {
-      this.buttonToggle.classList.add('h5p-ar-scavenger-active');
-      this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleActive);
-      this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleActive);
-    }
-    else {
-      this.buttonToggle.setAttribute('aria-label', this.params.a11y.buttonToggleInActive);
-      this.buttonToggle.setAttribute('title', this.params.a11y.buttonToggleInActive);
-    }
+    this.buttons = {};
 
-    this.buttonToggle.addEventListener('click', this.callbacks.onButtonToggle);
-    this.buttonToggle.addEventListener('keypress', this.callbacks.onButtonToggle);
+    this.buttons['switchView'] = new ARScavengerButton(
+      {
+        a11y: {
+          inactive: this.params.a11y.buttonSwitchViewAction,
+          active: this.params.a11y.buttonSwitchViewCamera,
+          disabled: this.params.a11y.buttonDisabled,
+        },
+        classes: [
+          'h5p-ar-scavenger-button',
+          'h5p-ar-scavenger-button-switch-view'
+        ],
+        type: 'toggle'
+      },
+      {
+        onClick: this.callbacks.onClickButtonSwitchView
+      }
+    );
+    this.titleBar.appendChild(this.buttons['switchView'].getDOM());
+
+    this.buttons['quit'] = new ARScavengerButton(
+      {
+        a11y: {
+          active: this.params.a11y.buttonQuit,
+          disabled: this.params.a11y.buttonDisabled,
+        },
+        classes: [
+          'h5p-ar-scavenger-button',
+          'h5p-ar-scavenger-button-quit'
+        ],
+        disabled: true,
+        type: 'pulse'
+      },
+      {
+        onClick: this.callbacks.onClickButtonQuit
+      }
+    );
+    this.titleBar.appendChild(this.buttons['quit'].getDOM());
 
     // Title
     const titleDOM = document.createElement('div');
     titleDOM.classList.add('h5p-ar-scavenger-title');
     titleDOM.innerHTML = this.params.title;
 
-    this.titleBar.appendChild(this.buttonToggle);
     this.titleBar.appendChild(titleDOM);
   }
 
@@ -69,20 +90,66 @@ export default class ARScavengerContentTitlebar {
   }
 
   /**
-   * Toggle the button state.
-   * @return {boolean} True, if button is active, else false.
+   * Toggle button acrive state.
+   * @param {string} buttonId Button id.
+   * @param {boolean} state Desired state.
    */
-  toggleOverlayButton() {
-    const active = this.buttonToggle.classList.toggle('h5p-ar-scavenger-active');
+  toggleButtonActive(buttonId, state) {
+    if (!this.buttons[buttonId]) {
+      return;
+    }
 
-    const buttonLabel = (active) ?
-      this.params.a11y.buttonToggleActive :
-      this.params.a11y.buttonToggleInactive;
+    if (state === true || !this.buttons[buttonId].isActive()) {
+      this.buttons[buttonId].activate();
+    }
+    else {
+      this.buttons[buttonId].deactivate();
+    }
+  }
 
-    this.buttonToggle.setAttribute('aria-label', buttonLabel);
-    this.buttonToggle.setAttribute('aria-pressed', active);
-    this.buttonToggle.setAttribute('title', buttonLabel);
+  /**
+   * Toggle button disabled state.
+   * @param {string} buttonId Button id.
+   * @param {boolean} state Desired state.
+   */
+  toggleButtonDisabled(buttonId, state) {
+    if (!this.buttons[buttonId]) {
+      return;
+    }
 
-    return active;
+    if (state === true || !this.buttons[buttonId].isDisabled()) {
+      this.buttons[buttonId].disable();
+    }
+    else {
+      this.buttons[buttonId].enable();
+    }
+  }
+
+  /**
+   * Determine whether a button is active.
+   * @param {string} buttonId Button id.
+   * @return {boolean|null} Button active state or null if buttonId not found.
+   */
+  isButtonActive(buttonId) {
+    if (!this.buttons[buttonId]) {
+      return null;
+    }
+    else {
+      return this.buttons[buttonId].isActive();
+    }
+  }
+
+  /**
+   * Determine whether a button is disabled.
+   * @param {string} buttonId Button id.
+   * @return {boolean|null} Button disabled state or null if buttonId not found.
+   */
+  isButtonDisabled(buttonId) {
+    if (!this.buttons[buttonId]) {
+      return null;
+    }
+    else {
+      return this.buttons[buttonId].isDisabled();
+    }
   }
 }
