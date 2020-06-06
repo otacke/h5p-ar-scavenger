@@ -206,12 +206,14 @@
                     {
                       "name": "scale",
                       "label": "Scale",
+                      "description": "Scale the model up or down to match your marker size.",
                       "type": "group",
                       "optional": true,
+                      "widget": "inputrow",
                       "fields": [
                         {
                           "name": "scale",
-                          "label": "Scale",
+                          "label": "Percentage",
                           "type": "number",
                           "optional": true,
                           "default": 100,
@@ -229,8 +231,10 @@
                     {
                       "name": "position",
                       "label": "Position",
+                      "description": "Set the model's offset position relative to the marker.",
                       "type": "group",
                       "optional": true,
+                      "widget": "inputrow",
                       "fields": [
                         {
                           "name": "x",
@@ -258,21 +262,23 @@
                     {
                       "name": "rotation",
                       "label": "Rotation",
+                      "description": "Set the rotation in degrees.",
                       "type": "group",
                       "optional": true,
+                      "widget": "inputrow",
                       "fields": [
                         {
                           "name": "x",
-                          "label": "X axis",
+                          "label": "X-axis",
                           "type": "number",
                           "optional": true,
                           "default": 0,
-                          "min": -360,
-                          "max": 360
+                          "min": -359,
+                          "max": 359
                         },
                         {
                           "name": "y",
-                          "label": "Y axis",
+                          "label": "Y-axis",
                           "type": "number",
                           "optional": true,
                           "default": 0,
@@ -281,7 +287,7 @@
                         },
                         {
                           "name": "z",
-                          "label": "Z axis",
+                          "label": "Z-axis",
                           "type": "number",
                           "optional": true,
                           "default": 0,
