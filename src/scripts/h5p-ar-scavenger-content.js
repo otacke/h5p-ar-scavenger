@@ -135,6 +135,8 @@ export default class ARScavengerContent {
     const markerId = parseInt(event.target.id);
     const marker = this.params.markers[markerId];
 
+    console.log(this.instances[markerId]);
+
     if (marker.actionType === 'h5p') {
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
@@ -177,12 +179,16 @@ export default class ARScavengerContent {
         const actionWrapper = document.createElement('div');
         actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
 
+        const previousState = this.extras.previousState[index] !== null ?
+          this.extras.previousState[index] :
+          undefined;
+
         const instance = H5P.newRunnable(
           interaction,
           this.contentId,
           H5P.jQuery(actionWrapper),
           true,
-          {previousState: this.extras.previousState[index]}
+          {previousState: previousState}
         );
 
         // Register initialization of instance
