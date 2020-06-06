@@ -269,6 +269,9 @@ export default class ARScavengerContentCamera {
     }
 
     // Set iframe height to video stream height
+
+    // TODO: Indicator for loaded => spinner
+
     this.waitForVideo((video) => {
       this.params.fallbackHeight = parseInt(video.style.height);
       this.resize();

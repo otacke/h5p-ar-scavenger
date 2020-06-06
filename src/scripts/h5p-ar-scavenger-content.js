@@ -235,6 +235,7 @@ export default class ARScavengerContent {
     this.instancesInitialized++;
     if (this.instancesInitialized === this.params.markers.length) {
       // All instances ready
+      // TODO: Indicator for loaded => spinner
     }
   }
 
