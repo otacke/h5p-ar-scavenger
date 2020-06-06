@@ -57,9 +57,6 @@ export default class ARScavengerContentCamera {
     if (this.maxHeight) {
       // Fullscreen
       this.container.style.maxHeight = `${this.maxHeight}px`;
-      if (this.iframeBody) {
-        this.iframeBody.style.removeProperty('overflow');
-      }
 
       const style = this.content.currentStyle || window.getComputedStyle(this.content);
       const contentMargin = parseInt(style.marginTop, 10) + parseInt(style.marginBottom, 10);
@@ -68,14 +65,7 @@ export default class ARScavengerContentCamera {
     else {
       // Normal view
       this.container.style.removeProperty('max-height');
-      if (this.iframeBody) {
-        this.iframeBody.style.overflow = 'hidden';
-        // this.iframe.style.height = `${this.iframeBody.scrollHeight}px`;
-        this.iframe.style.height = `${this.params.fallbackHeight}px`;
-      }
-      else {
-        this.iframe.style.height = `${this.params.fallbackHeight}px`;
-      }
+      this.iframe.style.height = `${this.params.fallbackHeight}px`;
     }
 
     this.callbacks.onResize();
@@ -276,6 +266,37 @@ export default class ARScavengerContentCamera {
     }
     else {
       this.addEventListeners();
+    }
+
+    // Set iframe height to video stream height
+    this.waitForVideo((video) => {
+      this.params.fallbackHeight = parseInt(video.style.height);
+      this.resize();
+    });
+  }
+
+  /**
+   * Wait for video object to.
+   * @param {function} callback Callback when video found.
+   * @param {number} [timeout=5000] Maximum timeout.
+   */
+  waitForVideo(callback, timeout = 5000) {
+    if (!callback) {
+      return;
+    }
+
+    if (timeout <= 0) {
+      return;
+    }
+
+    const video = this.iframeDocument.querySelector('#arjs-video');
+    if (video) {
+      callback(video);
+    }
+    else {
+      setTimeout(() => {
+        this.waitForVideo(callback, timeout - 100);
+      }, 100);
     }
   }
 
