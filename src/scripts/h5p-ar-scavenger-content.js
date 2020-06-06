@@ -197,7 +197,7 @@ export default class ARScavengerContent {
         });
 
         instance.on('resize', () => {
-          this.resize();
+          this.resize({fromAction: true});
         });
 
         if (this.isTask(instance, actionMachineName)) {
@@ -446,11 +446,14 @@ export default class ARScavengerContent {
         if (subjectContainer.offsetWidth === 0) {
           subjectContainer.classList.add('h5p-ar-scavenger-display-none');
         }
-
-        setTimeout(() => {
-          this.resize();
-        }, 100);
       }
+
+      setTimeout(() => {
+        if (this.instances[this.currentInstanceId]) {
+          this.instances[this.currentInstanceId].trigger('resize');
+        }
+        this.resize();
+      }, 100);
     });
 
     return camera;
@@ -469,8 +472,11 @@ export default class ARScavengerContent {
       if (this.isCameraMode) {
         action.hide();
       }
+
       setTimeout(() => {
-        this.instances[this.currentInstanceId].trigger('resize');
+        if (this.instances[this.currentInstanceId]) {
+          this.instances[this.currentInstanceId].trigger('resize');
+        }
         this.resize();
       }, 0);
     });
