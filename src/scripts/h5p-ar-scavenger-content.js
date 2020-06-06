@@ -135,13 +135,13 @@ export default class ARScavengerContent {
     const markerId = parseInt(event.target.id);
     const marker = this.params.markers[markerId];
 
-    console.log(this.instances[markerId]);
-
     if (marker.actionType === 'h5p') {
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
       this.action.show();
       this.titlebar.toggleButtonActive('switchView', true);
+
+      this.instances[markerId].trigger('resize');
 
       if (this.isCameraMode) {
         this.toggleView();
@@ -195,6 +195,10 @@ export default class ARScavengerContent {
         H5P.externalDispatcher.once('initialized', () => {
           this.instancesH5P++;
           this.handleInstanceInitialized();
+        });
+
+        instance.on('resize', () => {
+          this.callbacks.onResize();
         });
 
         if (this.isTask(instance, actionMachineName)) {
@@ -443,6 +447,7 @@ export default class ARScavengerContent {
         if (subjectContainer.offsetWidth === 0) {
           subjectContainer.classList.add('h5p-ar-scavenger-display-none');
         }
+
         setTimeout(() => {
           this.resize();
         }, 100);
