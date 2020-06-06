@@ -26,7 +26,7 @@ export default class ARScavengerScreenTitle {
     this.screen.classList.add('h5p-ar-scavenger-screen-title');
 
     // Title image (optional)
-    if (this.params.titleScreenImage) {
+    if (this.params.titleScreenImage && this.params.titleScreenImage.params && this.params.titleScreenImage.params.file) {
       const imageWrapper = document.createElement('div');
       imageWrapper.classList.add('h5p-ar-scavenger-screen-title-image-wrapper');
       H5P.newRunnable(params.titleScreenImage, contentId, H5P.jQuery(imageWrapper), false);

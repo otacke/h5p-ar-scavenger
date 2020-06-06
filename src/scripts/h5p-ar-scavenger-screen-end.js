@@ -27,7 +27,7 @@ export default class ARScavengerScreenEnd {
     this.screen.classList.add('h5p-ar-scavenger-screen-end');
 
     // End image (optional)
-    if (this.params.endScreenImage) {
+    if (this.params.endScreenImage && this.params.endScreenImage.params && this.params.endScreenImage.params.file) {
       const imageWrapper = document.createElement('div');
       imageWrapper.classList.add('h5p-ar-scavenger-screen-end-image-wrapper');
       H5P.newRunnable(params.endScreenImage, contentId, H5P.jQuery(imageWrapper), false);
