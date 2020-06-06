@@ -130,15 +130,15 @@ export default class ARScavengerContentCamera {
     const iframe = document.createElement('iframe');
     iframe.classList.add('h5p-ar-scavenger-content-camera-iframe');
 
-    // iframe.addEventListener('load', () => {
-    //   if (this.iframeLoaded) {
-    //     return;
-    //   }
-    //
-    //   // Will write the iframe contents
-    //   this.handleIframeLoaded(this.iframe);
-    //   this.iframeLoaded = true;
-    // });
+    iframe.addEventListener('load', () => {
+      if (this.iframeLoaded) {
+        return;
+      }
+
+      // Will write the iframe contents
+      this.handleIframeLoaded(this.iframe);
+      this.iframeLoaded = true;
+    });
 
     return iframe;
   }

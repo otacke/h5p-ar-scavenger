@@ -37,70 +37,7 @@ export default class ARScavengerContent {
 
     this.markersFound = new Array(this.params.markers.length);
 
-    this.params.markers.forEach((marker, index) => {
-      if (marker.actionType !== 'h5p') {
-        this.instances.push(null);
-        this.instanceDOMs.push(null);
-        this.handleInstanceInitialized();
-        return;
-      }
-
-      const interaction = marker.interaction.interaction;
-
-      // Create new instance replacing action wrapper DOM
-      if (interaction.library) {
-        this.actionMachineName = interaction.library.split(' ')[0];
-      }
-
-      // Create instance
-      if (this.actionMachineName !== undefined && contentId) {
-        const actionWrapper = document.createElement('div');
-        actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
-
-        const instance = H5P.newRunnable(
-          interaction,
-          contentId,
-          H5P.jQuery(actionWrapper),
-          true,
-          {previousState: this.extras.previousState[index]}
-        );
-
-        // Register initialization of instance
-        H5P.externalDispatcher.once('initialized', () => {
-          this.instancesH5P++;
-          this.handleInstanceInitialized();
-        });
-
-        // Listen for instance completion
-        instance.on('xAPI', (event) => {
-          if (event.getVerb() !== 'answered' && event.getVerb() !== 'completed') {
-            return; // not relevant
-          }
-
-          // Run this after the current event has been sent
-          setTimeout(() => {
-            this.markersFound[index].completed = true;
-
-            const markersCompleted = this.markersFound.reduce((sum, marker) => {
-              return sum + ((marker && marker.completed) ? 1 : 0);
-            }, 0);
-
-            // All instances completed
-            if (markersCompleted === this.instancesH5P) {
-              this.handleCompleted();
-            }
-          }, 0);
-        });
-
-        this.instances.push(instance);
-        this.instanceDOMs.push(actionWrapper);
-      }
-      else {
-        this.instances.push(null);
-        this.instanceDOMs.push(null);
-        this.handleInstanceInitialized();
-      }
-    });
+    this.instantiateMarkers();
 
     // No end screen required if no H5P interactions present
     if (this.instancesH5P === this.params.markers.length) {
@@ -131,7 +68,6 @@ export default class ARScavengerContent {
     }
 
     // Screen: Content
-    // TODO: Put in separate build function (screenContent as class with show/hide)
     this.screenContent = document.createElement('div');
     this.screenContent.classList.add('h5p-ar-scavenger-content-container');
     if (this.params.titleScreen.showTitleScreen) {
@@ -199,11 +135,6 @@ export default class ARScavengerContent {
     const markerId = parseInt(event.target.id);
     const marker = this.params.markers[markerId];
 
-    this.markersFound[markerId] = this.markersFound[markerId] || {
-      actionType: marker.actionType,
-      completed: false
-    };
-
     if (marker.actionType === 'h5p') {
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
@@ -217,12 +148,101 @@ export default class ARScavengerContent {
   }
 
   /**
+   * Instantiate all markers.
+   */
+  instantiateMarkers() {
+    this.params.markers.forEach((marker, index) => {
+      this.markersFound[index] = this.markersFound[index] || {
+        actionType: marker.actionType,
+        completed: false
+      };
+
+      if (marker.actionType !== 'h5p') {
+        this.instances.push(null);
+        this.instanceDOMs.push(null);
+        this.handleInstanceInitialized();
+        return;
+      }
+
+      const interaction = marker.interaction.interaction;
+
+      let actionMachineName;
+      // Create new instance replacing action wrapper DOM
+      if (interaction.library) {
+        actionMachineName = interaction.library.split(' ')[0];
+      }
+
+      // Create instance
+      if (actionMachineName !== undefined && this.contentId) {
+        const actionWrapper = document.createElement('div');
+        actionWrapper.classList.add('h5p-ar-scavenger-content-action-library-wrapper');
+
+        const instance = H5P.newRunnable(
+          interaction,
+          this.contentId,
+          H5P.jQuery(actionWrapper),
+          true,
+          {previousState: this.extras.previousState[index]}
+        );
+
+        // Register initialization of instance
+        H5P.externalDispatcher.once('initialized', () => {
+          this.instancesH5P++;
+          this.handleInstanceInitialized();
+        });
+
+        if (this.isTask(instance, actionMachineName)) {
+          // Listen for instance completion
+          instance.on('xAPI', (event) => {
+            if (event.getVerb() !== 'answered' && event.getVerb() !== 'completed') {
+              return; // not relevant
+            }
+
+            // Run this after the current event has been sent
+            setTimeout(() => {
+              this.handleMarkerGotCompleted(index);
+            }, 0);
+          });
+        }
+        else {
+          this.handleMarkerGotCompleted(index);
+        }
+
+        this.instances.push(instance);
+        this.instanceDOMs.push(actionWrapper);
+      }
+      else {
+        this.instances.push(null);
+        this.instanceDOMs.push(null);
+        this.handleInstanceInitialized();
+      }
+    });
+  }
+
+  /**
    * Handle instance initalized.
    */
   handleInstanceInitialized() {
     this.instancesInitialized++;
     if (this.instancesInitialized === this.params.markers.length) {
-      // TODO: Allow start, hide spinner
+      // All instances ready
+    }
+  }
+
+  /**
+   * Handle marker got completed.
+   * @param {number} id Marker's id.
+   */
+  handleMarkerGotCompleted(id) {
+    this.markersFound[id].completed = true;
+
+    const markersCompleted = this.markersFound.reduce((sum, marker) => {
+      return sum + ((marker && marker.completed) ? 1 : 0);
+    }, 0);
+
+    // All instances completed
+    if (markersCompleted === this.instancesH5P) {
+      this.handleCompleted();
     }
   }
 
@@ -231,6 +251,20 @@ export default class ARScavengerContent {
    */
   handleMarkerLost(event) {
     return event; // Dummy
+  }
+
+  /**
+   * Check whether an H5P instance is a task.
+   * @param {H5P.ContentType} instance H5P instance.
+   * @param {string} machineName H5P MachineName.
+   */
+  isTask(instance, machineName) {
+    // Course Presentations loads subcontent dynamically, can't trust getMaxScore
+    if (machineName === 'H5P.CoursePresentation') {
+      return instance.isTask;
+    }
+
+    return (instance.getMaxScore && instance.getMaxScore() > 0);
   }
 
   /**
@@ -274,7 +308,7 @@ export default class ARScavengerContent {
       'start': this.params.l10n.start
     };
 
-    const titleScreen = new ARScavengerScreenTitle(
+    return new ARScavengerScreenTitle(
       params,
       {
         onClose: () => {
@@ -282,8 +316,6 @@ export default class ARScavengerContent {
         }
       },
       this.contentId);
-
-    return titleScreen;
   }
 
   /**
@@ -295,7 +327,7 @@ export default class ARScavengerContent {
       'retry': this.params.l10n.retry
     };
 
-    const endScreen = new ARScavengerScreenEnd(
+    return new ARScavengerScreenEnd(
       params,
       {
         onRetry: () => {
@@ -303,8 +335,6 @@ export default class ARScavengerContent {
         }
       },
       this.contentId);
-
-    return endScreen;
   }
 
   /**
@@ -312,6 +342,8 @@ export default class ARScavengerContent {
    */
   handleTitleScreenClosed() {
     this.screenTitle.hide();
+
+    // TODO: Show
     this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
 
     setTimeout(() => {
@@ -407,7 +439,7 @@ export default class ARScavengerContent {
         }
         setTimeout(() => {
           this.resize();
-        }, 0);
+        }, 100);
       }
     });
 
