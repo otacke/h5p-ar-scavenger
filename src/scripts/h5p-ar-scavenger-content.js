@@ -136,12 +136,11 @@ export default class ARScavengerContent {
     const marker = this.params.markers[markerId];
 
     if (marker.actionType === 'h5p') {
+      this.currentInstanceId = markerId;
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
       this.action.show();
       this.titlebar.toggleButtonActive('switchView', true);
-
-      this.instances[markerId].trigger('resize');
 
       if (this.isCameraMode) {
         this.toggleView();
@@ -198,7 +197,7 @@ export default class ARScavengerContent {
         });
 
         instance.on('resize', () => {
-          this.callbacks.onResize();
+          this.resize();
         });
 
         if (this.isTask(instance, actionMachineName)) {
@@ -471,6 +470,7 @@ export default class ARScavengerContent {
         action.hide();
       }
       setTimeout(() => {
+        this.instances[this.currentInstanceId].trigger('resize');
         this.resize();
       }, 0);
     });
