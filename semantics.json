@@ -194,7 +194,8 @@
                   "type": "file",
                   "widget": "threeDModelLoader",
                   "threeDModelLoader": {
-                    "fileTypeExtensions": ["gltf", "glb"]
+                    "fileTypeExtensions": ["gltf", "glb"],
+                    "markerPatternPath": "../markerPattern"
                   }
                 },
                 {
