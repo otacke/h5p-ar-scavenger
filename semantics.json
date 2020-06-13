@@ -211,13 +211,16 @@
                       "type": "group",
                       "optional": true,
                       "widget": "inputrow",
+                      "inputrow": {
+                        "HTML5NumberField": true
+                      },
                       "fields": [
                         {
                           "name": "scale",
                           "label": "Percentage",
                           "type": "number",
                           "optional": true,
-                          "default": 100,
+                          "default": "100",
                           "min": 1
                         },
                         {
@@ -236,27 +239,36 @@
                       "type": "group",
                       "optional": true,
                       "widget": "inputrow",
+                      "inputrow": {
+                        "HTML5NumberField": true
+                      },
                       "fields": [
                         {
                           "name": "x",
                           "label": "X-offset",
                           "type": "number",
                           "optional": true,
-                          "default": 0
+                          "default": "0.00",
+                          "step": 0.01,
+                          "decimals": 2
                         },
                         {
                           "name": "y",
                           "label": "Y-offset",
                           "type": "number",
                           "optional": true,
-                          "default": 0
+                          "default": "0.00",
+                          "step": 0.01,
+                          "decimals": 2
                         },
                         {
                           "name": "z",
                           "label": "Z-offset",
                           "type": "number",
                           "optional": true,
-                          "default": 0
+                          "default": "0.00",
+                          "step": 0.01,
+                          "decimals": 2
                         }
                       ]
                     },
@@ -267,6 +279,9 @@
                       "type": "group",
                       "optional": true,
                       "widget": "inputrow",
+                      "inputrow": {
+                        "HTML5NumberField": true
+                      },
                       "fields": [
                         {
                           "name": "x",
@@ -283,8 +298,8 @@
                           "type": "number",
                           "optional": true,
                           "default": 0,
-                          "min": -360,
-                          "max": 360
+                          "min": -359,
+                          "max": 359
                         },
                         {
                           "name": "z",
@@ -292,8 +307,8 @@
                           "type": "number",
                           "optional": true,
                           "default": 0,
-                          "min": -360,
-                          "max": 360
+                          "min": -359,
+                          "max": 359
                         }
                       ]
                     }
