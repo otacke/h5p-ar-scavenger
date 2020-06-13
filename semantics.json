@@ -212,7 +212,8 @@
                       "optional": true,
                       "widget": "inputrow",
                       "inputrow": {
-                        "HTML5NumberField": true
+                        "HTML5NumberField": true,
+                        "changedOnEnter": true
                       },
                       "fields": [
                         {
@@ -220,7 +221,7 @@
                           "label": "Percentage",
                           "type": "number",
                           "optional": true,
-                          "default": "100",
+                          "default": 100,
                           "min": 1
                         },
                         {
@@ -240,7 +241,8 @@
                       "optional": true,
                       "widget": "inputrow",
                       "inputrow": {
-                        "HTML5NumberField": true
+                        "HTML5NumberField": true,
+                        "changedOnEnter": true
                       },
                       "fields": [
                         {
@@ -248,7 +250,7 @@
                           "label": "X-offset",
                           "type": "number",
                           "optional": true,
-                          "default": "0.00",
+                          "default": 0.00,
                           "step": 0.01,
                           "decimals": 2
                         },
@@ -257,7 +259,7 @@
                           "label": "Y-offset",
                           "type": "number",
                           "optional": true,
-                          "default": "0.00",
+                          "default": 0.00,
                           "step": 0.01,
                           "decimals": 2
                         },
@@ -266,7 +268,7 @@
                           "label": "Z-offset",
                           "type": "number",
                           "optional": true,
-                          "default": "0.00",
+                          "default": 0.00,
                           "step": 0.01,
                           "decimals": 2
                         }
@@ -280,7 +282,8 @@
                       "optional": true,
                       "widget": "inputrow",
                       "inputrow": {
-                        "HTML5NumberField": true
+                        "HTML5NumberField": true,
+                        "changedOnEnter": true
                       },
                       "fields": [
                         {
