@@ -281,9 +281,9 @@ export default class ARScavengerContentCamera {
   /**
    * Wait for video object to.
    * @param {function} callback Callback when video found.
-   * @param {number} [timeout=5000] Maximum timeout.
+   * @param {number} [timeout=10000] Maximum timeout.
    */
-  waitForVideo(callback, timeout = 5000) {
+  waitForVideo(callback, timeout = 10000) {
     if (!callback) {
       return;
     }
@@ -293,7 +293,7 @@ export default class ARScavengerContentCamera {
     }
 
     const video = this.iframeDocument.querySelector('#arjs-video');
-    if (video) {
+    if (video && parseInt(video.style.height) > 0) {
       callback(video);
     }
     else {
