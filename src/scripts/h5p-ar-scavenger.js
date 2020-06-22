@@ -32,6 +32,7 @@ export default class ARScavenger extends H5P.Question {
       titleScreen: {
         showTitleScreen: false
       },
+      canHasFullScreen: H5P.canHasFullScreen,
       markers: [],
       endScreen: {
         showEndScreen: false
@@ -47,8 +48,8 @@ export default class ARScavenger extends H5P.Question {
         nothingToSee: 'Find a marker to see an interaction.'
       },
       a11y: {
-        buttonFullscreenEnter: 'Enter fullscreen mode',
-        buttonFullscreenExit: 'Exit fullscreen mode',
+        buttonFullScreenEnter: 'Enter fullscreen mode',
+        buttonFullScreenExit: 'Exit fullscreen mode',
         buttonSwitchViewAction: 'Switch to an exercise',
         buttonSwitchViewCamera: 'Switch to the camera',
         buttonSwitchViewDisabled: 'You cannot switch the view right now',
@@ -76,20 +77,15 @@ export default class ARScavenger extends H5P.Question {
       }
     }, extras);
 
-    document.addEventListener('readystatechange', () => {
-      if (document.readyState === 'complete') {
-        setTimeout(() => {
-          // Add fullscreen button on first call after H5P.Question has created the DOM
-          const container = document.querySelector('.h5p-container');
-          if (container) {
-            this.addFullScreenButton(container);
-          }
+    if (this.params.canHasFullScreen) {
+      this.on('enterFullScreen', () => {
+        this.content.setFullScreen(true);
+      });
 
-          // Content may need one extra resize when DOM is displayed.
-          this.content.resize();
-        }, 0);
-      }
-    });
+      this.on('exitFullScreen', () => {
+        this.content.setFullScreen(false);
+      });
+    }
 
     /**
      * Register the DOM elements with H5P.Question
@@ -100,6 +96,7 @@ export default class ARScavenger extends H5P.Question {
         document.querySelector('.h5p-container').offsetWidth >= ARScavenger.MIN_WIDTH_FOR_DUALVIEW;
 
       this.content = new ARScavengerContent(this.params, this.contentId, this.extras, {
+        onFullScreen: this.toggleFullScreen,
         onQuit: this.handleCompleted,
         onRead: this.read,
         onResize: this.resize
@@ -110,56 +107,20 @@ export default class ARScavenger extends H5P.Question {
     };
 
     /**
-     * Add fullscreen button.
-     * @param {HTMLElement} wrapper HTMLElement to attach button to.
+     * Handle activation of fullscreen button.
+     * @param {object} event Event that is calling.
      */
-    this.addFullScreenButton = (wrapper) => {
+    this.toggleFullScreen = () => {
       if (H5P.canHasFullScreen !== true) {
         return;
       }
 
-      const toggleFullScreen = (event) => {
-        if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
-          return;
-        }
-        else {
-          event.preventDefault();
-        }
-
-        if (H5P.isFullscreen === true) {
-          H5P.exitFullScreen();
-        }
-        else {
-          H5P.fullScreen(H5P.jQuery(wrapper), this);
-        }
-      };
-
-      this.fullScreenButton = document.createElement('button');
-      this.fullScreenButton.classList.add('h5p-ar-scavenger-fullscreen-button');
-      this.fullScreenButton.classList.add('h5p-ar-scavenger-enter-fullscreen');
-      this.fullScreenButton.setAttribute('title', this.params.a11y.buttonFullscreenEnter);
-      this.fullScreenButton.setAttribute('aria-label', this.params.a11y.buttonFullscreenEnter);
-      this.fullScreenButton.addEventListener('click', toggleFullScreen);
-
-      this.on('enterFullScreen', () => {
-        this.content.setFullScreen(true);
-        this.fullScreenButton.classList.remove('h5p-ar-scavenger-enter-fullscreen');
-        this.fullScreenButton.classList.add('h5p-ar-scavenger-exit-fullscreen');
-        this.fullScreenButton.setAttribute('aria-label', this.params.a11y.buttonFullscreenExit);
-      });
-
-      this.on('exitFullScreen', () => {
-        this.content.setFullScreen(false);
-        this.fullScreenButton.classList.remove('h5p-ar-scavenger-exit-fullscreen');
-        this.fullScreenButton.classList.add('h5p-ar-scavenger-enter-fullscreen');
-        this.fullScreenButton.setAttribute('aria-label', this.params.a11y.buttonFullscreenEnter);
-      });
-
-      const fullScreenButtonWrapper = document.createElement('div');
-      fullScreenButtonWrapper.classList.add('h5p-ar-scavenger-fullscreen-button-wrapper');
-      fullScreenButtonWrapper.appendChild(this.fullScreenButton);
-
-      wrapper.insertBefore(fullScreenButtonWrapper, wrapper.firstChild);
+      if (H5P.isFullscreen === true) {
+        H5P.exitFullScreen();
+      }
+      else {
+        H5P.fullScreen(H5P.jQuery(document.querySelector('.h5p-container')), this);
+      }
     };
 
     /**

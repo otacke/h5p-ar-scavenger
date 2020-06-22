@@ -504,16 +504,16 @@
     "importance": "low",
     "fields": [
       {
-        "name": "buttonFullscreenEnter",
+        "name": "buttonFullScreenEnter",
         "type": "text",
-        "label": "Fullscreen button title: enter",
+        "label": "FullScreen button title: enter",
         "importance": "low",
         "default": "Enter fullscreen mode"
       },
       {
-        "name": "buttonFullscreenExit",
+        "name": "buttonFullScreenExit",
         "type": "text",
-        "label": "Fullscreen button title: exit",
+        "label": "FullScreen button title: exit",
         "importance": "low",
         "default": "Exit fullscreen mode"
       },

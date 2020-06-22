@@ -72,6 +72,7 @@
   flex-direction: column;
   height: 100%;
   justify-content: center;
+  padding-bottom: 3em;
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-image-wrapper,
@@ -80,21 +81,29 @@
   display: flex;
   height: 15em;
   justify-content: center;
-  margin: 2em 0 0 0;
+  margin: 3em 0;
   position: relative;
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-image,
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-end-image {
-  box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
-  -moz-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
-  -webkit-box-shadow: 10px 4px 47px 0px rgba(0,0,0,0.4);
+  box-shadow: 10px 4px 47px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 10px 4px 47px 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 10px 4px 47px 0px rgba(0, 0, 0, 0.2);
   position: absolute;
   left: 50%;
   max-height: 15em;
   max-width: 85%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-screen-title-image-bar,
+.h5p-ar-scavenger .h5p-ar-scavenger-screen-end-image-bar {
+  background-color: rgba(26, 115, 217, 0.05);
+  background-size: cover;
+  height: 70%;
+  width: 100%;
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-introduction,
@@ -110,7 +119,11 @@
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start {
-  margin-top: 1em;
+  border: 0;
+  border-radius: 3px;
+  font-size: 1.25em;
+  padding: 0.4em 1.4em;
+  margin: 1em 0;
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-score-text {
@@ -125,8 +138,8 @@
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start:before {
-  content: "\F11D";
-  font-weight: bold;
+  /* content: "\F11D";
+  font-weight: bold; */
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-end-button-retry:before {
@@ -182,6 +195,22 @@
 
 .h5p-ar-scavenger .h5p-ar-scavenger-button:not(.h5p-ar-scavenger-button-disabled).h5p-ar-scavenger-button-active:active {
   background-color: rgba(26,115,217,0.95);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-fullscreen {
+  background-image: url(../images/button-fullscreen-enter-icon-blue.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-fullscreen.h5p-ar-scavenger-button-active {
+  background-image: url(../images/button-fullscreen-exit-icon-blue.svg);
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-fullscreen.h5p-ar-scavenger-button-active {
+  background-color: initial;
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-fullscreen.h5p-ar-scavenger-button-active:hover {
+  background-color: rgba(26,115,217,0.05);
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-button.h5p-ar-scavenger-button-switch-view {

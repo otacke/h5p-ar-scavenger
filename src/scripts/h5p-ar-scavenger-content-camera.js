@@ -55,7 +55,7 @@ export default class ARScavengerContentCamera {
     this.maxHeight = (typeof maxHeight === 'number') ? maxHeight : null;
 
     if (this.maxHeight) {
-      // Fullscreen
+      // FullScreen
       this.container.style.maxHeight = `${this.maxHeight}px`;
 
       const style = this.content.currentStyle || window.getComputedStyle(this.content);

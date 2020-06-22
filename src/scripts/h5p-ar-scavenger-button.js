@@ -69,7 +69,7 @@ export default class ARScavengerButton {
       this.enable();
     }
 
-    this.button.addEventListener('click', () => {
+    this.button.addEventListener('click', (event) => {
       if (this.disabled) {
         return;
       }
@@ -77,7 +77,7 @@ export default class ARScavengerButton {
       if (this.params.type === 'toggle') {
         this.toggle();
       }
-      this.callbacks.onClick();
+      this.callbacks.onClick(event);
     });
   }
 

@@ -35,6 +35,11 @@ export default class ARScavengerScreenEnd {
       image.classList.add('h5p-ar-scavenger-screen-end-image');
       image.style.height = 'auto';
       image.style.width = 'auto';
+
+      const bar = document.createElement('div');
+      bar.classList.add('h5p-ar-scavenger-screen-title-image-bar');
+      imageWrapper.appendChild(bar);
+
       this.screen.appendChild(imageWrapper);
     }
 

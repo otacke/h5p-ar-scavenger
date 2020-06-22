@@ -23,6 +23,7 @@ export default class ARScavengerContent {
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
+    this.callbacks.onFullScreen = this.callbacks.onFullScreen || (() => {});
     this.callbacks.onRead = this.callbacks.onQuit || (() => null);
     this.callbacks.onRead = this.callbacks.onRead || (() => {});
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
@@ -294,17 +295,21 @@ export default class ARScavengerContent {
       {
         title: this.extras.metadata.title,
         a11y: {
+          buttonFullScreenEnter: this.params.a11y.buttonFullScreenEnter,
+          buttonFullScreenExit: this.params.a11y.buttonFullScreenExit,
           buttonSwitchViewAction: this.params.a11y.buttonSwitchViewAction,
           buttonSwitchViewCamera: this.params.a11y.buttonSwitchViewCamera,
           buttonSwitchViewDisabled: this.params.a11y.buttonSwitchViewDisabled,
           buttonQuit: this.params.a11y.buttonQuit,
           buttonQuitDisabled: this.params.a11y.buttonQuitDisabled,
         },
-        buttonQuit: this.params.endScreen.showEndScreen
+        buttonQuit: this.params.endScreen.showEndScreen,
+        canHasFullScreen: this.params.canHasFullScreen
       },
       {
-        onClickButtonSwitchView: (event) => this.handleSwitchView(event),
-        onClickButtonQuit: (event) => this.handleQuit(event)
+        onClickButtonFullScreen: (event) => this.callbacks.onFullScreen(event),
+        onClickButtonQuit: (event) => this.handleQuit(event),
+        onClickButtonSwitchView: (event) => this.handleSwitchView(event)
       }
     );
   }
@@ -536,6 +541,9 @@ export default class ARScavengerContent {
         this.camera.resizeIframeHeight(null);
         this.action.resizeIframeHeight(null);
       }, 100);
+
+      // FullScreen button cannot know about exiting full screen with escape key
+      this.titlebar.toggleButtonActive('fullscreen', false);
     }
   }
 

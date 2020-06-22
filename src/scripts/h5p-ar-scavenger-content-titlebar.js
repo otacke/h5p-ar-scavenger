@@ -8,6 +8,8 @@ export default class ARScavengerContentTitlebar {
    * @constructor
    *
    * @param {object} params Parameter from editor.
+   * @param {boolean} params.canHasFullScreen If true, will have fullscreen button.
+   * @param {boolean} params.buttonQuit If true, will have quit button.
    * @param {string} params.title Title.
    * @param {object} params.a11y Accessibility strings.
    * @param {string} params.a11y.buttonEditActive Text for inactive button.
@@ -25,7 +27,9 @@ export default class ARScavengerContentTitlebar {
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
-    this.callbacks.onClickButtonEdit = this.callbacks.onClickButtonEdit || (() => {});
+    this.callbacks.onClickButtonFullScreen = this.callbacks.onClickButtonFullScreen || (() => {});
+    this.callbacks.onClickButtonQuit = this.callbacks.onClickButtonQuit || (() => {});
+    this.callbacks.onClickButtonSwitchView = this.callbacks.onClickButtonSwitchView || (() => {});
 
     this.titleBar = document.createElement('div');
     this.titleBar.classList.add('h5p-ar-scavenger-title-bar');
@@ -78,6 +82,27 @@ export default class ARScavengerContentTitlebar {
     titleDOM.innerHTML = this.params.title;
 
     this.titleBar.appendChild(titleDOM);
+
+    if (this.params.canHasFullScreen) {
+      this.buttons['fullscreen'] = new ARScavengerButton(
+        {
+          a11y: {
+            active: this.params.a11y.buttonFullScreenExit,
+            inactive: this.params.a11y.buttonFullScreenEnter
+          },
+          classes: [
+            'h5p-ar-scavenger-button',
+            'h5p-ar-scavenger-button-fullscreen'
+          ],
+          disabled: false,
+          type: 'toggle'
+        },
+        {
+          onClick: callbacks.onClickButtonFullScreen
+        }
+      );
+      this.titleBar.appendChild(this.buttons['fullscreen'].getDOM());
+    }
   }
 
   /**
@@ -98,7 +123,12 @@ export default class ARScavengerContentTitlebar {
       return;
     }
 
-    if (state === true || !this.buttons[buttonId].isActive()) {
+    // Toggle current state
+    if (typeof state !== 'boolean') {
+      state = !this.buttons[buttonId].isActive();
+    }
+
+    if (state === true) {
       this.buttons[buttonId].activate();
     }
     else {
