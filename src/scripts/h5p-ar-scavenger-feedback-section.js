@@ -26,7 +26,7 @@ export default class ARScavengerFeedbackSection {
     this.scoreText.innerText = '123';
     this.feedbackSection.appendChild(this.scoreText);
 
-    this.scoreBar = H5P.JoubelUI.createScoreBar(0, 'score bar TODO');
+    this.scoreBar = H5P.JoubelUI.createScoreBar(0);
     this.scoreBar.setScore(-1); // Won't update otherwise because maxScore is set later
     this.scoreBar.appendTo(H5P.jQuery(this.feedbackSection));
   }

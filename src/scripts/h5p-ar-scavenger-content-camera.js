@@ -210,7 +210,6 @@ export default class ARScavengerContentCamera {
       newMarker.setAttribute('url', src);
 
       if (marker.actionType === 'model') {
-        // TODO: Sanitizing
         const path = marker.model.file.path;
         const extension = path.split('.').slice(-1)[0];
         const id = path.split('/').slice(-1)[0].split('.').slice(0, -1).join('-');
@@ -269,9 +268,6 @@ export default class ARScavengerContentCamera {
     }
 
     // Set iframe height to video stream height
-
-    // TODO: Indicator for loaded => spinner
-
     this.waitForVideo((video) => {
       this.params.fallbackHeight = parseInt(video.style.height);
       this.resize();
