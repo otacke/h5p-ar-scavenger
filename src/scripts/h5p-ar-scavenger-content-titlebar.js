@@ -36,6 +36,7 @@ export default class ARScavengerContentTitlebar {
 
     this.buttons = {};
 
+    // Button for switching views
     this.buttons['switchView'] = new ARScavengerButton(
       {
         a11y: {
@@ -55,26 +56,25 @@ export default class ARScavengerContentTitlebar {
     );
     this.titleBar.appendChild(this.buttons['switchView'].getDOM());
 
-    if (this.params.buttonQuit) {
-      this.buttons['quit'] = new ARScavengerButton(
-        {
-          a11y: {
-            active: this.params.a11y.buttonQuit,
-            disabled: this.params.a11y.buttonQuitDisabled,
-          },
-          classes: [
-            'h5p-ar-scavenger-button',
-            'h5p-ar-scavenger-button-quit'
-          ],
-          disabled: true,
-          type: 'pulse'
+    // Button for quitting
+    this.buttons['quit'] = new ARScavengerButton(
+      {
+        a11y: {
+          active: this.params.a11y.buttonQuit,
+          disabled: this.params.a11y.buttonQuitDisabled,
         },
-        {
-          onClick: this.callbacks.onClickButtonQuit
-        }
-      );
-      this.titleBar.appendChild(this.buttons['quit'].getDOM());
-    }
+        classes: [
+          'h5p-ar-scavenger-button',
+          'h5p-ar-scavenger-button-quit'
+        ],
+        disabled: true,
+        type: 'pulse'
+      },
+      {
+        onClick: this.callbacks.onClickButtonQuit
+      }
+    );
+    this.titleBar.appendChild(this.buttons['quit'].getDOM());
 
     // Title
     const titleDOM = document.createElement('div');
@@ -114,7 +114,31 @@ export default class ARScavengerContentTitlebar {
   }
 
   /**
-   * Toggle button acrive state.
+   * Show button.
+   * @param {string} buttonId Button id.
+   */
+  showButton(buttonId) {
+    if (!this.buttons[buttonId]) {
+      return;
+    }
+
+    this.buttons[buttonId].show();
+  }
+
+  /**
+   * Hide button.
+   * @param {string} buttonId Button id.
+   */
+  hideButton(buttonId) {
+    if (!this.buttons[buttonId]) {
+      return;
+    }
+
+    this.buttons[buttonId].hide();
+  }
+
+  /**
+   * Toggle button active state.
    * @param {string} buttonId Button id.
    * @param {boolean} state Desired state.
    */

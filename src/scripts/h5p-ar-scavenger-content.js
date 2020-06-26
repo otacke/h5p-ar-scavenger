@@ -35,15 +35,9 @@ export default class ARScavengerContent {
     this.instances = [];
     this.instanceDOMs = [];
     this.instancesH5P = 0;
+    this.tasksH5P = 0;
 
     this.markersFound = new Array(this.params.markers.length);
-
-    this.instantiateMarkers();
-
-    // No end screen required if no H5P interactions present
-    if (this.instancesH5P === this.params.markers.length) {
-      this.params.titleScreen.showEndScreen = false;
-    }
 
     // Screen content (container)
     this.container = document.createElement('div');
@@ -123,6 +117,18 @@ export default class ARScavengerContent {
       this.screenEnd = this.buildEndScreen();
       this.container.appendChild(this.screenEnd.getDOM());
     }
+
+    this.instantiateMarkers();
+
+    // No end screen required if no H5P interactions present
+    if (this.tasksH5P === 0) {
+      this.titlebar.hideButton('quit');
+    }
+
+    // No view switcher required
+    if (this.instancesH5P === 0) {
+      this.titlebar.hideButton('switchView');
+    }
   }
 
   /**
@@ -154,6 +160,7 @@ export default class ARScavengerContent {
    */
   instantiateMarkers() {
     this.params.markers.forEach((marker, index) => {
+      // Sanitization
       this.markersFound[index] = this.markersFound[index] || {
         actionType: marker.actionType,
         completed: false
@@ -191,9 +198,10 @@ export default class ARScavengerContent {
           {previousState: previousState}
         );
 
+        this.instancesH5P++;
+
         // Register initialization of instance
         H5P.externalDispatcher.once('initialized', () => {
-          this.instancesH5P++;
           this.handleInstanceInitialized();
         });
 
@@ -202,6 +210,8 @@ export default class ARScavengerContent {
         });
 
         if (this.isTask(instance, actionMachineName)) {
+          this.tasksH5P++;
+
           // Listen for instance completion
           instance.on('xAPI', (event) => {
             if (event.getVerb() !== 'answered' && event.getVerb() !== 'completed') {
@@ -213,9 +223,6 @@ export default class ARScavengerContent {
               this.handleMarkerGotCompleted(index);
             }, 0);
           });
-        }
-        else {
-          this.handleMarkerGotCompleted(index);
         }
 
         this.instances.push(instance);
@@ -236,7 +243,6 @@ export default class ARScavengerContent {
     this.instancesInitialized++;
     if (this.instancesInitialized === this.params.markers.length) {
       // All instances ready
-      // TODO: Indicator for loaded => spinner
     }
   }
 
@@ -251,8 +257,8 @@ export default class ARScavengerContent {
       return sum + ((marker && marker.completed) ? 1 : 0);
     }, 0);
 
-    // All instances completed
-    if (markersCompleted === this.instancesH5P) {
+    // All tasks completed
+    if (markersCompleted === this.tasksH5P) {
       this.handleCompleted();
     }
   }
@@ -303,7 +309,6 @@ export default class ARScavengerContent {
           buttonQuit: this.params.a11y.buttonQuit,
           buttonQuitDisabled: this.params.a11y.buttonQuitDisabled,
         },
-        buttonQuit: this.params.endScreen.showEndScreen,
         canHasFullScreen: this.params.canHasFullScreen
       },
       {
