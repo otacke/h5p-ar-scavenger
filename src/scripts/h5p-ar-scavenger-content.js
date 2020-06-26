@@ -366,13 +366,25 @@ export default class ARScavengerContent {
   }
 
   /**
+   * Show content.
+   */
+  show() {
+    this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+  }
+
+  /**
+   * Hide content.
+   */
+  hide() {
+    this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+  }
+
+  /**
    * Handle title screen closed.
    */
   handleTitleScreenClosed() {
     this.screenTitle.hide();
-
-    // TODO: Show
-    this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+    this.screenContent.show();
 
     setTimeout(() => {
       this.callbacks.onResize();
@@ -402,8 +414,7 @@ export default class ARScavengerContent {
       this.screenEnd.setScoreText(scoreText);
       this.screenEnd.setMaxScore(this.getMaxScore());
 
-      // TODO: hide function
-      this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+      this.screenContent.hide();
       this.screenEnd.show();
 
       setTimeout(() => {
