@@ -394,13 +394,14 @@ export default class ARScavengerContent {
       this.screenEnd.setScoreText(scoreText);
       this.screenEnd.setMaxScore(this.getMaxScore());
 
+      // TODO: hide function
       this.screenContent.classList.add('h5p-ar-scavenger-display-none');
       this.screenEnd.show();
 
-      // Put this here to allow animation to be visible
-      this.screenEnd.setScore(this.getScore());
-
       setTimeout(() => {
+        // Put this here to allow animation to be visible
+        this.screenEnd.setScore(this.getScore());
+
         this.callbacks.onResize();
       }, 0);
     }
