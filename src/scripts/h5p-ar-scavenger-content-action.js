@@ -19,10 +19,9 @@ export default class ARScavengerContentAction {
     // Sanitize callbacks
     this.callbacks = callbacks || {};
 
-    // TODO: Move this out of the action wrapper
     this.message = document.createElement('div');
-    this.message.style.fontSize = '1.5em';
-    this.message.innerHTML = this.params.l10n.nothingToSee;
+    this.message.classList.add('h5p-ar-scavenger-content-action-message');
+    this.message.innerText = this.params.l10n.nothingToSee;
 
     // Library Wrapper
     this.actionWrapper = document.createElement('div');
