@@ -195,6 +195,7 @@
                   "widget": "threeDModelLoader",
                   "threeDModelLoader": {
                     "fileTypeExtensions": ["gltf", "glb"],
+                    "geometryPath": "geometry",
                     "planePatternPath": "../markerPattern"
                   }
                 },
