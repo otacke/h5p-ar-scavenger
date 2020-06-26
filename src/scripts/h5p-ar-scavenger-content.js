@@ -70,11 +70,19 @@ export default class ARScavengerContent {
     }
     this.container.appendChild(this.screenContent);
 
+    // No markers set?
+    if (params.markers.length === 0) {
+      const message = document.createElement('div');
+      message.classList.add('h5p-ar-scavenger-content-message');
+      message.innerText = 'There are no markers!?';
+      this.screenContent.appendChild(message);
+
+      return;
+    }
+
     // Titlebar
     this.titlebar = this.buildTitleBar();
     this.screenContent.appendChild(this.titlebar.getDOM());
-
-    // TODO: params.markers.length === 0
 
     // Subject
     this.camera = this.buildCamera(
@@ -500,6 +508,12 @@ export default class ARScavengerContent {
    * Resize content.
    */
   resize(params) {
+    if (!this.camera) {
+      // Possibly no markers or not initialized correctly
+      this.callbacks.onResize();
+      return;
+    }
+
     // Not done using media query because display needs to be not-none first
     if (this.container.offsetWidth < this.params.minWidthForDualView) {
       // Only want to trigger toggleMedium once when mode actually changes
