@@ -66,7 +66,7 @@ export default class ARScavengerContent {
     this.screenContent = document.createElement('div');
     this.screenContent.classList.add('h5p-ar-scavenger-content-container');
     if (this.params.titleScreen.showTitleScreen) {
-      this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+      this.hide();
     }
     this.container.appendChild(this.screenContent);
 
@@ -384,7 +384,7 @@ export default class ARScavengerContent {
    */
   handleTitleScreenClosed() {
     this.screenTitle.hide();
-    this.screenContent.show();
+    this.show();
 
     setTimeout(() => {
       this.callbacks.onResize();
@@ -414,7 +414,7 @@ export default class ARScavengerContent {
       this.screenEnd.setScoreText(scoreText);
       this.screenEnd.setMaxScore(this.getMaxScore());
 
-      this.screenContent.hide();
+      this.hide();
       this.screenEnd.show();
 
       setTimeout(() => {
@@ -441,7 +441,7 @@ export default class ARScavengerContent {
       this.screenTitle.show();
     }
     else {
-      this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+      this.show();
     }
 
     setTimeout(() => {
