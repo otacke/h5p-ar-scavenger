@@ -70,15 +70,70 @@ export default class ARScavengerContent {
     }
     this.container.appendChild(this.screenContent);
 
+    this.messages = document.createElement('div');
+    this.messages.classList.add('h5p-ar-scavenger-content-message');
+    this.messages.innerText = 'Initializing content. Please don\'t forget to allow camera access.';
+    this.screenContent.appendChild(this.messages);
+
+    let errorMessages = [];
+
     // No markers set?
     if (params.markers.length === 0) {
-      const message = document.createElement('div');
-      message.classList.add('h5p-ar-scavenger-content-message');
-      message.innerText = 'There are no markers!?';
-      this.screenContent.appendChild(message);
+      errorMessages.push(this.params.l10n.errorNoMarkers);
+    }
 
+    // IE11
+    if (window.navigator.userAgent.indexOf('Trident/') !== -1) {
+      errorMessages.push(this.params.l10n.errorBrowserNotSupported);
+    }
+
+    // Brave
+    if (window.Brave) {
+      errorMessages.push(this.params.l10n.warningBrave);
+    }
+
+    // Check camera access.
+    if (!window.navigator.mediaDevices || !window.navigator.mediaDevices.getUserMedia) {
+      errorMessages.push(this.params.l10n.errorNoCameraSupport);
+    }
+
+    if (errorMessages.length !== 0) {
+      this.handleInitializationFailed(errorMessages);
       return;
     }
+
+    // Camera access
+    window.navigator.mediaDevices.getUserMedia({video: true})
+      .then(() => {
+        this.handleInitializationSucceeded();
+      })
+      .catch((error) => {
+        const message = `${this.params.l10n.errorNoCameraAccess} ${error.message}`;
+        console.warn(message);
+        this.handleInitializationFailed([message]);
+      });
+  }
+
+  /**
+   * Handle failing of initialization.
+   * @param {string[]} errorMessages Error messages to display.
+   */
+  handleInitializationFailed(errorMessages = []) {
+    this.messages.innerHTML = '';
+    this.messages.classList.add('h5p-ar-scavenger-content-message-error');
+
+    errorMessages.forEach((message) => {
+      const entry = document.createElement('p');
+      entry.innerText = message;
+      this.messages.appendChild(entry);
+    });
+  }
+
+  /**
+   * Handle initialization if camera is accessible.
+   */
+  handleInitializationSucceeded() {
+    this.screenContent.removeChild(this.messages);
 
     // Titlebar
     this.titlebar = this.buildTitleBar();

@@ -18,11 +18,11 @@
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-content-message {
-  font-size: 1.5em;
-  height: 5em;
-  line-height: 5em;
+  padding: 1em;
   text-align: center;
-  width: 100%;
+}
+
+.h5p-ar-scavenger .h5p-ar-scavenger-content-message-error {
 }
 
 .h5p-ar-scavenger.h5p-fullscreen > .h5p-question-content .h5p-ar-scavenger-screen-content {

@@ -41,7 +41,12 @@ export default class ARScavenger extends H5P.Question {
       l10n: {
         start: 'Start',
         retry: 'Retry',
-        nothingToSee: 'Find a marker to see an interaction.'
+        nothingToSee: 'Find a marker to see an interaction.',
+        errorBrowserNotSupported: 'It seems that your browser cannot run this content type, unfortunately.',
+        errorNoCameraAccess: 'Could not access camera.',
+        errorNoCameraSupport: 'Your browser does not seem to support a camera.',
+        errorNoMarkers: 'Did someone forget to add markers?',
+        warningBrave: 'You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working.'
       },
       a11y: {
         buttonFullScreenEnter: 'Enter fullscreen mode',

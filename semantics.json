@@ -494,6 +494,41 @@
         "label": "Find a marker to see an interaction.",
         "importance": "low",
         "default": "Find a marker to see an interaction."
+      },
+      {
+        "name": "errorBrowserNotSupported",
+        "type": "text",
+        "label": "Error: browser not supported",
+        "importance": "low",
+        "default": "It seems that your browser cannot run this content type, unfortunately."
+      },
+      {
+        "name": "errorNoCameraAccess",
+        "type": "text",
+        "label": "Error: No camera access",
+        "importance": "low",
+        "default": "Could not access camera."
+      },
+      {
+        "name": "errorNoCameraSupport",
+        "type": "text",
+        "label": "Error: No camera support",
+        "importance": "low",
+        "default": "Your browser does not seem to support a camera."
+      },
+      {
+        "name": "errorNoMarkers",
+        "type": "text",
+        "label": "Error: No markers",
+        "importance": "low",
+        "default": "Did someone forget to add markers?"
+      },
+      {
+        "name": "warningBrave",
+        "type": "text",
+        "label": "Warning: Brave browser",
+        "importance": "low",
+        "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
       }
     ]
   },
