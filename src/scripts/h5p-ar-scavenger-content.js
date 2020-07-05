@@ -103,7 +103,7 @@ export default class ARScavengerContent {
     }
 
     // Camera access
-    window.navigator.mediaDevices.getUserMedia({video: true})
+    window.navigator.mediaDevices.getUserMedia({video: {width: 4096, height: 2160}})
       .then(() => {
         this.handleInitializationSucceeded();
       })
