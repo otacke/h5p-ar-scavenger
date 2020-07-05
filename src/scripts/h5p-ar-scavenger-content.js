@@ -137,6 +137,10 @@ export default class ARScavengerContent {
 
     // Titlebar
     this.titlebar = this.buildTitleBar();
+    if (!this.params.endScreen.showEndScreen) {
+      this.titlebar.hideButton('quit');
+    }
+
     this.screenContent.appendChild(this.titlebar.getDOM());
 
     // Subject
