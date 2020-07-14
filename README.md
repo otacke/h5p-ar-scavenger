@@ -38,6 +38,11 @@ and doesn't allow them).
 The suggestion can be found at https://github.com/h5p/h5p-wordpress-plugin/pull/114.
 The changes will point you to what you'd have to patch.
 
+## Sponsor
+_Die initiale Fassung dieses Vorhaben wurde gefördert durch die HOOU und die Behörde für Wissenschaft, Forschung und Gleichstellung der Freien und Hansestadt Hamburg._
+
+_The initial release of thie project was funded by the HOOU and the Ministry of Science, Research and Equality of the Free and Hanseatic City of Hamburg._
+
 ## Getting started
 Clone this repository with git and check out the branch that you are interested
 in (or choose the branch first and then download the archive, but learning
