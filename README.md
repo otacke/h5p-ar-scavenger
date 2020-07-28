@@ -5,14 +5,29 @@ Let learners explore an augmented reality
 When writing these lines, this content type will not work out of the box,
 because there are some small changes required to the core of H5P and those may
 not have been released yet! You'll have to patch your host system before the
-content type will work fully.
+content type will work fully. Please keep in mind that unless the H5P core team
+includes those changes, whenever you update the H5P core (usually when updating
+your plugin), then all changes will be overwritten. You will then have to add
+them again.
 
 ### Allow gltf and glb file extensions
 H5P doesn’t allow to include files with the extension gltf or glb that are
 required for the 3D models. In Drupal you can amend the list of allowed
-extensions, but not in other plugins. So, here’s the pull request for
-that: https://github.com/h5p/h5p-php-library/pull/85. The changes will point
-you to what you'd have to patch if you're not running H5P on Drupal.
+extensions in the H5P settings, but not in other plugins. So, here’s the pull
+request for that: https://github.com/h5p/h5p-php-library/pull/85. The changes
+will point you to what you'd have to patch if you're not running H5P on Drupal.
+
+If you want to do this manually:
+
+1. _Know what you are doing._ You cannot really break anything here, but if
+you're new to this and make a mistake, you might get some sweat ;-)
+2. _Find h5p.classes.php._ On WordPress, it should be located at
+`your-wordpress-path/wp-content/plugins/h5p/h5p-php-library/h5p.classes.php`.
+On moodle it should be located at
+`your-moodle-path/mod/hvp/library/h5p.classes.php`.
+If you're using moodle 3.9 and above including moodle's H5P integration, it
+should be located at `your-moodle-path/h5p/h5p/lib/joubel/core/h5p.classes.php`.
+3. _Make the changes._ Add gltf and glb as shown at https://github.com/h5p/h5p-php-library/pull/85/files
 
 ### Support HTTP Feature Policies
 Relevance of this patch may differ based on the server settings and the browser
@@ -25,7 +40,8 @@ browsers' features within the H5P iframe (unless the server is even more strict
 and doesn't allow them).
 
 The suggestion can be found at https://github.com/h5p/h5p-wordpress-plugin/pull/114.
-The changes will point you to what you'd have to patch.
+The changes will point you to what you'd have to patch on WordPress. There's no
+suggestion yet for Drupal or moodle.
 
 ## Sponsor
 _Die initiale Fassung dieses Vorhaben wurde gefördert durch die HOOU und die Behörde für Wissenschaft, Forschung und Gleichstellung der Freien und Hansestadt Hamburg._
