@@ -5,18 +5,7 @@ Let learners explore an augmented reality
 When writing these lines, this content type will not work out of the box,
 because there are some small changes required to the core of H5P and those may
 not have been released yet! You'll have to patch your host system before the
-content type will work.
-
-### Allow steps smaller than 1 in editor number fields
-This one is crucial - or I'd have to (unneccessarily) rework the editor and make
-it more clumsy. There’s a bug (or lack of feature) in the editor widget for
-numbers. While HTML5 allows steps smaller than 1, the editor widget for numbers
-in H5P doesn’t and won't validate entries with steps smaller than 1 (although
-accepting decimal values in general).
-
-The pull requests for this one are https://github.com/h5p/h5p-editor-php-library/pull/115
-and https://github.com/h5p/h5p-php-library/pull/86. The changes will point
-you to what you'd have to patch.
+content type will work fully.
 
 ### Allow gltf and glb file extensions
 H5P doesn’t allow to include files with the extension gltf or glb that are
