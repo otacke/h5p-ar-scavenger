@@ -242,7 +242,7 @@
                       "optional": true,
                       "widget": "inputrow",
                       "inputrow": {
-                        "HTML5NumberField": true,
+                        "HTML5NumberField": false,
                         "changedOnEnter": true
                       },
                       "fields": [
@@ -252,7 +252,6 @@
                           "type": "number",
                           "optional": true,
                           "default": 0.00,
-                          "step": 0.01,
                           "decimals": 2
                         },
                         {
@@ -261,7 +260,6 @@
                           "type": "number",
                           "optional": true,
                           "default": 0.00,
-                          "step": 0.01,
                           "decimals": 2
                         },
                         {
@@ -270,7 +268,6 @@
                           "type": "number",
                           "optional": true,
                           "default": 0.00,
-                          "step": 0.01,
                           "decimals": 2
                         }
                       ]
