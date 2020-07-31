@@ -193,6 +193,7 @@ export default class ARScavenger extends H5P.Question {
      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
      */
     this.getXAPIData = () => ({
+      children: this.content.getXAPIDataFromChildren(),
       statement: this.getXAPIAnswerEvent().data.statement
     });
 

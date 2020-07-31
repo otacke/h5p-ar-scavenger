@@ -24,7 +24,7 @@ export default class ARScavengerContent {
     // Sanitize callbacks
     this.callbacks = callbacks || {};
     this.callbacks.onFullScreen = this.callbacks.onFullScreen || (() => {});
-    this.callbacks.onRead = this.callbacks.onQuit || (() => null);
+    this.callbacks.onQuit = this.callbacks.onQuit || (() => null);
     this.callbacks.onRead = this.callbacks.onRead || (() => {});
     this.callbacks.onResize = this.callbacks.onResize || (() => {});
 
@@ -737,6 +737,20 @@ export default class ARScavengerContent {
         instance.resetTask();
       }
     });
+  }
+
+  /**
+   * Get xAPI data from all exercise instances.
+   * @return {object[]} XAPI data of all exercise instances.
+   */
+  getXAPIDataFromChildren() {
+    return this.instances
+      .map(child  => {
+        if (child && typeof child.getXAPIData === 'function') {
+          return child.getXAPIData();
+        }
+      })
+      .filter(data => !!data);
   }
 
   /**
