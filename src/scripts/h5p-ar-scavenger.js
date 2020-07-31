@@ -128,7 +128,15 @@ export default class ARScavenger extends H5P.Question {
      * Handle content completed.
      */
     this.handleCompleted = () => {
-      this.trigger(this.getXAPIAnswerEvent());
+      // Let xAPI event of children trigger first
+      setTimeout(() => {
+        const xAPIData = this.getXAPIData();
+        const xAPIEvent = new H5P.XAPIEvent();
+        xAPIEvent.data.children = xAPIData.children;
+        xAPIEvent.data.statement = xAPIData.statement;
+
+        this.trigger(xAPIEvent);
+      }, 0);
     };
 
     /**
