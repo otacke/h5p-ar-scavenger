@@ -43,19 +43,6 @@ export default class ARScavengerContent {
     this.container = document.createElement('div');
     this.container.classList.add('h5p-ar-scavenger-screen-content');
 
-    // TODO: For debugging
-    window.addEventListener('keydown', (event) => {
-      if (event.keyCode === 49) { // 1
-        this.handleMarkerFound({target: {id: 0}});
-      }
-      if (event.keyCode === 50) { // 2
-        this.handleMarkerFound({target: {id: 1}});
-      }
-      if (event.keyCode === 51) { // 3
-        this.handleMarkerFound({target: {id: 2}});
-      }
-    });
-
     // Screen: Title
     if (this.params.titleScreen.showTitleScreen) {
       this.screenTitle = this.buildTitleScreen();
