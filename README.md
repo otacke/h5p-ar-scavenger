@@ -11,9 +11,10 @@ your plugin), then all changes will be overwritten. You will then have to add
 them again.
 
 ### Allow gltf and glb file extensions
-H5P doesn’t allow to include files with the extension gltf or glb that are
-required for the 3D models. Without some modification, you will only be able
-to use AR Scavenger for H5P content types.
+H5P currently doesn’t allow to include files with the extension gltf or glb that are
+required for the 3D models, but the H5P core team will change this shortly. Until
+then, without some modification, you will only be able to use AR Scavenger for
+H5P content types.
 
 On Drupal you can amend the list of allowed extensions in the H5P settings,
 but not in other plugins. So, here’s the pull request for that:
