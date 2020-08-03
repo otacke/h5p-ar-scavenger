@@ -320,3 +320,7 @@
 .h5p-ar-scavenger .h5p-ar-scavenger-content-action {
   margin: 2em;
 }
+
+.h5p-ar-scavenger .h5p-audio-wrapper {
+  height: 54px;
+}
