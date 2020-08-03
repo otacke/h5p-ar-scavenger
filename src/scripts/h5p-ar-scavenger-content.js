@@ -4,6 +4,7 @@ import ARScavengerContentCamera from './h5p-ar-scavenger-content-camera';
 import ARScavengerContentAction from './h5p-ar-scavenger-content-action';
 import ARScavengerScreenEnd from './h5p-ar-scavenger-screen-end';
 import ARScavengerScreenTitle from './h5p-ar-scavenger-screen-title';
+import Util from './h5p-ar-scavenger-util';
 
 /** Class representing the content */
 export default class ARScavengerContent {
@@ -59,7 +60,8 @@ export default class ARScavengerContent {
 
     this.messages = document.createElement('div');
     this.messages.classList.add('h5p-ar-scavenger-content-message');
-    this.messages.innerText = 'Initializing content. Please don\'t forget to allow camera access.';
+
+    this.messages.innerText = Util.htmlDecode(this.params.l10n.initializingContent);
     this.screenContent.appendChild(this.messages);
 
     let errorMessages = [];

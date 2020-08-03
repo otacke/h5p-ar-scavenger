@@ -526,6 +526,13 @@
         "label": "Warning: Brave browser",
         "importance": "low",
         "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
+      },
+      {
+        "name": "initializingContent",
+        "type": "text",
+        "label": "Initializing content",
+        "importance": "low",
+        "default": "Initializing content. Please don't forget to allow camera access."
       }
     ]
   },
