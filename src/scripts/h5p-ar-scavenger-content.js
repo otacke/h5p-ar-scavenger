@@ -113,7 +113,7 @@ export default class ARScavengerContent {
 
     errorMessages.forEach((message) => {
       const entry = document.createElement('p');
-      entry.innerText = message;
+      entry.innerText = Util.htmlDecode(message);
       this.messages.appendChild(entry);
     });
   }

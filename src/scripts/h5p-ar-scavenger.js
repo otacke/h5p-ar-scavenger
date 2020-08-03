@@ -46,7 +46,8 @@ export default class ARScavenger extends H5P.Question {
         errorNoCameraAccess: 'Could not access camera.',
         errorNoCameraSupport: 'Your browser does not seem to support a camera.',
         errorNoMarkers: 'Did someone forget to add markers?',
-        warningBrave: 'You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working.'
+        warningBrave: 'You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working.',
+        initializingContent: 'Initializing content. Please don\'t forget to allow camera access.'
       },
       a11y: {
         buttonFullScreenEnter: 'Enter fullscreen mode',

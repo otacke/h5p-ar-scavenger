@@ -21,7 +21,7 @@ export default class ARScavengerContentAction {
 
     this.message = document.createElement('div');
     this.message.classList.add('h5p-ar-scavenger-content-action-message');
-    this.message.innerText = this.params.l10n.nothingToSee;
+    this.message.innerText = Util.htmlDecode(this.params.l10n.nothingToSee);
 
     // Library Wrapper
     this.actionWrapper = document.createElement('div');

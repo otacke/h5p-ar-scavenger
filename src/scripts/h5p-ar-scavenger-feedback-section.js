@@ -23,7 +23,7 @@ export default class ARScavengerFeedbackSection {
 
     this.scoreText = document.createElement('div');
     this.scoreText.classList.add('h5p-ar-scavenger-score-text');
-    this.scoreText.innerText = '123';
+    this.scoreText.innerText = '';
     this.feedbackSection.appendChild(this.scoreText);
 
     this.scoreBar = H5P.JoubelUI.createScoreBar(0);
@@ -74,6 +74,6 @@ export default class ARScavengerFeedbackSection {
    * @param {string} [scoreText=''] Score text.
    */
   setScoreText(scoreText = '') {
-    this.scoreText.innerText = scoreText;
+    this.scoreText.innerText = Util.htmlDecode(scoreText);
   }
 }
