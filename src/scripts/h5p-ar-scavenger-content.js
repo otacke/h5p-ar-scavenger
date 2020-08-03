@@ -174,10 +174,8 @@ export default class ARScavengerContent {
 
     this.instantiateMarkers();
 
-    // No end screen required if no H5P interactions present
-    if (this.tasksH5P === 0) {
-      this.titlebar.hideButton('quit');
-    }
+    // Will be displayed when necessary
+    this.titlebar.hideButton('quit');
 
     // No view switcher required
     if (this.instancesH5P === 0) {
@@ -197,6 +195,9 @@ export default class ARScavengerContent {
     const marker = this.params.markers[markerId];
 
     if (marker.actionType === 'h5p') {
+
+      this.instantiateContent(markerId);
+
       this.currentInstanceId = markerId;
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
@@ -206,6 +207,48 @@ export default class ARScavengerContent {
       if (this.isCameraMode) {
         this.toggleView();
       }
+    }
+  }
+
+  /**
+   * Instantiate H5P content.
+   * @param {number} id Id of instance dummy to be instantiated.
+   */
+  instantiateContent(id) {
+    if (!this.instances[id].uninstantiated) {
+      return; // Already instantiated
+    }
+
+    const params = this.instances[id].uninstantiated;
+    const index = params.index;
+    const machineName = params.machineName;
+
+    this.instances[id] = H5P.newRunnable(
+      params.interaction,
+      params.contentId,
+      H5P.jQuery(params.actionWrapper),
+      true,
+      {previousState: params.previousState}
+    );
+
+    this.instances[id].on('resize', () => {
+      this.resize({fromAction: true});
+    });
+
+    if (this.isTask(this.instances[id], machineName)) {
+      this.tasksH5P++;
+
+      // Listen for instance completion
+      this.instances[id].on('xAPI', (event) => {
+        if (event.getVerb() !== 'answered' && event.getVerb() !== 'completed') {
+          return; // not relevant
+        }
+
+        // Run this after the current event has been sent
+        setTimeout(() => {
+          this.handleMarkerGotCompleted(index);
+        }, 0);
+      });
     }
   }
 
@@ -223,7 +266,6 @@ export default class ARScavengerContent {
       if (marker.actionType !== 'h5p') {
         this.instances.push(null);
         this.instanceDOMs.push(null);
-        this.handleInstanceInitialized();
         return;
       }
 
@@ -244,60 +286,30 @@ export default class ARScavengerContent {
           this.extras.previousState[index] :
           undefined;
 
-        const instance = H5P.newRunnable(
-          interaction,
-          this.contentId,
-          H5P.jQuery(actionWrapper),
-          true,
-          {previousState: previousState}
-        );
+        // Will be instantiated once a marker is found
+        const instanceDummy = {
+          uninstantiated: {
+            interaction: interaction,
+            contentId: this.contentId,
+            actionWrapper: actionWrapper,
+            previousState: previousState,
+            index: index,
+            machineName: actionMachineName
+          },
+          on: () => {},
+          trigger: () => {}
+        };
 
         this.instancesH5P++;
 
-        // Register initialization of instance
-        H5P.externalDispatcher.once('initialized', () => {
-          this.handleInstanceInitialized();
-        });
-
-        instance.on('resize', () => {
-          this.resize({fromAction: true});
-        });
-
-        if (this.isTask(instance, actionMachineName)) {
-          this.tasksH5P++;
-
-          // Listen for instance completion
-          instance.on('xAPI', (event) => {
-            if (event.getVerb() !== 'answered' && event.getVerb() !== 'completed') {
-              return; // not relevant
-            }
-
-            // Run this after the current event has been sent
-            setTimeout(() => {
-              this.handleMarkerGotCompleted(index);
-            }, 0);
-          });
-        }
-
-        this.instances.push(instance);
+        this.instances.push(instanceDummy);
         this.instanceDOMs.push(actionWrapper);
       }
       else {
         this.instances.push(null);
         this.instanceDOMs.push(null);
-        this.handleInstanceInitialized();
       }
     });
-  }
-
-  /**
-   * Handle instance initalized.
-   */
-  handleInstanceInitialized() {
-    this.instancesInitialized++;
-    if (this.instancesInitialized === this.params.markers.length) {
-      // All instances ready
-    }
   }
 
   /**
@@ -441,6 +453,7 @@ export default class ARScavengerContent {
    * Handle completed.
    */
   handleCompleted() {
+    this.titlebar.showButton('quit');
     this.titlebar.toggleButtonDisabled('quit', false);
   }
 
