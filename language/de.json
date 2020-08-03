@@ -53,7 +53,7 @@
                 "default": "h5p"
               },
               {
-                "label": "Interaction",
+                "label": "Interaktion",
                 "showWhen": {
                   "rules": [
                     {}
