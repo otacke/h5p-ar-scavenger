@@ -1,6 +1,19 @@
 # H5P.ARScavenger
 Let learners explore an augmented reality
 
+## Installing
+When writing these lines, the content type has not been included in the H5P Hub
+yet, so you cannot install it there. You (or an administrator with sufficient
+rights) will have to do this manually.
+
+1. Download https://www.olivertacke.de/labs/wp-content/uploads/2020/08/H5P.ARScavenger-library.h5p
+2. In your H5P plugin, go to the library settings page
+   - _Drupal_: Content -> H5P Libraries
+   - _moodle_: Site Administration -> Plugins -> Activity modules -> H5P Libraries
+   - _WordPress_: H5P Content -> Libraries
+3. Find the "Upload Libraries" section and upload the file that you just downloaded.
+   You should get a message like _"Added x new H5P libraries"_.
+
 ## PLEASE NOTE
 When writing these lines, this content type will not work out of the box,
 because there are some small changes required to the core of H5P and those may
@@ -52,7 +65,7 @@ _Die initiale Fassung dieses Vorhaben wurde gefördert durch die HOOU und die Be
 
 _The initial release of this project was funded by the HOOU and the Ministry of Science, Research and Equality of the Free and Hanseatic City of Hamburg._
 
-## Getting started
+## Getting started with developing
 Clone this repository with git and check out the branch that you are interested
 in (or choose the branch first and then download the archive, but learning
 how to use git really makes sense).
