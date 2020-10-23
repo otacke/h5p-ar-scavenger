@@ -79,6 +79,9 @@ export default class ARScavenger extends H5P.Question {
       }
     }, extras);
 
+    const defaultLanguage = extras.metadata.defaultLanguage || 'en';
+    this.languageTag = Util.formatLanguageCode(defaultLanguage);
+
     if (this.params.canHasFullScreen) {
       this.on('enterFullScreen', () => {
         this.content.setFullScreen(true);
@@ -237,8 +240,10 @@ export default class ARScavenger extends H5P.Question {
      */
     this.getxAPIDefinition = () => {
       const definition = {};
-      definition.name = {'en-US': this.getTitle()};
-      definition.description = {'en-US': this.getDescription()};
+      definition.name = {};
+      definition.name[this.languageTag] = this.getTitle();
+      definition.description = {};
+      definition.description[this.languageTag] = this.getDescription();
 
       definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
       definition.interactionType = 'compound';

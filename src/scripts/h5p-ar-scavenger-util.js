@@ -30,6 +30,31 @@ class Util {
     var dparser = new DOMParser().parseFromString(input, 'text/html');
     return dparser.documentElement ? dparser.documentElement.textContent : '';
   }
+
+  /**
+   * Format language tag (RFC 5646). Assuming "language-coutry". No validation.
+   * Cmp. https://tools.ietf.org/html/rfc5646
+   * @param {string} languageTag Language tag.
+   * @return {string} Formatted language tag.
+   */
+  static formatLanguageCode(languageCode) {
+    if (typeof languageCode !== 'string') {
+      return languageCode;
+    }
+
+    /*
+     * RFC 5646 states that language tags are case insensitive, but
+     * recommendations may be followed to improve human interpretation
+     */
+    const segments = languageCode.split('-');
+    segments[0] = segments[0].toLowerCase(); // ISO 639 recommendation
+    if (segments.length > 1) {
+      segments[1] = segments[1].toUpperCase(); // ISO 3166-1 recommendation
+    }
+    languageCode = segments.join('-');
+
+    return languageCode;
+  }
 }
 
 export default Util;
