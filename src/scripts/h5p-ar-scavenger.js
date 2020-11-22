@@ -242,8 +242,12 @@ export default class ARScavenger extends H5P.Question {
       const definition = {};
       definition.name = {};
       definition.name[this.languageTag] = this.getTitle();
+      // Fallback for h5p-php-reporting, expects en-US
+      definition.name['en-US'] = definition.name[this.languageTag];
       definition.description = {};
       definition.description[this.languageTag] = this.getDescription();
+      // Fallback for h5p-php-reporting, expects en-US
+      definition.description['en-US'] = definition.description[this.languageTag];
 
       definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
       definition.interactionType = 'compound';
