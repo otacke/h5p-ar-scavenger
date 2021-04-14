@@ -119,6 +119,8 @@ export default class ARScavengerContentCamera {
   buildIframe() {
     const iframe = document.createElement('iframe');
     iframe.classList.add('h5p-ar-scavenger-content-camera-iframe');
+    // Feature policy forwarding - hopefully set in parent iframe
+    iframe.setAttribute('allow', 'camera *;');
 
     iframe.addEventListener('load', () => {
       if (this.iframeLoaded) {

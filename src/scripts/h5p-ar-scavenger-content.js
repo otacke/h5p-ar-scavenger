@@ -93,7 +93,12 @@ export default class ARScavengerContent {
 
     // Camera access
     window.navigator.mediaDevices.getUserMedia({video: {width: 4096, height: 2160}})
-      .then(() => {
+      .then((stream) => {
+        // Free stream, otherwise some devices fail as camera seems to be in use
+        stream.getTracks().forEach((track) => {
+          track.stop();
+        });
+
         this.handleInitializationSucceeded();
       })
       .catch((error) => {
