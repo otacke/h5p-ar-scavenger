@@ -1,0 +1,283 @@
+{
+  "semantics": [
+    {
+      "label": "Otsikkonäkymä",
+      "fields": [
+        {
+          "label": "Näytä otsikkonäkymä",
+          "description": "Kun valittu, sisältö näyttää otsikkonäkymän aloitettaessa."
+        },
+        {
+          "label": "Esittely",
+          "placeholder": "Tervetuloa ..."
+        },
+        {
+          "label": "Otsikkonäkymän kuva"
+        }
+      ]
+    },
+    {
+      "label": "Kohdistuskuviot",
+      "fields": [
+        {
+          "label": "Kohdistuskuviot",
+          "widgets": [
+            {
+              "label": "Oletusarvoinen"
+            }
+          ],
+          "entity": "kohdistuskuvio",
+          "field": {
+            "label": "Kohdistuskuvio",
+            "fields": [
+              {
+                "label": "Kohdistuskuva (alkuperäinen)",
+                "description": "Lataa kuva josta haluat luoda kohdistuskuvion. Kuvan on oltava neliö tai se leikataan sellaiseksi."
+              },
+              {
+                "label": "Kohdistuskuvio",
+                "description": "Lataa tämä kuvio ja käytä sitä kohdistuskuviona näytöllä tai paperille tulostettuna.",
+                "arMarkerGenerator": {}
+              },
+              {
+                "label": "Toiminnon tyyppi",
+                "description": "Toiminto joka suoritetaan, kun kohdistuskuvio havaitaan.",
+                "options": [
+                  {
+                    "label": "H5P sisältö"
+                  },
+                  {
+                    "label": "3D mallin päällepiirto"
+                  }
+                ],
+                "default": "h5p"
+              },
+              {
+                "label": "Sisältö",
+                "showWhen": {
+                  "rules": [
+                    {}
+                  ]
+                },
+                "fields": [
+                  {
+                    "label": "Sisältö"
+                  },
+                  {
+                    "label": "Dummy"
+                  }
+                ]
+              },
+              {
+                "label": "3D malli",
+                "showWhen": {
+                  "rules": [
+                    {}
+                  ]
+                },
+                "fields": [
+                  {
+                    "label": "3D mallitiedosto",
+                    "threeDModelLoader": {}
+                  },
+                  {
+                    "label": "Geometria",
+                    "fields": [
+                      {
+                        "label": "Skaala",
+                        "description": "Skaalaa mallia suuremmaksi tai pienemmäksi suhteessa kohdistuskuvioon.",
+                        "inputrow": {},
+                        "fields": [
+                          {
+                            "label": "Prosenttia"
+                          },
+                          {
+                            "label": "Dummy"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Sijainti",
+                        "description": "Aseta mallin sijainti suhteessa kohdistuskuvioon.",
+                        "inputrow": {},
+                        "fields": [
+                          {
+                            "label": "X-akselin siirtymä"
+                          },
+                          {
+                            "label": "Y-akselin siirtymä"
+                          },
+                          {
+                            "label": "Z-akselin siirtymä"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Kiertymä",
+                        "description": "Aseta kiertymä asteissa.",
+                        "inputrow": {},
+                        "fields": [
+                          {
+                            "label": "X-akseli"
+                          },
+                          {
+                            "label": "Y-akseli"
+                          },
+                          {
+                            "label": "Z-akseli"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Lopetusnäkymä",
+      "fields": [
+        {
+          "label": "Näytä lopetusnäkymä",
+          "description": "Kun valitty, näytetään lopetusnäkymä kun kaikki sisällöt on suoritettu."
+        },
+        {
+          "label": "lopetusnäytön kuva"
+        },
+        {
+          "label": "Loppusanat",
+          "placeholder": "Sinä teit sen!"
+        },
+        {
+          "label": "Loppupalaute",
+          "fields": [
+            {
+              "widgets": [
+                {
+                  "label": "Oletusarvoinen"
+                }
+              ],
+              "label": "Määritä muokattu palaute pisterajojen mukaan",
+              "description": "Klikkaa \"Add range\" painiketta lisätäksesi niin monta pisterajaa kuin tarvitset. Esimerkiksi: 0-20% Huono tulos, 21-91% Kelpo tulos, 91-100% Mahtava tulos!",
+              "entity": "range",
+              "field": {
+                "fields": [
+                  {
+                    "label": "Pisteraja"
+                  },
+                  {},
+                  {
+                    "label": "Palaute määritellylle pisterajalle",
+                    "placeholder": "Kirjoita palaute"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Yleisasetukset",
+      "fields": [
+        {
+          "label": "Näytä \"Retry\"-painike",
+          "description": "Kun valittu, voivat suorittajat yrittää tehtävää uudelleen."
+        },
+        {
+          "label": "Näytä \"Solutions\"-painike",
+          "description": "Kun valittu, voivat suorittajat katsoa kaikkien sisältöjen oikeat vastaukset."
+        },
+        {
+          "label": "Näkymän varakorkeus",
+          "description": "Aseta varakorkeus pikseleissä siltä varalta, että ristiin jaettujen sisältöjen vuoksi sopivaa näkymän korkeutta ei pystytä määrittämään (CORS)."
+        }
+      ]
+    },
+    {
+      "label": "Lokalisointi",
+      "fields": [
+        {
+          "label": "Aloita painike",
+          "default": "Aloita"
+        },
+        {
+          "label": "Yritä uudelleen painike",
+          "default": "Yritä uudelleen"
+        },
+        {
+          "label": "Etsi kohdistuskuvio nähdäksesi sisältö.",
+          "default": "Etsi kohdistuskuvio nähdäksesi sisältö."
+        },
+        {
+          "label": "Virhe: Selaintasi ei tueta",
+          "default": "Vaikuttaa siltä että selaimesi ei tue tätä sisältötyyppiä, valitettavasti."
+        },
+        {
+          "label": "Virhe: Ei kameran käyttölupaa",
+          "default": "Kameraa ei saatu käyttöön."
+        },
+        {
+          "label": "Virhe: Kameraa ei tueta",
+          "default": "Selaimesi ei vaikuta tukevan kameran käyttöä."
+        },
+        {
+          "label": "Virhe: Ei kohdistuskuvioita",
+          "default": "Unohtiko joku lisätä kohdistuskuvion?"
+        },
+        {
+          "label": "Varoitus: Brave selain",
+          "default": "Vaikuttaa siltä että käytät Brave selainta. Hienoa! Mutta sen tiukat tietoturva-asetukset saattavat estää kameran toiminnan."
+        },
+        {
+          "label": "Sisältöä alustetaan",
+          "default": "Sisältöä alustetaan. Älä unohda sallia kameran käyttöä."
+        }
+      ]
+    },
+    {
+      "label": "Ruudunlukija",
+      "fields": [
+        {
+          "label": "Koko näytön tilan painikkeen nimi: siirry",
+          "default": "Siirry koko näytön tilaan"
+        },
+        {
+          "label": "Koko näytön tilan painikkeen nimi: poistu",
+          "default": "Poistu koko näytön tilasta"
+        },
+        {
+          "label": "'Vaihda tehtävään' painikkeen nimi (kun tehtävä suljettu)",
+          "default": "Vaihda tehtävään"
+        },
+        {
+          "label": "'Vaihda kameraan' painikkeen nimi (kun tehtävä avattu)",
+          "default": "Vaihda kameraan"
+        },
+        {
+          "label": "'Painike ei aktiivinen' viesti",
+          "default": "Et voi vaihtaa näkymää juuri nyt"
+        },
+        {
+          "label": "'Lopeta' painikkeen nimi",
+          "default": "Lopeta ja näytä arviointi"
+        },
+        {
+          "label": "'Painike ei aktiivinen' viesti",
+          "default": "Et ole vielä suorittanyt kaikki tehtäviä"
+        },
+        {
+          "label": "Tehtävä avattu",
+          "default": "Näkymä on vaihdettu tehtävään."
+        },
+        {
+          "label": "Tehtävä suljettu",
+          "default": "Näkymä vaihdettu kameraan."
+        }
+      ]
+    }
+  ]
+}
