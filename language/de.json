@@ -78,6 +78,7 @@
                 "fields": [
                   {
                     "label": "3D-Model-Datei",
+                    "description": "Lade eine glTF-Datei (.glb / .gltf) hoch. Das bevorzugte Format ist \"glTF 2.0 binary\" in einer einzelnen Datei.",
                     "threeDModelLoader": {}
                   },
                   {

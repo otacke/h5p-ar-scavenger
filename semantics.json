@@ -190,6 +190,7 @@
                 {
                   "name": "file",
                   "label": "3D model file",
+                  "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file.",
                   "type": "file",
                   "widget": "threeDModelLoader",
                   "threeDModelLoader": {
