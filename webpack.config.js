@@ -1,23 +1,25 @@
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const MinifyPlugin = require("babel-minify-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
-const isDev = (nodeEnv !== 'production');
+const isProd = (nodeEnv === 'production');
 
-const config = {
-  mode: 'development',
+module.exports = {
+  mode: nodeEnv,
   optimization: {
+    minimize: isProd,
     minimizer: [
-      new OptimizeCSSAssetsPlugin({})
-    ]
+      new TerserPlugin({
+        terserOptions: {
+          compress:{
+            drop_console: true,
+          }
+        }
+      }),
+    ],
   },
   plugins: [
-    new MinifyPlugin({}, {
-      sourceMap: isDev
-    }),
     new MiniCssExtractPlugin({
       filename: 'h5p-ar-scavenger.css'
     })
@@ -33,33 +35,40 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/env']
-        }
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.(s[ac]ss|css)$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ],
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
+          },
+          { loader: "css-loader" },
+          {
+            loader: "sass-loader"
+          }
+        ]
       },
       {
         test: /\.svg|\.jpg|\.png$/,
         include: path.join(__dirname, 'src/images'),
-        loader: 'file-loader?name=images/[name].[ext]'
+        type: 'asset/resource'
       },
       {
-        test: /\.woff$/,
+        test: /\.eot|\.woff2|\.woff|\.ttf$/,
         include: path.join(__dirname, 'src/fonts'),
-        loader: 'file-loader?name=fonts/[name].[ext]'
+        type: 'asset/resource'
       }
     ]
   },
   stats: {
-    colors: true
-  }
+    colors: true,
+    children: true,
+    errorDetails: true
+  },
+  devtool: (isProd) ? undefined : 'eval-cheap-module-source-map'
 };
-
-module.exports = config;

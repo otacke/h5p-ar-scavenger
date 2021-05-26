@@ -5,11 +5,13 @@
     "H5PEditor": true
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": "2020"
   },
   "rules": {
     "valid-jsdoc": "off",
@@ -17,6 +19,9 @@
     "indent": ["error", 2, {"SwitchCase": 1}],
     "brace-style": ["error", "stroustrup"],
     "keyword-spacing": ["error", {"after": true}],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "space-infix-ops": ["error", {"int32Hint": false}],
+    "eqeqeq": [2, "smart"],
     "space-before-blocks": "error",
     "space-before-function-paren": ["error", {
       "anonymous": "always",
@@ -24,7 +29,6 @@
       "asyncArrow": "always"
     }],
     "no-extra-boolean-cast": "off",
-    "no-console": ["error", {"allow": ["warn", "error"]}],
-    "no-restricted-globals": [2, "event"]
+    "no-console": ["error", {"allow": ["warn", "error"]}]
   }
 }
