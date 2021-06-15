@@ -36,8 +36,7 @@
               },
               {
                 "label": "Imagen del marcador (patrón)",
-                "description": "Descargar esta imagen para usarla como un marcador mostrado en una pantalla o impresa en papel.",
-                "arMarkerGenerator": {}
+                "description": "Descargar esta imagen para usarla como un marcador mostrado en una pantalla o impresa en papel."
               },
               {
                 "label": "Tipo de acción",
@@ -54,11 +53,6 @@
               },
               {
                 "label": "Interacción",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "Interacción"
@@ -70,16 +64,10 @@
               },
               {
                 "label": "Modelo 3D",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "Archivo de modelo 3D",
-                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file.",
-                    "threeDModelLoader": {}
+                    "description": "Subir aquí un archivo glTF (.glb / .gltf). El formato preferido es \"glTF 2.0 binary\" en un solo archivo."
                   },
                   {
                     "label": "Geometría",
@@ -87,7 +75,6 @@
                       {
                         "label": "Escala",
                         "description": "Escalar el modelo hacia arriba o abajo para que coincida con el tamaño de su marcador.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "Porcentaje"
@@ -100,7 +87,6 @@
                       {
                         "label": "Posición",
                         "description": "Configurar las posiciones de sesgo del modelo relativas al marcador.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "sesgo-X"
@@ -116,7 +102,6 @@
                       {
                         "label": "Rotación",
                         "description": "Configurar la rotación en grados.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "eje-X"
@@ -218,7 +203,7 @@
           "default": "Al parecer su navegador no puede correr este tipo de contenido, desafortunadamente."
         },
         {
-          "label": "Error: sin acceso a cámara",
+          "label": "Error: Sin acceso a cámara",
           "default": "No se pudo acceder a cámara."
         },
         {
