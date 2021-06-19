@@ -335,7 +335,7 @@ export default class ARScavengerContentCamera {
       iframe.contentWindow.document.write(this.buildHTML().outerHTML);
       iframe.contentWindow.document.close();
 
-      this.iframeDocument = iframe.contentDocument ? iframe.contentDocument: iframeWindow;
+      this.iframeDocument = iframe.contentDocument ? iframe.contentDocument : iframeWindow;
 
       this.handleIframeComplete();
 
