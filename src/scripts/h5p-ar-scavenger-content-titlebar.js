@@ -57,6 +57,13 @@ export default class ARScavengerContentTitlebar {
     );
     this.titleBar.appendChild(this.buttons['switchView'].getDOM());
 
+    // Title
+    const titleDOM = document.createElement('div');
+    titleDOM.classList.add('h5p-ar-scavenger-title');
+    titleDOM.innerHTML = this.params.title;
+
+    this.titleBar.appendChild(titleDOM);
+
     // Button for quitting
     this.buttons['quit'] = new ARScavengerButton(
       {
@@ -76,13 +83,6 @@ export default class ARScavengerContentTitlebar {
       }
     );
     this.titleBar.appendChild(this.buttons['quit'].getDOM());
-
-    // Title
-    const titleDOM = document.createElement('div');
-    titleDOM.classList.add('h5p-ar-scavenger-title');
-    titleDOM.innerHTML = this.params.title;
-
-    this.titleBar.appendChild(titleDOM);
 
     if (this.params.canHasFullScreen) {
       this.buttons['fullscreen'] = new ARScavengerButton(
