@@ -48,7 +48,8 @@ export default class ARScavengerContentTitlebar {
           'h5p-ar-scavenger-button',
           'h5p-ar-scavenger-button-switch-view'
         ],
-        type: 'toggle'
+        type: 'toggle',
+        active: true
       },
       {
         onClick: this.callbacks.onClickButtonSwitchView
