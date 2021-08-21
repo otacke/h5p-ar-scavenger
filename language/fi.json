@@ -4,8 +4,8 @@
       "label": "Otsikkonäkymä",
       "fields": [
         {
-          "label": "Näytä otsikkonäkymä",
-          "description": "Kun valittu, sisältö näyttää otsikkonäkymän aloitettaessa."
+          "label": "Show start screen",
+          "description": "If checked, the content will show the title screen when starting."
         },
         {
           "label": "Esittely",
@@ -36,8 +36,7 @@
               },
               {
                 "label": "Kohdistuskuvio",
-                "description": "Lataa tämä kuvio ja käytä sitä kohdistuskuviona näytöllä tai paperille tulostettuna.",
-                "arMarkerGenerator": {}
+                "description": "Lataa tämä kuvio ja käytä sitä kohdistuskuviona näytöllä tai paperille tulostettuna."
               },
               {
                 "label": "Toiminnon tyyppi",
@@ -49,16 +48,10 @@
                   {
                     "label": "3D mallin päällepiirto"
                   }
-                ],
-                "default": "h5p"
+                ]
               },
               {
                 "label": "Sisältö",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "Sisältö"
@@ -70,16 +63,10 @@
               },
               {
                 "label": "3D malli",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "3D mallitiedosto",
-                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file.",
-                    "threeDModelLoader": {}
+                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file."
                   },
                   {
                     "label": "Geometria",
@@ -87,7 +74,6 @@
                       {
                         "label": "Skaala",
                         "description": "Skaalaa mallia suuremmaksi tai pienemmäksi suhteessa kohdistuskuvioon.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "Prosenttia"
@@ -100,7 +86,6 @@
                       {
                         "label": "Sijainti",
                         "description": "Aseta mallin sijainti suhteessa kohdistuskuvioon.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "X-akselin siirtymä"
@@ -116,7 +101,6 @@
                       {
                         "label": "Kiertymä",
                         "description": "Aseta kiertymä asteissa.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "X-akseli"

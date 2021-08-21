@@ -3,7 +3,7 @@ import ARScavengerContentTitlebar from './h5p-ar-scavenger-content-titlebar';
 import ARScavengerContentCamera from './h5p-ar-scavenger-content-camera';
 import ARScavengerContentAction from './h5p-ar-scavenger-content-action';
 import ARScavengerScreenEnd from './h5p-ar-scavenger-screen-end';
-import ARScavengerScreenTitle from './h5p-ar-scavenger-screen-title';
+import ARScavengerScreenStart from './h5p-ar-scavenger-screen-start';
 import Util from './h5p-ar-scavenger-util';
 
 /** Class representing the content */
@@ -401,7 +401,7 @@ export default class ARScavengerContent {
       'start': this.params.l10n.start
     };
 
-    return new ARScavengerScreenTitle(
+    return new ARScavengerScreenStart(
       params,
       {
         onClose: () => {

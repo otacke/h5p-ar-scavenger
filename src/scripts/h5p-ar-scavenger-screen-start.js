@@ -2,7 +2,7 @@
 import Util from './h5p-ar-scavenger-util';
 
 /** Class representing the content */
-export default class ARScavengerScreenTitle {
+export default class ARScavengerScreenStart {
   /**
    * @constructor
    *

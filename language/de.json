@@ -1,11 +1,11 @@
 {
   "semantics": [
     {
-      "label": "Titelbildschirm",
+      "label": "Startbildschirm",
       "fields": [
         {
-          "label": "Titelbildschirm zeigen",
-          "description": "Wenn die Option gewählt ist, wird zu Beginn der Titelbildschirm angezeigt."
+          "label": "Zeige Startbildschirm",
+          "description": "If checked, the content will show the title screen when starting."
         },
         {
           "label": "Einleitung",
@@ -36,8 +36,7 @@
               },
               {
                 "label": "Markerbild (Muster)",
-                "description": "Lade dieses Bild herunter, um es als Marker auf dem Bildschirm oder Papier zu benutzen.",
-                "arMarkerGenerator": {}
+                "description": "Lade dieses Bild herunter, um es als Marker auf dem Bildschirm oder Papier zu benutzen."
               },
               {
                 "label": "Aktionstyp",
@@ -49,16 +48,10 @@
                   {
                     "label": "3D-Modell-Einblendung"
                   }
-                ],
-                "default": "h5p"
+                ]
               },
               {
                 "label": "Interaktion",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "Interaktion"
@@ -70,16 +63,10 @@
               },
               {
                 "label": "3D-Modell",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "3D-Model-Datei",
-                    "description": "Lade eine glTF-Datei (.glb / .gltf) hoch. Das bevorzugte Format ist \"glTF 2.0 binary\" in einer einzelnen Datei.",
-                    "threeDModelLoader": {}
+                    "description": "Lade eine glTF-Datei (.glb / .gltf) hoch. Das bevorzugte Format ist \"glTF 2.0 binary\" in einer einzelnen Datei."
                   },
                   {
                     "label": "Geometrie",
@@ -87,7 +74,6 @@
                       {
                         "label": "Skalierung",
                         "description": "Skaliere das Modell hoch oder runter, um es der Markergröße anzupassen.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "Prozentsatz"
@@ -100,7 +86,6 @@
                       {
                         "label": "Position",
                         "description": "Lege die Position des Modells relativ zum Marker fest.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "X-Versatz"
@@ -116,7 +101,6 @@
                       {
                         "label": "Rotation",
                         "description": "Lege die Rotation in Grad fest.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "X-Achse"

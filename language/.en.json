@@ -4,7 +4,7 @@
       "label": "Title screen",
       "fields": [
         {
-          "label": "Show title screen",
+          "label": "Show start screen",
           "description": "If checked, the content will show the title screen when starting."
         },
         {
@@ -36,8 +36,7 @@
               },
               {
                 "label": "Marker image (pattern)",
-                "description": "Download this image to use as a marker displayed on a screen or printed on paper.",
-                "arMarkerGenerator": {}
+                "description": "Download this image to use as a marker displayed on a screen or printed on paper."
               },
               {
                 "label": "Action type",
@@ -49,16 +48,10 @@
                   {
                     "label": "3D model overlay"
                   }
-                ],
-                "default": "h5p"
+                ]
               },
               {
                 "label": "Interaction",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "Interaction"
@@ -70,16 +63,10 @@
               },
               {
                 "label": "3D Model",
-                "showWhen": {
-                  "rules": [
-                    {}
-                  ]
-                },
                 "fields": [
                   {
                     "label": "3D model file",
-                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file.",
-                    "threeDModelLoader": {}
+                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file."
                   },
                   {
                     "label": "Geometry",
@@ -87,7 +74,6 @@
                       {
                         "label": "Scale",
                         "description": "Scale the model up or down to match your marker size.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "Percentage"
@@ -100,7 +86,6 @@
                       {
                         "label": "Position",
                         "description": "Set the model's offset position relative to the marker.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "X-offset"
@@ -116,7 +101,6 @@
                       {
                         "label": "Rotation",
                         "description": "Set the rotation in degrees.",
-                        "inputrow": {},
                         "fields": [
                           {
                             "label": "X-axis"

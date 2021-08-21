@@ -1,13 +1,13 @@
 [
   {
     "name": "titleScreen",
-    "label": "Title screen",
+    "label": "Start screen",
     "type": "group",
     "importance": "low",
     "fields": [
       {
         "name": "showTitleScreen",
-        "label": "Show title screen",
+        "label": "Show start screen",
         "description": "If checked, the content will show the title screen when starting.",
         "type": "boolean",
         "default": false,
@@ -194,7 +194,10 @@
                   "type": "file",
                   "widget": "threeDModelLoader",
                   "threeDModelLoader": {
-                    "fileTypeExtensions": ["gltf", "glb"],
+                    "fileTypeExtensions": [
+                      "gltf",
+                      "glb"
+                    ],
                     "geometryPath": "geometry",
                     "planePatternPath": "../markerPattern"
                   }
@@ -251,7 +254,7 @@
                           "label": "X-offset",
                           "type": "number",
                           "optional": true,
-                          "default": 0.00,
+                          "default": 0,
                           "decimals": 2
                         },
                         {
@@ -259,7 +262,7 @@
                           "label": "Y-offset",
                           "type": "number",
                           "optional": true,
-                          "default": 0.00,
+                          "default": 0,
                           "decimals": 2
                         },
                         {
@@ -267,7 +270,7 @@
                           "label": "Z-offset",
                           "type": "number",
                           "optional": true,
-                          "default": 0.00,
+                          "default": 0,
                           "decimals": 2
                         }
                       ]
@@ -347,7 +350,7 @@
       },
       {
         "name": "endScreenOutro",
-        "label": "Outro",
+        "label": "End screen text",
         "type": "text",
         "widget": "html",
         "placeholder": "You did it!",

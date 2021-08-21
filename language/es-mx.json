@@ -4,8 +4,8 @@
       "label": "Pantalla del título",
       "fields": [
         {
-          "label": "Mostrar pantalla del título",
-          "description": "Si se activa, el contenido mostrará la pantalla del título al iniciar."
+          "label": "Show start screen",
+          "description": "If checked, the content will show the title screen when starting."
         },
         {
           "label": "Introducción",
@@ -48,8 +48,7 @@
                   {
                     "label": "Sobrepuesto modelo 3D"
                   }
-                ],
-                "default": "h5p"
+                ]
               },
               {
                 "label": "Interacción",
