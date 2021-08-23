@@ -214,6 +214,10 @@ export default class ARScavengerContent {
       if (this.isCameraMode) {
         this.toggleView();
       }
+
+      setTimeout(() => {
+        this.instances[markerId].trigger('resize');
+      }, 0);
     }
   }
 
