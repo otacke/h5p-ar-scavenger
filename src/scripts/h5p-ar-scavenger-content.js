@@ -748,6 +748,8 @@ export default class ARScavengerContent {
         instance.resetTask();
       }
     });
+
+    this.action.hideContent();
   }
 
   /**
