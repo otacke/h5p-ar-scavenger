@@ -156,7 +156,8 @@ export default class ARScavengerContentCamera {
 
     // TODO: There must be a way to build the style dynamically from H5P libraries
     const stylesheet = document.createElement('style');
-    stylesheet.innerHTML = '#arjsDebugUIContainer {display: none;} .a-enter-vr {display: none;}';
+    stylesheet.setAttribute('type', 'text/css');
+    stylesheet.innerHTML = '#arjsDebugUIContainer {display: none;} .a-enter-vr,.a-enter-ar  {display: none;}';
     head.appendChild(stylesheet);
 
     // Load AFrame script
