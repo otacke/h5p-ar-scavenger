@@ -56,25 +56,24 @@ export default class ARScavengerContentCamera {
     this.container.style.removeProperty('max-height');
     this.container.style.removeProperty('max-width');
 
-    const iframeBody = this.iframe.contentDocument.body || this.iframe.contentWindow.document.body;
     const style = this.content.currentStyle || window.getComputedStyle(this.content);
+    const contentMarginVertical = parseInt(style.marginTop) + parseInt(style.marginBottom);
+    const contentMarginHorizontal = parseInt(style.marginLeft) + parseInt(style.marginRight);
+
+    this.videoRatio = this.videoRatio || this.video.offsetWidth / this.video.offsetHeight;
 
     if (this.maxHeight) {
-      // FullScreen
       this.container.style.maxHeight = `${this.maxHeight}px`;
-      this.container.style.maxWidth = `${this.maxHeight / iframeBody.offsetHeight * iframeBody.offsetWidth}px`;
+    }
+    const maxWidth = Math.max(this.container.offsetWidth - contentMarginHorizontal, document.body.offsetWidth) ;
 
-      const contentMargin = parseInt(style.marginTop, 10) + parseInt(style.marginBottom, 10);
-      this.iframe.style.height = `${this.maxHeight - contentMargin}px`;
+    if (this.maxHeight && maxWidth / this.videoRatio > this.maxHeight) {
+      this.container.style.maxWidth = `${this.maxHeight * this.videoRatio}px`;
+      this.iframe.style.height = `${this.maxHeight - contentMarginVertical}px`;
     }
     else {
-      // Normal view
-      this.container.style.removeProperty('max-height');
-      this.container.style.removeProperty('max-width');
-
-      const contentMargin = parseInt(style.marginLeft) + parseInt(style.marginRight);
-      this.container.style.maxWidth = `${document.body.offsetWidth - contentMargin}px`;
-      this.iframe.style.height = `${(this.container.offsetWidth - contentMargin) / this.videoRatio || this.params.fallbackHeight}px`;
+      this.container.style.maxWidth = `${document.body.offsetWidth - contentMarginHorizontal}px`;
+      this.iframe.style.height = `${(this.container.offsetWidth - contentMarginHorizontal) / this.videoRatio || this.params.fallbackHeight}px`;
     }
 
     this.callbacks.onResize();
@@ -283,7 +282,6 @@ export default class ARScavengerContentCamera {
     this.waitForVideo((video) => {
       this.video = video;
       this.params.fallbackHeight = parseInt(this.video.style.height);
-      this.videoRatio = this.video.offsetWidth / this.video.offsetHeight;
 
       this.resize();
     });
