@@ -53,19 +53,28 @@ export default class ARScavengerContentCamera {
    */
   resizeIframeHeight(maxHeight) {
     this.maxHeight = (typeof maxHeight === 'number') ? maxHeight : null;
+    this.container.style.removeProperty('max-height');
+    this.container.style.removeProperty('max-width');
+
+    const iframeBody = this.iframe.contentDocument.body || this.iframe.contentWindow.document.body;
+    const style = this.content.currentStyle || window.getComputedStyle(this.content);
 
     if (this.maxHeight) {
       // FullScreen
       this.container.style.maxHeight = `${this.maxHeight}px`;
+      this.container.style.maxWidth = `${this.maxHeight / iframeBody.offsetHeight * iframeBody.offsetWidth}px`;
 
-      const style = this.content.currentStyle || window.getComputedStyle(this.content);
       const contentMargin = parseInt(style.marginTop, 10) + parseInt(style.marginBottom, 10);
       this.iframe.style.height = `${this.maxHeight - contentMargin}px`;
     }
     else {
       // Normal view
       this.container.style.removeProperty('max-height');
-      this.iframe.style.height = `${this.params.fallbackHeight}px`;
+      this.container.style.removeProperty('max-width');
+
+      const contentMargin = parseInt(style.marginLeft) + parseInt(style.marginRight);
+      this.container.style.maxWidth = `${document.body.offsetWidth - contentMargin}px`;
+      this.iframe.style.height = `${(this.container.offsetWidth - contentMargin) / this.videoRatio || this.params.fallbackHeight}px`;
     }
 
     this.callbacks.onResize();
@@ -272,7 +281,10 @@ export default class ARScavengerContentCamera {
 
     // Set iframe height to video stream height
     this.waitForVideo((video) => {
-      this.params.fallbackHeight = parseInt(video.style.height);
+      this.video = video;
+      this.params.fallbackHeight = parseInt(this.video.style.height);
+      this.videoRatio = this.video.offsetWidth / this.video.offsetHeight;
+
       this.resize();
     });
   }

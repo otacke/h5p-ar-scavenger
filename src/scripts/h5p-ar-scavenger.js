@@ -84,10 +84,14 @@ export default class ARScavenger extends H5P.Question {
 
     if (this.params.canHasFullScreen) {
       this.on('enterFullScreen', () => {
-        this.content.setFullScreen(true);
+        setTimeout(() => {
+          this.content.setFullScreen(true);
+          this.isInFullScreen = true;
+        }, 250); // Needs time to get into fullscreen for window.innerHeight
       });
 
       this.on('exitFullScreen', () => {
+        this.isInFullScreen = false;
         this.content.setFullScreen(false);
       });
     }
@@ -109,6 +113,19 @@ export default class ARScavenger extends H5P.Question {
 
       // Register content with H5P.Question
       this.setContent(this.content.getDOM());
+
+      // Handle screen orientation change
+      if (screen && screen.orientation) {
+        screen.orientation.addEventListener('change', () => {
+          this.handleScreenOrientationChanged();
+        });
+      }
+      else {
+        // Deprecated, but screen.orientation not supported by iOS - surprise!
+        window.addEventListener('change', () => {
+          this.handleScreenOrientationChanged();
+        });
+      }
     };
 
     /**
@@ -141,6 +158,18 @@ export default class ARScavenger extends H5P.Question {
 
         this.trigger(xAPIEvent);
       }, 0);
+    };
+
+    /**
+     * Handle screen orientation changed.
+     */
+    this.handleScreenOrientationChanged = () => {
+      if (this.isInFullScreen) {
+        this.content.setFullScreen(true);
+      }
+      else {
+        this.resize();
+      }
     };
 
     /**
