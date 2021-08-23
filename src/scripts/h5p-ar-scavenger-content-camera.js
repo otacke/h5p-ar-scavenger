@@ -60,7 +60,7 @@ export default class ARScavengerContentCamera {
     const contentMarginVertical = parseInt(style.marginTop) + parseInt(style.marginBottom);
     const contentMarginHorizontal = parseInt(style.marginLeft) + parseInt(style.marginRight);
 
-    this.videoRatio = this.videoRatio || this.video.offsetWidth / this.video.offsetHeight;
+    this.videoRatio = this.videoRatio || this.video ? (this.video.offsetWidth / this.video.offsetHeight) : null;
 
     if (this.maxHeight) {
       this.container.style.maxHeight = `${this.maxHeight}px`;
@@ -209,7 +209,7 @@ export default class ARScavengerContentCamera {
   buildScene() {
     const scene = document.createElement('a-scene');
     scene.setAttribute('embedded', '');
-    scene.setAttribute('arjs', '');
+    scene.setAttribute('arjs', 'sourceType: webcam; sourceWidth:1920; sourceHeight:1080; debugUIEnabled: false;');
 
     this.params.markers.forEach((marker, index) => {
       const newMarker = document.createElement('a-marker');
