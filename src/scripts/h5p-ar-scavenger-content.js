@@ -301,7 +301,7 @@ export default class ARScavengerContent {
           this.extras.previousState[index] :
           undefined;
 
-        // Will be instantiated once a marker is found
+        // Was supposed to be instantiated once a marker is found only
         const instanceDummy = {
           uninstantiated: {
             interaction: interaction,
@@ -327,9 +327,13 @@ export default class ARScavengerContent {
     });
 
     // Instantiate contents
-    for (let i = 0; i < this.instances.length; i++) {
-      this.instantiateContent(i);
-    }
+    this.instances.forEach((instance, index) => {
+      if (!instance) {
+        return;
+      }
+
+      this.instantiateContent(index);
+    });
   }
 
   /**
