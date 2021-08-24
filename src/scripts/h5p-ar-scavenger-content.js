@@ -194,6 +194,10 @@ export default class ARScavengerContent {
    * Handle marker found.
    */
   handleMarkerFound(event) {
+    if (!this.isShown) {
+      return; // Content is not shown
+    }
+
     if (!this.isCameraMode && this.isNarrowScreen) {
       return; // Not using camera
     }
@@ -444,6 +448,7 @@ export default class ARScavengerContent {
    */
   show() {
     this.screenContent.classList.remove('h5p-ar-scavenger-display-none');
+    this.isShown = true;
   }
 
   /**
@@ -451,6 +456,7 @@ export default class ARScavengerContent {
    */
   hide() {
     this.screenContent.classList.add('h5p-ar-scavenger-display-none');
+    this.isShown = false;
   }
 
   /**
