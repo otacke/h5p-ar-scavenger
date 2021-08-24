@@ -131,9 +131,6 @@ export default class ARScavengerContent {
 
     // Titlebar
     this.titlebar = this.buildTitleBar();
-    if (!this.params.endScreen.showEndScreen) {
-      this.titlebar.hideButton('quit');
-    }
 
     this.screenContent.appendChild(this.titlebar.getDOM());
 
@@ -182,7 +179,12 @@ export default class ARScavengerContent {
     this.instantiateMarkers();
 
     // Will be displayed when necessary
-    this.titlebar.hideButton('quit');
+    if (this.params.endScreen.showEndScreen && this.getMaxScore() > 0) {
+      this.titlebar.showButton('quit');
+    }
+    else {
+      this.titlebar.hideButton('quit');
+    }
 
     // No view switcher required
     if (this.instancesH5P === 0) {
@@ -531,7 +533,14 @@ export default class ARScavengerContent {
       this.show();
     }
 
-    this.titlebar.hideButton('quit');
+    // Will be displayed when necessary
+    if (this.params.endScreen.showEndScreen && this.getMaxScore() > 0) {
+      this.titlebar.toggleButtonDisabled('quit', true);
+      this.titlebar.showButton('quit');
+    }
+    else {
+      this.titlebar.hideButton('quit');
+    }
 
     setTimeout(() => {
       this.callbacks.onResize();
