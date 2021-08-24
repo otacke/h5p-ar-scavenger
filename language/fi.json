@@ -32,7 +32,7 @@
             "fields": [
               {
                 "label": "Kohdistuskuva (alkuperäinen)",
-                "description": "Lataa kuva josta haluat luoda kohdistuskuvion. Kuvan on oltava neliö tai se leikataan sellaiseksi."
+                "description": "Lataa kuva josta haluat luoda kohdistuskuvion. Kuvan on oltava neliö tai se leikataan sellaiseksi. Keep in mind that you will need a unique marker image for every interaction."
               },
               {
                 "label": "Kohdistuskuvio",

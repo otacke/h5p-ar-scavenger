@@ -32,7 +32,7 @@
             "fields": [
               {
                 "label": "Markerbild (Original)",
-                "description": "Lade das Bild hoch, aus dem du einen Marker erstellen möchtest. Es sollte quadratisch sein, sonst wird es beschnitten."
+                "description": "Lade das Bild hoch, aus dem du einen Marker erstellen möchtest. Es sollte quadratisch sein, sonst wird es beschnitten. Bedenke, dass du für jede Interaktion einen neuen Marker brauchst."
               },
               {
                 "label": "Markerbild (Muster)",

@@ -32,7 +32,7 @@
             "fields": [
               {
                 "label": "Marker image (original)",
-                "description": "Upload the image that you want to create a marker for. Should be a square image or it will be cropped."
+                "description": "Upload the image that you want to create a marker for. Should be a square image or it will be cropped. Keep in mind that you will need a unique marker image for every interaction."
               },
               {
                 "label": "Marker image (pattern)",

@@ -32,7 +32,7 @@
             "fields": [
               {
                 "label": "Imagen del marcador (original)",
-                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada."
+                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada. Keep in mind that you will need a unique marker image for every interaction."
               },
               {
                 "label": "Imagen del marcador (patrón)",
