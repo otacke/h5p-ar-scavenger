@@ -44,7 +44,7 @@ export default class ARScavengerButton {
     this.callbacks.onClick = this.callbacks.onClick || (() => {});
 
     // Button
-    this.button = document.createElement('div');
+    this.button = document.createElement('button');
 
     if (this.params.classes) {
       this.params.classes.forEach((className) => {
@@ -52,7 +52,6 @@ export default class ARScavengerButton {
       });
     }
     this.button.setAttribute('aria-pressed', this.params.active);
-    this.button.setAttribute('role', 'button');
     this.button.setAttribute('tabindex', '0');
 
     if (this.params.active === true) {
