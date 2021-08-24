@@ -127,7 +127,7 @@
       "fields": [
         {
           "label": "Endbildschirm zeigen",
-          "description": "Wenn die Option gewählt ist, wird der Endbildschirm angezeigt, wenn alle Aufgaben absolviert wurden."
+          "description": "Wenn die Option gewählt ist, wird der Endbildschirm angezeigt, wenn alle Aufgaben absolviert wurden. Der Endbildschirm ist nicht verfügbar, wenn nur 3D-Modelle genutzt werden."
         },
         {
           "label": "Bild für den Endbildschirm"

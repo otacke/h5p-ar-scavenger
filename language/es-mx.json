@@ -127,7 +127,7 @@
       "fields": [
         {
           "label": "Mostrar pantalla final",
-          "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas."
+          "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas.  The end screen will not be available if you only use 3D models though."
         },
         {
           "label": "imagen de pantalla final"

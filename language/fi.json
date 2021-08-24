@@ -127,7 +127,7 @@
       "fields": [
         {
           "label": "Näytä lopetusnäkymä",
-          "description": "Kun valitty, näytetään lopetusnäkymä kun kaikki sisällöt on suoritettu."
+          "description": "Kun valitty, näytetään lopetusnäkymä kun kaikki sisällöt on suoritettu.  The end screen will not be available if you only use 3D models though."
         },
         {
           "label": "lopetusnäytön kuva"

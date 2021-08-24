@@ -334,7 +334,7 @@
       {
         "name": "showEndScreen",
         "label": "Show end screen",
-        "description": "If checked, show an end screen when all interactions have been completed.",
+        "description": "If checked, show an end screen when all interactions have been completed. The end screen will not be available if you only use 3D models though.",
         "type": "boolean",
         "default": false,
         "optional": true
