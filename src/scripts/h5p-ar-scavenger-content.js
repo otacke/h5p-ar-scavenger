@@ -516,6 +516,8 @@ export default class ARScavengerContent {
       this.show();
     }
 
+    this.titlebar.hideButton('quit');
+
     setTimeout(() => {
       this.callbacks.onResize();
     }, 0);
