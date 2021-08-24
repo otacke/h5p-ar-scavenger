@@ -1,12 +1,12 @@
 {
   "semantics": [
     {
+      "label": "Show start screen",
+      "description": "If checked, the content will show the title screen when starting."
+    },
+    {
       "label": "Title screen",
       "fields": [
-        {
-          "label": "Show start screen",
-          "description": "If checked, the content will show the title screen when starting."
-        },
         {
           "label": "Introduction",
           "placeholder": "Welcome to ..."
@@ -123,12 +123,12 @@
       ]
     },
     {
+      "label": "Show end screen",
+      "description": "If checked, show an end screen when all interactions have been completed. The end screen will not be available if you only use 3D models though."
+    },
+    {
       "label": "End screen",
       "fields": [
-        {
-          "label": "Show end screen",
-          "description": "If checked, show an end screen when all interactions have been completed. The end screen will not be available if you only use 3D models though."
-        },
         {
           "label": "end screen image"
         },

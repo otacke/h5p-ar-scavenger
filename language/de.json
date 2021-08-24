@@ -1,12 +1,12 @@
 {
   "semantics": [
     {
+      "label": "Zeige Startbildschirm",
+      "description": "Wenn die Option gewählt ist, wird der Startbildschirm zu Beginn angezeigt."
+    },
+    {
       "label": "Startbildschirm",
       "fields": [
-        {
-          "label": "Zeige Startbildschirm",
-          "description": "If checked, the content will show the title screen when starting."
-        },
         {
           "label": "Einleitung",
           "placeholder": "Willkommen zu ..."
@@ -123,12 +123,12 @@
       ]
     },
     {
+      "label": "Endbildschirm zeigen",
+      "description": "Wenn die Option gewählt ist, wird der Endbildschirm angezeigt, wenn alle Aufgaben absolviert wurden. Der Endbildschirm ist nicht verfügbar, wenn nur 3D-Modelle genutzt werden."
+    },
+    {
       "label": "Endbildschirm",
       "fields": [
-        {
-          "label": "Endbildschirm zeigen",
-          "description": "Wenn die Option gewählt ist, wird der Endbildschirm angezeigt, wenn alle Aufgaben absolviert wurden. Der Endbildschirm ist nicht verfügbar, wenn nur 3D-Modelle genutzt werden."
-        },
         {
           "label": "Bild für den Endbildschirm"
         },

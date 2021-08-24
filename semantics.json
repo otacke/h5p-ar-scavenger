@@ -1,18 +1,18 @@
 [
   {
+    "name": "showTitleScreen",
+    "label": "Show start screen",
+    "description": "If checked, the content will show the title screen when starting.",
+    "type": "boolean",
+    "default": false,
+    "optional": true
+  },
+  {
     "name": "titleScreen",
     "label": "Start screen",
     "type": "group",
     "importance": "low",
     "fields": [
-      {
-        "name": "showTitleScreen",
-        "label": "Show start screen",
-        "description": "If checked, the content will show the title screen when starting.",
-        "type": "boolean",
-        "default": false,
-        "optional": true
-      },
       {
         "name": "titleScreenIntroduction",
         "label": "Introduction",
@@ -44,7 +44,16 @@
           "H5P.Image 1.1"
         ]
       }
-    ]
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "showTitleScreen",
+          "equals": true
+        }
+      ]
+    }
   },
   {
     "name": "markers",
@@ -326,19 +335,19 @@
     ]
   },
   {
+    "name": "showEndScreen",
+    "label": "Show end screen",
+    "description": "If checked, show an end screen when all interactions have been completed. The end screen will not be available if you only use 3D models though.",
+    "type": "boolean",
+    "default": false,
+    "optional": true
+  },
+  {
     "name": "endScreen",
     "label": "End screen",
     "type": "group",
     "importance": "low",
     "fields": [
-      {
-        "name": "showEndScreen",
-        "label": "Show end screen",
-        "description": "If checked, show an end screen when all interactions have been completed. The end screen will not be available if you only use 3D models though.",
-        "type": "boolean",
-        "default": false,
-        "optional": true
-      },
       {
         "name": "endScreenImage",
         "label": "end screen image",
@@ -428,7 +437,16 @@
           }
         ]
       }
-    ]
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "showEndScreen",
+          "equals": true
+        }
+      ]
+    }
   },
   {
     "name": "behaviour",

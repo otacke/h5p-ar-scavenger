@@ -25,14 +25,10 @@ export default class ARScavenger extends H5P.Question {
 
     // Sanitize params
     this.params = Util.extend({
-      titleScreen: {
-        showTitleScreen: false
-      },
+      showTitleScreen: false,
       canHasFullScreen: H5P.canHasFullScreen,
       markers: [],
-      endScreen: {
-        showEndScreen: false
-      },
+      showEndScreen: false,
       behaviour: {
         enableSolutionsButton: false,
         enableRetry: false,

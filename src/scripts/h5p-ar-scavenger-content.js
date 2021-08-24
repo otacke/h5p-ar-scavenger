@@ -45,7 +45,7 @@ export default class ARScavengerContent {
     this.container.classList.add('h5p-ar-scavenger-screen-content');
 
     // Screen: Title
-    if (this.params.titleScreen.showTitleScreen) {
+    if (this.params.showTitleScreen) {
       this.screenTitle = this.buildTitleScreen();
       this.container.appendChild(this.screenTitle.getDOM());
     }
@@ -53,7 +53,7 @@ export default class ARScavengerContent {
     // Screen: Content
     this.screenContent = document.createElement('div');
     this.screenContent.classList.add('h5p-ar-scavenger-content-container');
-    if (this.params.titleScreen.showTitleScreen) {
+    if (this.params.showTitleScreen) {
       this.hide();
     }
     this.container.appendChild(this.screenContent);
@@ -171,7 +171,7 @@ export default class ARScavengerContent {
     this.screenContent.appendChild(panel);
 
     // Screen: End
-    if (this.params.endScreen.showEndScreen) {
+    if (this.params.showEndScreen) {
       this.screenEnd = this.buildEndScreen();
       this.container.appendChild(this.screenEnd.getDOM());
     }
@@ -179,7 +179,7 @@ export default class ARScavengerContent {
     this.instantiateMarkers();
 
     // Will be displayed when necessary
-    if (this.params.endScreen.showEndScreen && this.getMaxScore() > 0) {
+    if (this.params.showEndScreen && this.getMaxScore() > 0) {
       this.titlebar.showButton('quit');
     }
     else {
@@ -493,7 +493,7 @@ export default class ARScavengerContent {
    * Handle quit.
    */
   handleQuit() {
-    if (this.params.endScreen.showEndScreen) {
+    if (this.params.showEndScreen) {
       const score = this.getScore();
       const maxScore = this.getMaxScore();
 
@@ -528,7 +528,7 @@ export default class ARScavengerContent {
 
     this.screenEnd.hide();
 
-    if (this.params.titleScreen.showTitleScreen) {
+    if (this.params.showTitleScreen) {
       this.screenTitle.show({ focusStartButton: true });
     }
     else {
@@ -536,7 +536,7 @@ export default class ARScavengerContent {
     }
 
     // Will be displayed when necessary
-    if (this.params.endScreen.showEndScreen && this.getMaxScore() > 0) {
+    if (this.params.showEndScreen && this.getMaxScore() > 0) {
       this.titlebar.toggleButtonDisabled('quit', true);
       this.titlebar.showButton('quit');
     }

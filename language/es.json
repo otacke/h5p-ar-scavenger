@@ -1,12 +1,12 @@
 {
   "semantics": [
     {
+      "label": "Show start screen",
+      "description": "If checked, the content will show the title screen when starting."
+    },
+    {
       "label": "Pantalla del título",
       "fields": [
-        {
-          "label": "Show start screen",
-          "description": "If checked, the content will show the title screen when starting."
-        },
         {
           "label": "Introducción",
           "placeholder": "BienVenido a ..."
@@ -123,12 +123,12 @@
       ]
     },
     {
+      "label": "Mostrar pantalla final",
+      "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas.  The end screen will not be available if you only use 3D models though."
+    },
+    {
       "label": "Pantalla final",
       "fields": [
-        {
-          "label": "Mostrar pantalla final",
-          "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas.  The end screen will not be available if you only use 3D models though."
-        },
         {
           "label": "imagen de pantalla final"
         },

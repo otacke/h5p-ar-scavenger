@@ -1,12 +1,12 @@
 {
   "semantics": [
     {
+      "label": "Show start screen",
+      "description": "If checked, the content will show the title screen when starting."
+    },
+    {
       "label": "Otsikkonäkymä",
       "fields": [
-        {
-          "label": "Show start screen",
-          "description": "If checked, the content will show the title screen when starting."
-        },
         {
           "label": "Esittely",
           "placeholder": "Tervetuloa ..."
@@ -123,12 +123,12 @@
       ]
     },
     {
+      "label": "Näytä lopetusnäkymä",
+      "description": "Kun valitty, näytetään lopetusnäkymä kun kaikki sisällöt on suoritettu.  The end screen will not be available if you only use 3D models though."
+    },
+    {
       "label": "Lopetusnäkymä",
       "fields": [
-        {
-          "label": "Näytä lopetusnäkymä",
-          "description": "Kun valitty, näytetään lopetusnäkymä kun kaikki sisällöt on suoritettu.  The end screen will not be available if you only use 3D models though."
-        },
         {
           "label": "lopetusnäytön kuva"
         },
