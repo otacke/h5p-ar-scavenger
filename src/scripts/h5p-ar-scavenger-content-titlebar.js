@@ -82,6 +82,7 @@ export default class ARScavengerContentTitlebar {
         onClick: this.callbacks.onClickButtonQuit
       }
     );
+    this.buttons['quit'].hide();
     this.titleBar.appendChild(this.buttons['quit'].getDOM());
 
     if (this.params.canHasFullScreen) {
