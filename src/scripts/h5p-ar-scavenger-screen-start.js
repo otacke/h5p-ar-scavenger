@@ -50,13 +50,13 @@ export default class ARScavengerScreenStart {
     }
 
     // Start button
-    const button = H5P.JoubelUI.createButton({
+    this.button = H5P.JoubelUI.createButton({
       class: 'h5p-ar-scavenger-screen-title-button-start',
       text: this.params.l10n.start,
       click: this.callbacks.onClose
     }).get(0);
 
-    this.screen.appendChild(button);
+    this.screen.appendChild(this.button);
   }
 
   /**
@@ -69,9 +69,15 @@ export default class ARScavengerScreenStart {
 
   /**
    * Show title screen.
+   * @param {object} params Parameters.
+   * @param {boolean} [focusStartButton] If true, start button will get focus.
    */
-  show() {
+  show(params = {}) {
     this.screen.classList.remove('h5p-ar-scavenger-display-none');
+
+    if (params.focusStartButton) {
+      this.button.focus();
+    }
   }
 
   /**

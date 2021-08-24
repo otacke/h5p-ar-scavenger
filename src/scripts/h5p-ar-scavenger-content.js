@@ -510,7 +510,7 @@ export default class ARScavengerContent {
     this.screenEnd.hide();
 
     if (this.params.titleScreen.showTitleScreen) {
-      this.screenTitle.show();
+      this.screenTitle.show({ focusStartButton: true });
     }
     else {
       this.show();
