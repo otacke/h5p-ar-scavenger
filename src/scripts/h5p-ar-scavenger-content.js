@@ -472,7 +472,9 @@ export default class ARScavengerContent {
     this.screenTitle.hide();
     this.show();
 
-    this.titlebar.focusButton('switchView');
+    if (this.titlebar) {
+      this.titlebar.focusButton('switchView');
+    }
 
     setTimeout(() => {
       this.callbacks.onResize();
