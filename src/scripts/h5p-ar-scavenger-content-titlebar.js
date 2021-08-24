@@ -139,6 +139,18 @@ export default class ARScavengerContentTitlebar {
   }
 
   /**
+   * Focus button.
+   * @param {string} buttonId Button id.
+   */
+  focusButton(buttonId) {
+    if (!this.buttons[buttonId]) {
+      return;
+    }
+
+    this.buttons[buttonId].focus();
+  }
+
+  /**
    * Toggle button active state.
    * @param {string} buttonId Button id.
    * @param {boolean} state Desired state.

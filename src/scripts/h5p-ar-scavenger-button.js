@@ -103,6 +103,13 @@ export default class ARScavengerButton {
   }
 
   /**
+   * Focus button.
+   */
+  focus() {
+    this.button.focus();
+  }
+
+  /**
    * Enable button.
    */
   enable() {
