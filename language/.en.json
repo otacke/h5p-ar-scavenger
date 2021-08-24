@@ -243,7 +243,7 @@
           "default": "Switch to camera"
         },
         {
-          "label": "'Button disabled' message",
+          "label": "'Button disabled' message for 'switch view button'",
           "default": "You cannot switch the view right now"
         },
         {
@@ -251,7 +251,7 @@
           "default": "Quit and show evaluation"
         },
         {
-          "label": "'Button disabled' message",
+          "label": "'Button disabled' message for 'quit button'",
           "default": "You have not yet completed all exercises"
         },
         {

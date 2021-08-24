@@ -577,7 +577,7 @@
       {
         "name": "buttonSwitchViewDisabled",
         "type": "text",
-        "label": "'Button disabled' message",
+        "label": "'Button disabled' message for 'switch view button'",
         "importance": "low",
         "default": "You cannot switch the view right now"
       },
@@ -591,7 +591,7 @@
       {
         "name": "buttonQuitDisabled",
         "type": "text",
-        "label": "'Button disabled' message",
+        "label": "'Button disabled' message for 'quit button'",
         "importance": "low",
         "default": "You have not yet completed all exercises"
       },
