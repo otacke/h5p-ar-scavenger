@@ -16,7 +16,7 @@ H5PUpgrades['H5P.ARScavenger'] = (function () {
             delete parameters.titleScreen.showTitleScreen;
           }
           if (parameters.endScreen) {
-            parameters.showEndScreen = parameters.endScreen.showTitleScreen;
+            parameters.showEndScreen = parameters.endScreen.showEndScreen;
             delete parameters.endScreen.showEndScreen;
           }
         }
