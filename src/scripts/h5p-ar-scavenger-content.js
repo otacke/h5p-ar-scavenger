@@ -321,6 +321,11 @@ export default class ARScavengerContent {
         this.instanceDOMs.push(null);
       }
     });
+
+    // Instantiate contents
+    for (let i = 0; i < this.instances.length; i++) {
+      this.instantiateContent(i);
+    }
   }
 
   /**
