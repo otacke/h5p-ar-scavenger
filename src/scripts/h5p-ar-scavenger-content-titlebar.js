@@ -183,7 +183,12 @@ export default class ARScavengerContentTitlebar {
       return;
     }
 
-    if (state === true || !this.buttons[buttonId].isDisabled()) {
+    // Toggle current state
+    if (typeof state !== 'boolean') {
+      state = !this.buttons[buttonId].isDisabled();
+    }
+
+    if (state === true) {
       this.buttons[buttonId].disable();
     }
     else {
