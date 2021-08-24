@@ -209,9 +209,9 @@ export default class ARScavengerContent {
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
       this.action.showContent();
       this.action.show();
-      this.titlebar.toggleButtonActive('switchView', true);
 
       if (this.isCameraMode) {
+        this.titlebar.toggleButtonActive('switchView', false);
         this.toggleView();
       }
 
