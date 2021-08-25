@@ -422,7 +422,7 @@ export default class ARScavengerContent {
       {
         onClickButtonFullScreen: (event) => this.callbacks.onFullScreen(event),
         onClickButtonQuit: (event) => this.handleQuit(event),
-        onClickButtonSwitchView: (event) => this.handleSwitchView(event)
+        onClickButtonSwitchView: () => this.handleSwitchView()
       }
     );
   }
@@ -698,13 +698,8 @@ export default class ARScavengerContent {
 
   /**
    * Handle activation of overlay button.
-   * @param {object} event Event that is calling.
    */
-  handleSwitchView(event) {
-    if (event && event.type === 'keypress' && event.keyCode !== 13 && event.keyCode !== 32) {
-      return;
-    }
-
+  handleSwitchView() {
     const active = !this.titlebar.isButtonActive('switchView');
 
     const message = (active) ?
