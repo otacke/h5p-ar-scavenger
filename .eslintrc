@@ -29,6 +29,7 @@
       "asyncArrow": "always"
     }],
     "no-extra-boolean-cast": "off",
-    "no-console": ["error", {"allow": ["warn", "error"]}]
+    "no-console": ["error", {"allow": ["warn", "error"]}],
+    "object-curly-spacing": ["error", "always"]
   }
 }
