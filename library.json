@@ -2,7 +2,7 @@
   "title": "ARScavenger",
   "description": "Proof-of-Concept for AR in H5P",
   "majorVersion": 1,
-  "minorVersion": 1,
+  "minorVersion": 2,
   "patchVersion": 0,
   "runnable": 1,
   "author": "Oliver Tacke",
@@ -73,6 +73,11 @@
       "machineName": "H5PEditor.InputRow",
       "majorVersion": 1,
       "minorVersion": 0
+    },
+    {
+      "machineName": "H5PEditor.ImportantDescription",
+      "majorVersion": 0,
+      "minorVersion": 1
     }
   ]
 }

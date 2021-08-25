@@ -32,7 +32,10 @@
             "fields": [
               {
                 "label": "Imagen del marcador (original)",
-                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada. Keep in mind that you will need a unique marker image for every interaction."
+                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada. Keep in mind that you will need a unique marker image for every interaction.",
+                "importantDescription": {
+                  "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
+                }
               },
               {
                 "label": "Imagen del marcador (patrón)",

@@ -32,7 +32,10 @@
             "fields": [
               {
                 "label": "Markerbild (Original)",
-                "description": "Lade das Bild hoch, aus dem du einen Marker erstellen möchtest. Es sollte quadratisch sein, sonst wird es beschnitten. Bedenke, dass du für jede Interaktion einen neuen Marker brauchst."
+                "description": "Lade das Bild hoch, aus dem du einen Marker erstellen möchtest. Es sollte quadratisch sein, sonst wird es beschnitten. Bedenke, dass du für jede Interaktion einen neuen Marker brauchst.",
+                "importantDescription": {
+                  "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
+                }
               },
               {
                 "label": "Markerbild (Muster)",
