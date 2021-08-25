@@ -32,6 +32,8 @@ export default class ARScavenger extends H5P.Question {
       behaviour: {
         enableSolutionsButton: false,
         enableRetry: false,
+        overrideShowSolutionButton: 'useBehavioural',
+        overrideRetryButton: 'useBehavioural',
         fallbackHeight: 400
       },
       l10n: {

@@ -180,6 +180,36 @@
           "description": "Kun valittu, voivat suorittajat katsoa kaikkien sisältöjen oikeat vastaukset."
         },
         {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
+          "label": "Override \"Retry\" button",
+          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
           "label": "Näkymän varakorkeus",
           "description": "Aseta varakorkeus pikseleissä siltä varalta, että ristiin jaettujen sisältöjen vuoksi sopivaa näkymän korkeutta ei pystytä määrittämään (CORS)."
         }

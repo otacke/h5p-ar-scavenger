@@ -180,6 +180,36 @@
           "description": "Si se activa, los estudiantes pueden ver las soluciones de todas las interacciones."
         },
         {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
+          "label": "Override \"Retry\" button",
+          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
           "label": "Altura de plan B",
           "description": "Configurar una altura de 'plan B' en px para casos en donde hay problemas de compartición de recurso de origen cruzado (CORS)."
         }

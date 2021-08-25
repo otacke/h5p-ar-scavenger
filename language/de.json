@@ -180,6 +180,36 @@
           "description": "Wenn die Option gewählt ist, können die Lernenden die Lösungen aller Aufgaben ansehen."
         },
         {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
+          "label": "Override \"Retry\" button",
+          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
           "label": "Vorgabenhöhe",
           "description": "Lege eine Vorgabehöhe in px fest für Fälle, in denen es zu \"CORS\"-Problemen kommt."
         }

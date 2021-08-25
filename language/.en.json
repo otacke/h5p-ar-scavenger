@@ -180,6 +180,36 @@
           "description": "If checked, learners can view the solutions of all interactions."
         },
         {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
+          "label": "Override \"Retry\" button",
+          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "options": [
+            {
+              "label": "Use behavioural setting"
+            },
+            {
+              "label": "Always show button"
+            },
+            {
+              "label": "Never show button"
+            }
+          ]
+        },
+        {
           "label": "Fallback height",
           "description": "Set a fallback heigth in px for cases when there are cross orgin resource sharing (CORS) issues."
         }

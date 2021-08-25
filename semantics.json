@@ -479,6 +479,50 @@
         "widget": "none"
       },
       {
+        "name": "overrideShowSolutionButton",
+        "type": "select",
+        "label": "Override \"Show Solution\" button",
+        "importance": "low",
+        "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+        "options": [
+          {
+            "value": "useBehavioural",
+            "label": "Use behavioural setting"
+          },
+          {
+            "value": "always",
+            "label": "Always show button"
+          },
+          {
+            "value": "never",
+            "label": "Never show button"
+          }
+        ],
+        "default": "useBehavioural"
+      },
+      {
+        "name": "overrideRetryButton",
+        "type": "select",
+        "label": "Override \"Retry\" button",
+        "importance": "low",
+        "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+        "options": [
+          {
+            "value": "useBehavioural",
+            "label": "Use behavioural setting"
+          },
+          {
+            "value": "always",
+            "label": "Always show button"
+          },
+          {
+            "value": "never",
+            "label": "Never show button"
+          }
+        ],
+        "default": "useBehavioural"
+      },
+      {
         "name": "fallbackHeight",
         "type": "number",
         "importance": "low",
