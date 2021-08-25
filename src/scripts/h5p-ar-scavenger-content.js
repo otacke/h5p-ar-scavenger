@@ -501,8 +501,10 @@ export default class ARScavengerContent {
    * Handle completed.
    */
   handleCompleted() {
-    this.titlebar.showButton('quit');
-    this.titlebar.toggleButtonDisabled('quit', false);
+    if (this.params.showEndScreen) {
+      this.titlebar.showButton('quit');
+      this.titlebar.toggleButtonDisabled('quit', false);
+    }
   }
 
   /**
