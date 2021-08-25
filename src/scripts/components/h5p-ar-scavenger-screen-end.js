@@ -30,8 +30,8 @@ export default class ARScavengerScreenEnd extends ARScavengerScreen {
    * Set score.
    * @param {number} [score=0] Score.
    */
-  setScore(scoreText = 0) {
-    this.feedbackSection.setScore(scoreText);
+  setScore(score = 0) {
+    this.feedbackSection.setScore(score);
   }
 
   /**
