@@ -1,0 +1,317 @@
+.h5p-ar-scavenger {
+  min-width: 240px; /* Tiny resolution */
+
+  .h5p-ar-scavenger-panel {
+    max-width: 1920px; /* FullHD resolution*/
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+  > .h5p-question-content {
+    margin: 0;
+  }
+
+  &.h5p-fullscreen > .h5p-question-content {
+    height: 100%;
+  }
+
+  .h5p-ar-scavenger-content-message {
+    padding: 1em;
+    text-align: center;
+  }
+
+  .h5p-ar-scavenger-content-message-error {}
+
+  &.h5p-fullscreen {
+    > .h5p-question-content .h5p-ar-scavenger-screen-content {
+      height: 100%;
+    }
+
+    .h5p-ar-scavenger-fullscreen-button-wrapper {
+      display: none;
+    }
+  }
+
+  .h5p-ar-scavenger-fullscreen-button-wrapper {
+    background-color: rgba(76, 68, 82, 0.8);
+    border: 0;
+    border-radius: 0 0 0 100%;
+    height: 1.8em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1.8em;
+    z-index: 3;
+  }
+
+  .h5p-ar-scavenger-fullscreen-button {
+    border: 0;
+    border-radius: 0 0 0 100%;
+    font-size: 1em;
+    height: 1.8em;
+    position: absolute;
+    width: 1.8em;
+
+    &.h5p-ar-scavenger-enter-fullscreen {
+      background: url(../images/button-fullscreen-enter-icon.svg);
+      background-color: rgba(0, 0, 0, 0);
+      background-position: .5em .4em;
+      background-repeat: no-repeat;
+      background-size: 1em 1em;
+    }
+
+    &.h5p-ar-scavenger-exit-fullscreen {
+      background: url(../images/button-fullscreen-exit-icon.svg);
+      background-color: rgba(0, 0, 0, 0);
+      background-position: .5em .4em;
+      background-repeat: no-repeat;
+      background-size: 1em 1em;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .h5p-ar-scavenger-screen-title, .h5p-ar-scavenger-screen-end {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding-bottom: 3em;
+  }
+
+  .h5p-ar-scavenger-screen-title-image-wrapper, .h5p-ar-scavenger-screen-end-image-wrapper {
+    align-items: center;
+    display: flex;
+    height: 15em;
+    justify-content: center;
+    margin: 3em 0;
+    position: relative;
+  }
+
+  .h5p-ar-scavenger-screen-title-image, .h5p-ar-scavenger-screen-end-image {
+    box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 50%;
+    max-height: 15em;
+    max-width: 85%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .h5p-ar-scavenger-screen-title-image-bar, .h5p-ar-scavenger-screen-end-image-bar {
+    background-color: rgba(26, 115, 217, 0.05);
+    background-size: cover;
+    height: 70%;
+    width: 100%;
+  }
+
+  .h5p-ar-scavenger-screen-title-introduction, .h5p-ar-scavenger-screen-end-outro, .h5p-ar-scavenger-feedback-section {
+    align-self: center;
+    max-width: 85%;
+  }
+
+  .h5p-ar-scavenger-screen-title-button-start, .h5p-ar-scavenger-screen-end-button-retry {
+    align-self: center;
+  }
+
+  .h5p-ar-scavenger-screen-title-button-start {
+    border: 0;
+    border-radius: 3px; /* Same px value as used by Joubel in Interactive Book */
+    font-size: 1.25em;
+    padding: 0.4em 1.4em;
+    margin: 1em 0;
+  }
+
+  .h5p-ar-scavenger-score-text {
+    color: #1a73d9;
+    font-weight: 700;
+    margin: 0.5em 0;
+    text-align: center;
+  }
+
+  .h5p-joubelui-score-bar {
+    margin-bottom: 1.5em;
+  }
+
+  .h5p-ar-scavenger-screen-end-button-retry:before {
+    content: "\F01E";
+  }
+
+  .h5p-ar-scavenger-title-bar {
+    align-items: center;
+    background-color: #fff;
+    background-size: cover;
+    box-shadow: 0.5em 0.5em 2em rgba(166, 166, 166, 0.2);
+    display: flex;
+    overflow: hidden;
+    padding: .5em;
+  }
+
+  .h5p-ar-scavenger-button {
+    align-items: center;
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1.15em 1.15em;
+    border: 2px solid #fff; /* Same px value as used by Joubel in Interactive Book */
+    border-radius: 3px; /* Same px value as used by Joubel in Interactive Book */
+    display: flex;
+    flex-shrink: 0;
+    font-size: 1em;
+    height: 2.75em;
+    padding: 0;
+    width: 2.75em;
+
+    &:not(.h5p-ar-scavenger-button-disabled) {
+      &:hover {
+        background-color: rgba(26, 115, 217, 0.05);
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: rgba(26, 115, 217, 0.1);
+      }
+
+      &.h5p-ar-scavenger-button-active {
+        background-color: #1a73d9;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 1.15em 1.15em;
+        opacity: 20;
+
+        &:hover {
+          background-color: rgba(26, 115, 217, 0.9);
+          cursor: pointer;
+        }
+
+        &:active {
+          background-color: rgba(26, 115, 217, 0.95);
+        }
+      }
+    }
+
+    &.h5p-ar-scavenger-button-fullscreen {
+      background-image: url(../images/button-fullscreen-enter-icon-blue.svg);
+
+      &.h5p-ar-scavenger-button-active {
+        background-image: url(../images/button-fullscreen-exit-icon-blue.svg);
+        background-color: initial;
+
+        &:hover {
+          background-color: rgba(26, 115, 217, 0.05);
+        }
+      }
+    }
+
+    &.h5p-ar-scavenger-button-switch-view {
+      background-image: url(../images/button-task-icon-blue.svg);
+
+      &.h5p-ar-scavenger-button-active {
+        background-image: url(../images/button-camera-icon-white.svg);
+      }
+
+      &.h5p-ar-scavenger-button-disabled {
+        background-image: url(../images/button-camera-icon-grey.svg);
+      }
+    }
+
+    &.h5p-ar-scavenger-button-quit {
+      background-image: url(../images/button-quit-icon-blue.svg);
+
+      &.h5p-ar-scavenger-button-active {
+        background-image: url(../images/button-quit-icon-white.svg);
+      }
+
+      &.h5p-ar-scavenger-button-disabled {
+        background-image: url(../images/button-quit-icon-grey.svg);
+      }
+    }
+  }
+
+  .h5p-ar-scavenger-title {
+    color: #4c4452;
+    flex-grow: 1;
+    font-family: Arial;
+    font-size: 1.15em;
+    font-weight: 700;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 1rem;
+    text-decoration: none solid #4c4452;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .h5p-ar-scavenger-content-camera-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1058px; /* Same maxwidth in px as used by Joubel in Interactive Book */
+    overflow-y: hidden;
+    transition: width .25s ease-in-out;
+    width: 100%;
+
+    &.h5p-ar-scavenger-action-mode {
+      &:not(.h5p-ar-scavenger-narrow-screen) {
+        border-right: 0.125em dashed #cccccc;
+      }
+
+      &.h5p-ar-scavenger-narrow-screen {
+        width: 0;
+
+        &.h5p-ar-scavenger-display-none {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .h5p-ar-scavenger-content-camera {
+    margin: 1em;
+    overflow: hidden;
+  }
+
+  .h5p-ar-scavenger-content-camera-iframe {
+    border: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .h5p-ar-scavenger-content-action-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1058px; /* Same maxwidth in px as used by Joubel in Interactive Book */
+    overflow-y: auto;
+    transition: width .25s ease-in-out;
+    width: 0;
+    z-index: 1;
+  }
+
+  .h5p-ar-scavenger-content-action-message {
+    font-size: 1.5em;
+  }
+
+  .h5p-ar-scavenger-display-none {
+    display: none;
+  }
+
+  .h5p-ar-scavenger-content-action-container.h5p-ar-scavenger-action-mode {
+    width: 100%;
+  }
+
+  .h5p-ar-scavenger-content-action {
+    margin: 1em;
+  }
+
+  .h5p-audio-wrapper {
+    height: 54px; /* Fix for https://github.com/h5p/h5p-audio/pull/48/files that seems to be forgotten */
+  }
+}

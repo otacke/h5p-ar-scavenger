@@ -1,4 +1,4 @@
-import '../styles/h5p-ar-scavenger.css';
+import '../styles/h5p-ar-scavenger.scss';
 import ARScavenger from '../scripts/h5p-ar-scavenger';
 
 // Load library
