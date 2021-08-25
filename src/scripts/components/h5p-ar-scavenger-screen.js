@@ -1,8 +1,7 @@
-// Import required classes
-import Util from './h5p-ar-scavenger-util';
+import './h5p-ar-scavenger-screen.scss';
 
 /** Class representing the content */
-export default class ARScavengerScreenStart {
+export default class ARScavengerScreen {
   /**
    * @constructor
    *
@@ -10,33 +9,34 @@ export default class ARScavengerScreenStart {
    * @param {object} [callbacks] Callbacks.
    */
   constructor(params, callbacks, contentId) {
-    // Set missing params
-    this.params = Util.extend({
-      l10n: {
-        start: 'Start'
-      }
-    }, params || {});
+    this.params = params;
 
     // Sanitize callbacks
     this.callbacks = callbacks || {};
-    this.callbacks.onClose = this.callbacks.onClose || (() => {});
+    this.callbacks.onClose = callbacks.onClose || (() => {});
+
+    this.baseClassName = 'h5p-ar-scavenger-screen';
 
     // Screen
     this.screen = document.createElement('div');
-    this.screen.classList.add('h5p-ar-scavenger-screen-title');
+    this.screen.classList.add(`${this.baseClassName}`);
+    if (this.params.id) {
+      this.screen.classList.add(`${this.baseClassName}-${this.params.id}`);
+    }
 
-    // Title image (optional)
-    if (this.params.titleScreenImage && this.params.titleScreenImage.params && this.params.titleScreenImage.params.file) {
+    // image (optional)
+    if (this.params.screenImage && this.params.screenImage.params && this.params.screenImage.params.file) {
       const imageWrapper = document.createElement('div');
-      imageWrapper.classList.add('h5p-ar-scavenger-screen-title-image-wrapper');
-      H5P.newRunnable(params.titleScreenImage, contentId, H5P.jQuery(imageWrapper), false);
+      imageWrapper.classList.add(`${this.baseClassName}-image-wrapper`);
+
+      H5P.newRunnable(params.screenImage, contentId, H5P.jQuery(imageWrapper), false);
       const image = imageWrapper.querySelector('img');
-      image.classList.add('h5p-ar-scavenger-screen-title-image');
+      image.classList.add(`${this.baseClassName}-image`);
       image.style.height = 'auto';
       image.style.width = 'auto';
 
       const bar = document.createElement('div');
-      bar.classList.add('h5p-ar-scavenger-screen-title-image-bar');
+      bar.classList.add(`${this.baseClassName}-image-bar`);
       imageWrapper.appendChild(bar);
 
       this.screen.appendChild(imageWrapper);
@@ -44,18 +44,19 @@ export default class ARScavengerScreenStart {
 
     if (this.params.titleScreenIntroduction) {
       const introduction = document.createElement('div');
-      introduction.classList.add('h5p-ar-scavenger-screen-title-introduction');
+      introduction.classList.add(`${this.baseClassName}-text`);
       introduction.innerHTML = this.params.titleScreenIntroduction;
       this.screen.appendChild(introduction);
     }
 
-    // Start button
+    // button
     this.button = H5P.JoubelUI.createButton({
-      class: 'h5p-ar-scavenger-screen-title-button-start',
-      text: this.params.l10n.start,
+      class: `${this.baseClassName}-button-close`,
+      text: this.params.l10n.buttonText,
       click: this.callbacks.onClose
     }).get(0);
 
+    this.hide();
     this.screen.appendChild(this.button);
   }
 

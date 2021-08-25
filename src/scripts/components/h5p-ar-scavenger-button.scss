@@ -1,0 +1,47 @@
+.h5p-ar-scavenger-button {
+  align-items: center;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.15em 1.15em;
+  border: 2px solid #fff; /* Same px value as used by Joubel in Interactive Book */
+  border-radius: 3px; /* Same px value as used by Joubel in Interactive Book */
+  display: flex;
+  flex-shrink: 0;
+  font-size: 1em;
+  height: 2.75em;
+  padding: 0;
+  width: 2.75em;
+
+  &:not(.h5p-ar-scavenger-button-disabled) {
+    &:hover {
+      background-color: rgba(26, 115, 217, 0.05);
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgba(26, 115, 217, 0.1);
+    }
+
+    &.h5p-ar-scavenger-button-active {
+      background-color: #1a73d9;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 1.15em 1.15em;
+      opacity: 20;
+
+      &:hover {
+        background-color: rgba(26, 115, 217, 0.9);
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: rgba(26, 115, 217, 0.95);
+      }
+    }
+  }
+}
+
+.h5p-ar-scavenger-button-display-none {
+  display: none;
+}

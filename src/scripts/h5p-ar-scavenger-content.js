@@ -1,9 +1,10 @@
 // Import required classes
-import ARScavengerContentTitlebar from './h5p-ar-scavenger-content-titlebar';
-import ARScavengerContentCamera from './h5p-ar-scavenger-content-camera';
-import ARScavengerContentAction from './h5p-ar-scavenger-content-action';
-import ARScavengerScreenEnd from './h5p-ar-scavenger-screen-end';
-import ARScavengerScreenStart from './h5p-ar-scavenger-screen-start';
+import './h5p-ar-scavenger-content.scss';
+import ARScavengerContentTitlebar from './components/h5p-ar-scavenger-content-titlebar';
+import ARScavengerContentCamera from './components/h5p-ar-scavenger-content-camera';
+import ARScavengerContentAction from './components/h5p-ar-scavenger-content-action';
+import ARScavengerScreenEnd from './components/h5p-ar-scavenger-screen-end';
+import ARScavengerScreenStart from './components/h5p-ar-scavenger-screen-start';
 import Util from './h5p-ar-scavenger-util';
 
 /** Class representing the content */
@@ -53,9 +54,6 @@ export default class ARScavengerContent {
     // Screen: Content
     this.screenContent = document.createElement('div');
     this.screenContent.classList.add('h5p-ar-scavenger-content-container');
-    if (this.params.showTitleScreen) {
-      this.hide();
-    }
     this.container.appendChild(this.screenContent);
 
     this.messages = document.createElement('div');
@@ -130,6 +128,10 @@ export default class ARScavengerContent {
    * Handle initialization if camera is accessible.
    */
   handleInitializationSucceeded() {
+    if (this.params.showTitleScreen) {
+      this.hide();
+      this.screenTitle.show();
+    }
     this.screenContent.removeChild(this.messages);
 
     // Titlebar
@@ -434,13 +436,13 @@ export default class ARScavengerContent {
    * Build title screen
    */
   buildTitleScreen() {
-    const params = this.params.titleScreen;
-    params.l10n = {
-      'start': this.params.l10n.start
-    };
-
     return new ARScavengerScreenStart(
-      params,
+      {
+        id: 'title',
+        screenImage: this.params.titleScreen.titleScreenImage,
+        screenText: this.params.titleScreen.titleScreenIntroduction,
+        l10n: { 'buttonText': this.params.l10n.start }
+      },
       {
         onClose: () => {
           this.handleTitleScreenClosed();
@@ -453,15 +455,15 @@ export default class ARScavengerContent {
    * Build title screen
    */
   buildEndScreen() {
-    const params = this.params.endScreen;
-    params.l10n = {
-      'retry': this.params.l10n.retry
-    };
-
     return new ARScavengerScreenEnd(
-      params,
       {
-        onRetry: () => {
+        id: 'end',
+        screenImage: this.params.endScreen.endScreenImage,
+        screenText: this.params.endScreen.endScreenOutro,
+        l10n: { 'buttonText': this.params.l10n.retry }
+      },
+      {
+        onClose: () => {
           this.handleRetry();
         }
       },

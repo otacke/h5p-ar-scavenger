@@ -1,5 +1,6 @@
 // Import required classes
-import Util from './h5p-ar-scavenger-util';
+import './h5p-ar-scavenger-button.scss';
+import Util from '../h5p-ar-scavenger-util';
 
 /** Class representing the content */
 export default class ARScavengerButton {
@@ -92,14 +93,14 @@ export default class ARScavengerButton {
    * Show button.
    */
   show() {
-    this.button.classList.remove('h5p-ar-scavenger-display-none');
+    this.button.classList.remove('h5p-ar-scavenger-button-display-none');
   }
 
   /**
    * Hide button.
    */
   hide() {
-    this.button.classList.add('h5p-ar-scavenger-display-none');
+    this.button.classList.add('h5p-ar-scavenger-button-display-none');
   }
 
   /**

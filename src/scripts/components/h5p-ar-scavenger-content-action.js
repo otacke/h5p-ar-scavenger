@@ -1,5 +1,6 @@
 // Import required classes
-import Util from './h5p-ar-scavenger-util';
+import './h5p-ar-scavenger-content-action.scss';
+import Util from '../h5p-ar-scavenger-util';
 
 /** Class representing the action */
 export default class ARScavengerContentAction {
