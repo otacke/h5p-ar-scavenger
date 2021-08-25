@@ -3,7 +3,7 @@ import './h5p-ar-scavenger-screen-end.scss';
 import ARScavengerScreen from './h5p-ar-scavenger-screen';
 import ARScavengerFeedbackSection from './h5p-ar-scavenger-feedback-section';
 
-/** Class representing the content */
+/** Class representing the end screen */
 export default class ARScavengerScreenEnd extends ARScavengerScreen {
   /**
    * @constructor

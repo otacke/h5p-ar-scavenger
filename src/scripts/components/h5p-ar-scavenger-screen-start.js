@@ -2,7 +2,7 @@
 import './h5p-ar-scavenger-screen-start.scss';
 import ARScavengerScreen from './h5p-ar-scavenger-screen';
 
-/** Class representing the content */
+/** Class representing the start screen */
 export default class ARScavengerScreenStart extends ARScavengerScreen {
   /**
    * @constructor

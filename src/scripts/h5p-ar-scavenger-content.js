@@ -273,7 +273,7 @@ export default class ARScavengerContent {
       this.resize({ fromAction: true });
     });
 
-    if (this.isTask(this.instances[id], machineName)) {
+    if (Util.isTask(this.instances[id], machineName)) {
       this.tasksH5P++;
 
       // Listen for instance completion
@@ -381,20 +381,6 @@ export default class ARScavengerContent {
    */
   handleMarkerLost(event) {
     return event; // Dummy
-  }
-
-  /**
-   * Check whether an H5P instance is a task.
-   * @param {H5P.ContentType} instance H5P instance.
-   * @param {string} machineName H5P MachineName.
-   */
-  isTask(instance, machineName) {
-    // Course Presentations loads subcontent dynamically, can't trust getMaxScore
-    if (machineName === 'H5P.CoursePresentation') {
-      return instance.isTask;
-    }
-
-    return (instance.getMaxScore && instance.getMaxScore() > 0);
   }
 
   /**

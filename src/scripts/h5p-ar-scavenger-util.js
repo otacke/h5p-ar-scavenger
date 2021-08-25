@@ -55,6 +55,20 @@ class Util {
 
     return languageCode;
   }
+
+  /**
+   * Check whether an H5P instance is a task.
+   * @param {H5P.ContentType} instance H5P instance.
+   * @param {string} machineName H5P MachineName.
+   */
+  static isTask(instance, machineName) {
+    // Course Presentations loads subcontent dynamically, can't trust getMaxScore
+    if (machineName === 'H5P.CoursePresentation') {
+      return instance.isTask;
+    }
+
+    return (instance.getMaxScore && instance.getMaxScore() > 0);
+  }
 }
 
 export default Util;
