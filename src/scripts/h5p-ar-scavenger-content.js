@@ -92,20 +92,23 @@ export default class ARScavengerContent {
     }
 
     // Camera access
-    window.navigator.mediaDevices.getUserMedia({video: {width: 4096, height: 2160}}) // Potentially 4K
-      .then((stream) => {
-        // Free stream, otherwise some devices fail as camera seems to be in use
-        stream.getTracks().forEach((track) => {
-          track.stop();
-        });
-
-        this.handleInitializationSucceeded();
-      })
-      .catch((error) => {
-        const message = `${this.params.l10n.errorNoCameraAccess} ${error.message}`;
-        console.warn(message);
-        this.handleInitializationFailed([message]);
+    window.navigator.mediaDevices.getUserMedia({
+      video: { // Potentially 4K
+        width: 4096,
+        height: 2160
+      }
+    }).then((stream) => {
+      // Free stream, otherwise some devices fail as camera seems to be in use
+      stream.getTracks().forEach((track) => {
+        track.stop();
       });
+
+      this.handleInitializationSucceeded();
+    }).catch((error) => {
+      const message = `${this.params.l10n.errorNoCameraAccess} ${error.message}`;
+      console.warn(message);
+      this.handleInitializationFailed([message]);
+    });
   }
 
   /**
@@ -143,7 +146,7 @@ export default class ARScavengerContent {
       },
       {
         onResize: () => {
-          this.resize({fromSubject: true});
+          this.resize({ fromSubject: true });
         },
         onMarkerFound: (event) => {
           this.handleMarkerFound(event);
@@ -261,11 +264,11 @@ export default class ARScavengerContent {
       params.contentId,
       H5P.jQuery(params.actionWrapper),
       true,
-      {previousState: params.previousState}
+      { previousState: params.previousState }
     );
 
     this.instances[id].on('resize', () => {
-      this.resize({fromAction: true});
+      this.resize({ fromAction: true });
     });
 
     if (this.isTask(this.instances[id], machineName)) {

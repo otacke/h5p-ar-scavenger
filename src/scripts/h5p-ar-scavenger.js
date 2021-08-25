@@ -223,7 +223,7 @@ export default class ARScavenger extends H5P.Question {
      * Resize.
      */
     this.resize = () => {
-      this.trigger('resize', {break: true});
+      this.trigger('resize', { break: true });
     };
 
     /**
