@@ -1,9 +1,9 @@
 .h5p-ar-scavenger {
-  min-width: 250px;
+  min-width: 240px; /* Tiny resolution */
 }
 
 .h5p-ar-scavenger .h5p-ar-scavenger-panel {
-  max-width: 1920px;
+  max-width: 1920px; /* FullHD resolution*/
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -95,9 +95,9 @@
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-image,
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-end-image {
-  box-shadow: 10px 4px 47px 0px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 10px 4px 47px 0px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 10px 4px 47px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
   position: absolute;
   left: 50%;
   max-height: 15em;
@@ -128,7 +128,7 @@
 
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start {
   border: 0;
-  border-radius: 3px;
+  border-radius: 3px; /* Same px value as used by Joubel in Interactive Book */
   font-size: 1.25em;
   padding: 0.4em 1.4em;
   margin: 1em 0;
@@ -145,11 +145,6 @@
   margin-bottom: 1.5em;
 }
 
-.h5p-ar-scavenger .h5p-ar-scavenger-screen-title-button-start:before {
-  /* content: "\F11D";
-  font-weight: bold; */
-}
-
 .h5p-ar-scavenger .h5p-ar-scavenger-screen-end-button-retry:before {
   content: "\F01E";
 }
@@ -158,7 +153,7 @@
   align-items: center;
   background-color: #fff;
   background-size: cover;
-  box-shadow: 10px 10px 30px rgba(166,166,166,0.2);
+  box-shadow: 0.5em 0.5em 2em rgba(166,166,166,0.2);
   display: flex;
   overflow: hidden;
   padding: .5em;
@@ -170,8 +165,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 1.15em 1.15em;
-  border: 2px solid #fff;
-  border-radius: 3px;
+  border: 2px solid #fff; /* Same px value as used by Joubel in Interactive Book */
+  border-radius: 3px; /* Same px value as used by Joubel in Interactive Book */
   display: flex;
   flex-shrink: 0;
   font-size: 1em;
@@ -263,7 +258,7 @@
 .h5p-ar-scavenger .h5p-ar-scavenger-content-camera-container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1058px;
+  max-width: 1058px; /* Same maxwidth in px as used by Joubel in Interactive Book */
   overflow-y: hidden;
   transition: width .25s ease-in-out;
   width: 100%;
@@ -299,7 +294,7 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1058px;
+  max-width: 1058px; /* Same maxwidth in px as used by Joubel in Interactive Book */
   overflow-y: auto;
   transition: width .25s ease-in-out;
   width: 0;
@@ -323,5 +318,5 @@
 }
 
 .h5p-ar-scavenger .h5p-audio-wrapper {
-  height: 54px;
+  height: 54px; /* Fix for https://github.com/h5p/h5p-audio/pull/48/files that seems to be forgotten */
 }
