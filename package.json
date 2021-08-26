@@ -1,6 +1,6 @@
 {
   "name": "h5p-ar-scavenger",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "description": "Let learners explore an augmented reality",
   "private": true,
   "scripts": {

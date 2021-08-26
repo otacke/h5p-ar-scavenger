@@ -3,7 +3,7 @@
   "description": "Proof-of-Concept for AR in H5P",
   "majorVersion": 1,
   "minorVersion": 2,
-  "patchVersion": 0,
+  "patchVersion": 1,
   "runnable": 1,
   "author": "Oliver Tacke",
   "license": "MIT",
