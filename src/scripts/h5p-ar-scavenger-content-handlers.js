@@ -1,6 +1,4 @@
 export default class ContentHandlers {
-  constructor() {}
-
   /**
    * Handle marker found.
    */

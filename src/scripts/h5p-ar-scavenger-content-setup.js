@@ -6,8 +6,6 @@ import ARScavengerScreenStart from './components/h5p-ar-scavenger-screen-start';
 import Util from './h5p-ar-scavenger-util';
 
 export default class ContentSetup {
-  constructor() {}
-
   /**
    * Create titlebar.
    * @return {ARScavengerContentTitlebar} Titlebar.
