@@ -1,42 +1,44 @@
+@import '../../styles/main';
+
 .h5p-ar-scavenger-button {
   align-items: center;
-  background-color: #fff;
+  background-color: $color-text-light;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 1.15em 1.15em;
-  border: 2px solid #fff; /* Same px value as used by Joubel in Interactive Book */
+  background-size: $titlebarButtonBackgroundSize $titlebarButtonBackgroundSize;
+  border: 2px solid $color-text-light; /* Same px value as used by Joubel in Interactive Book */
   border-radius: 3px; /* Same px value as used by Joubel in Interactive Book */
   display: flex;
   flex-shrink: 0;
   font-size: 1em;
-  height: 2.75em;
+  height: $titlebarButtonSize;
   padding: 0;
-  width: 2.75em;
+  width: $titlebarButtonSize;
 
   &:not(.h5p-ar-scavenger-button-disabled) {
     &:hover {
-      background-color: rgba(26, 115, 217, 0.05);
+      background-color: $color-primary-5;
       cursor: pointer;
     }
 
     &:active {
-      background-color: rgba(26, 115, 217, 0.1);
+      background-color: $color-primary-10;
     }
 
     &.h5p-ar-scavenger-button-active {
-      background-color: #1a73d9;
+      background-color: $color-primary;
       background-position: center;
       background-repeat: no-repeat;
-      background-size: 1.15em 1.15em;
+      background-size: $titlebarButtonBackgroundSize $titlebarButtonBackgroundSize;
       opacity: 20;
 
       &:hover {
-        background-color: rgba(26, 115, 217, 0.9);
+        background-color: $color-primary-90;
         cursor: pointer;
       }
 
       &:active {
-        background-color: rgba(26, 115, 217, 0.95);
+        background-color: $color-primary-95;
       }
     }
   }

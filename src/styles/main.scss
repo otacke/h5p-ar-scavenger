@@ -1,0 +1,46 @@
+// Sizes
+$contentWidthMin: 240px; /* Tiny resolution */
+$contentWidthMax: 1058px; /* Same maxwidth in px as used by Joubel in Interactive Book */
+$panelWidthMax: 1920px; /* FullHD resolution */
+
+$titlebarButtonSize: 2.75em;
+$titlebarButtonBackgroundSize: 1.15em;
+
+// Colors
+$color-primary: rgb(26, 115, 217);
+$color-primary-5: rgba(26, 115, 217, .05);
+$color-primary-10: rgba(26, 115, 217, .1);
+$color-primary-90: rgba(26, 115, 217, .9);
+$color-primary-95: rgba(26, 115, 217, .95);
+
+$color-text-dark: #4c4452;
+$color-text-light: #fff;
+$color-separator: #ccc;
+$color-shadow-dark: rgba(0, 0, 0, .2);
+$color-shadow-light: rgba(166, 166, 166, .2);
+
+$color-joubelui-button: #1a73d9;
+$color-joubelui-button-hover: #1356a3;
+$color-joubelui-button-active: #104888;
+
+// Icons
+$icon-button-enter-fullscreen-blue: url(../../images/button-fullscreen-enter-icon-blue.svg);
+$icon-button-enter-fullscreen-white: url(../../images/button-fullscreen-enter-icon-white.svg);
+
+$icon-button-exit-fullscreen-blue: url(../../images/button-fullscreen-exit-icon-blue.svg);
+$icon-button-exit-fullscreen-white: url(../../images/button-fullscreen-exit-icon-white.svg);
+
+$icon-button-task-blue: url(../../images/button-task-icon-blue.svg);
+$icon-button-task-white: url(../../images/button-task-icon-white.svg);
+$icon-button-task-grey: url(../../images/button-task-icon-grey.svg);
+
+$icon-button-camera-blue: url(../../images/button-camera-icon-blue.svg);
+$icon-button-camera-white: url(../../images/button-camera-icon-white.svg);
+$icon-button-camera-grey: url(../../images/button-camera-icon-grey.svg);
+
+$icon-button-quit-blue: url(../../images/button-quit-icon-blue.svg);
+$icon-button-quit-white: url(../../images/button-quit-icon-white.svg);
+$icon-button-quit-grey: url(../../images/button-quit-icon-grey.svg);
+
+// Symbols
+$symbol-retry: "\F01E"

@@ -1,4 +1,5 @@
 // Import required classes
+import './h5p-ar-scavenger.scss';
 import ARScavengerContent from './h5p-ar-scavenger-content';
 import Util from './h5p-ar-scavenger-util';
 

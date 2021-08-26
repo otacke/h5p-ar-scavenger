@@ -1,6 +1,8 @@
+@import '../styles/main';
+
 .h5p-ar-scavenger-content-container {
   .h5p-ar-scavenger-panel {
-    max-width: 1920px; /* FullHD resolution*/
+    max-width: $panelWidthMax;
     margin-left: auto;
     margin-right: auto;
     display: flex;

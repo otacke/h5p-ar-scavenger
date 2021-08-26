@@ -1,9 +1,11 @@
+@import '../../styles/main';
+
 .h5p-ar-scavenger-feedback-section {
   align-self: center;
   max-width: 85%;
 
   .h5p-ar-scavenger-score-text {
-    color: #1a73d9;
+    color: $color-joubelui-button;
     font-weight: 700;
     margin: 0.5em 0;
     text-align: center;

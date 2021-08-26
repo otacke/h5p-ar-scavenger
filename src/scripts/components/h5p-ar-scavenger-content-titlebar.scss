@@ -1,14 +1,16 @@
+@import '../../styles/main';
+
 .h5p-ar-scavenger-title-bar {
   align-items: center;
-  background-color: #fff;
+  background-color: $color-text-light;
   background-size: cover;
-  box-shadow: 0.5em 0.5em 2em rgba(166, 166, 166, 0.2);
+  box-shadow: 0.5em 0.5em 2em $color-shadow-light;
   display: flex;
   overflow: hidden;
   padding: .5em;
 
   .h5p-ar-scavenger-title {
-    color: #4c4452;
+    color: $color-text-dark;
     flex-grow: 1;
     font-family: Arial;
     font-size: 1.15em;
@@ -16,46 +18,46 @@
     margin: 0;
     overflow: hidden;
     padding: 0 1rem;
-    text-decoration: none solid #4c4452;
+    text-decoration: none solid $color-text-dark;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .h5p-ar-scavenger-button {
     &.h5p-ar-scavenger-button-fullscreen {
-      background-image: url(../../images/button-fullscreen-enter-icon-blue.svg);
+      background-image: $icon-button-enter-fullscreen-blue;
 
       &.h5p-ar-scavenger-button-active {
-        background-image: url(../../images/button-fullscreen-exit-icon-blue.svg);
+        background-image: $icon-button-exit-fullscreen-blue;
         background-color: initial;
 
         &:hover {
-          background-color: rgba(26, 115, 217, 0.05);
+          background-color: $color-primary-5;
         }
       }
     }
 
     &.h5p-ar-scavenger-button-switch-view {
-      background-image: url(../../images/button-task-icon-blue.svg);
+      background-image: $icon-button-task-blue;
 
       &.h5p-ar-scavenger-button-active {
-        background-image: url(../../images/button-camera-icon-white.svg);
+        background-image: $icon-button-camera-white;
       }
 
       &.h5p-ar-scavenger-button-disabled {
-        background-image: url(../../images/button-camera-icon-grey.svg);
+        background-image: $icon-button-camera-grey;
       }
     }
 
     &.h5p-ar-scavenger-button-quit {
-      background-image: url(../../images/button-quit-icon-blue.svg);
+      background-image: $icon-button-quit-blue;
 
       &.h5p-ar-scavenger-button-active {
-        background-image: url(../../images/button-quit-icon-white.svg);
+        background-image: $icon-button-quit-white;
       }
 
       &.h5p-ar-scavenger-button-disabled {
-        background-image: url(../../images/button-quit-icon-grey.svg);
+        background-image: $icon-button-quit-grey;
       }
     }
   }

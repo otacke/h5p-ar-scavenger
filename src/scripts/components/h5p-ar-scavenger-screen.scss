@@ -1,3 +1,5 @@
+@import '../../styles/main';
+
 .h5p-ar-scavenger-screen {
   display: flex;
   flex-direction: column;
@@ -16,9 +18,9 @@
 }
 
 .h5p-ar-scavenger-screen-image {
-  box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: 0.5em 0.25em 3em 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0.5em 0.25em 3em 0 $color-shadow-dark;
+  -moz-box-shadow: 0.5em 0.25em 3em 0 $color-shadow-dark;
+  -webkit-box-shadow: 0.5em 0.25em 3em 0 $color-shadow-dark;
   position: absolute;
   left: 50%;
   max-height: 15em;
@@ -28,7 +30,7 @@
 }
 
 .h5p-ar-scavenger-screen-image-bar {
-  background-color: rgba(26, 115, 217, 0.05);
+  background-color: $color-primary-5;
   background-size: cover;
   height: 70%;
   width: 100%;

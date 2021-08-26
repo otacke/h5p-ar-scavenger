@@ -1,5 +1,7 @@
+@import '../styles/main';
+
 .h5p-ar-scavenger {
-  min-width: 240px; /* Tiny resolution */
+  min-width: $contentWidthMin;
 
   > .h5p-question-content {
     margin: 0;

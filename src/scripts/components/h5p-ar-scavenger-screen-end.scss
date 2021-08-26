@@ -1,5 +1,7 @@
+@import '../../styles/main';
+
 .h5p-ar-scavenger-screen-end {
   .h5p-ar-scavenger-screen-button-close:before {
-    content: "\F01E";
+    content: $symbol-retry;
   }
 }
