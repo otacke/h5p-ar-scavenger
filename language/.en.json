@@ -5,7 +5,7 @@
       "description": "If checked, the content will show the title screen when starting."
     },
     {
-      "label": "Title screen",
+      "label": "Start screen",
       "fields": [
         {
           "label": "Introduction",
@@ -136,7 +136,7 @@
           "label": "end screen image"
         },
         {
-          "label": "Outro",
+          "label": "End screen text",
           "placeholder": "You did it!"
         },
         {
@@ -156,7 +156,6 @@
                   {
                     "label": "Score Range"
                   },
-                  {},
                   {
                     "label": "Feedback for defined score range",
                     "placeholder": "Fill in the feedback"
@@ -251,7 +250,7 @@
           "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
         },
         {
-          "label": "Initialiting content",
+          "label": "Initializing content",
           "default": "Initializing content. Please don't forget to allow camera access."
         }
       ]
