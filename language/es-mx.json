@@ -1,11 +1,11 @@
 {
   "semantics": [
     {
-      "label": "Show start screen",
-      "description": "If checked, the content will show the title screen when starting."
+      "label": "Mostrar pantalla inicial",
+      "description": "Si se activa, el contenido mostrará la pantalla del título al inicio."
     },
     {
-      "label": "Pantalla del título",
+      "label": "Pantalla inicial",
       "fields": [
         {
           "label": "Introducción",
@@ -32,9 +32,9 @@
             "fields": [
               {
                 "label": "Imagen del marcador (original)",
-                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada. Keep in mind that you will need a unique marker image for every interaction.",
+                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada. Tenga en mente que usted necesitará una imagen única de marcador para cada interacción.",
                 "importantDescription": {
-                  "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
+                  "description": "Por favor tenga en cuenta algunos criterios para buenas imágenes de marcadores:<ul><li>Alto contraste de color, idealmente blanco y negro</li><li>Asimetría</li><li>La resolución interna de un marcador es de 16 por 16 pixeles, el usar imágenes más grandes puede hacer que empeore la detección del marcador</li><li>Un único caracter o palabras cortas dan buenos resultados</li></ul>"
                 }
               },
               {
@@ -127,7 +127,7 @@
     },
     {
       "label": "Mostrar pantalla final",
-      "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas.  The end screen will not be available if you only use 3D models though."
+      "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas. Aunque la pantalla final no estará disponible si usted solamente usa modelos 3D."
     },
     {
       "label": "Pantalla final",
@@ -136,7 +136,7 @@
           "label": "imagen de pantalla final"
         },
         {
-          "label": "Otro",
+          "label": "Texto de pantalla inicial",
           "placeholder": "¡Lo lograste!"
         },
         {
@@ -156,7 +156,10 @@
                   {
                     "label": "Rango del Puntaje"
                   },
-                  {},
+                  {
+                    "placeholder": "Complete la retroalimentación",
+                    "label": "Retroalimentación para rango de puntaje definido"
+                  },
                   {
                     "label": "Retroalimentación para rango de puntaje definido",
                     "placeholder": "Complete la retroalimentación"
@@ -180,32 +183,32 @@
           "description": "Si se activa, los estudiantes pueden ver las soluciones de todas las interacciones."
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "label": "Anular botón \"Mostrar Solución\"",
+          "description": "Esta opción permite habilitar o deshabilitar el botón \"Mostrar Solución\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
           "options": [
             {
-              "label": "Use behavioural setting"
+              "label": "Usar la configuración del comportamiento"
             },
             {
-              "label": "Always show button"
+              "label": "Siempre mostrar botón"
             },
             {
-              "label": "Never show button"
+              "label": "Nunca mostrar botón"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "label": "Anular botón \"Reintentar\"",
+          "description": "Esta opción permite habilitar o deshabilitar el botón \"Reintentar\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
           "options": [
             {
-              "label": "Use behavioural setting"
+              "label": "Usar la configuración del comportamiento"
             },
             {
-              "label": "Always show button"
+              "label": "Siempre mostrar botón"
             },
             {
-              "label": "Never show button"
+              "label": "Nunca mostrar botón"
             }
           ]
         },
@@ -276,16 +279,16 @@
           "default": "Cambiar a cámara"
         },
         {
-          "label": "'Button disabled' message for 'switch view button'",
-          "default": "You cannot switch the view right now"
+          "label": "Mensaje 'Botón deshabilitado' para 'botón para cambiar vista'",
+          "default": "Usted no puede cambiar la vista en este momento"
         },
         {
           "label": "Título de botón 'Salir'",
           "default": "Salir y mostrar evaluación"
         },
         {
-          "label": "'Button disabled' message for 'quit button'",
-          "default": "You have not yet completed all exercises"
+          "label": "Mensaje 'Botón deshabilitado' para 'botón abandonar'",
+          "default": "Usted aun no ha completado todos los ejercicios"
         },
         {
           "label": "Acción abierto",
