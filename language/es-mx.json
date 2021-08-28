@@ -159,10 +159,6 @@
                   {
                     "placeholder": "Complete la retroalimentación",
                     "label": "Retroalimentación para rango de puntaje definido"
-                  },
-                  {
-                    "label": "Retroalimentación para rango de puntaje definido",
-                    "placeholder": "Complete la retroalimentación"
                   }
                 ]
               }
