@@ -15,6 +15,10 @@
   justify-content: center;
   margin: 3em 0;
   position: relative;
+
+  &.small-margin-bottom {
+    margin-bottom: 1.5em;
+  }
 }
 
 .h5p-ar-scavenger-screen-image {
@@ -38,7 +42,8 @@
 
 .h5p-ar-scavenger-screen-text {
   align-self: center;
-  max-width: 85%;
+  margin-bottom: 1em;
+  width: 85%;
 }
 
 .h5p-ar-scavenger-screen-button-close {

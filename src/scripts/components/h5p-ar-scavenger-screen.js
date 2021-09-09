@@ -28,6 +28,9 @@ export default class ARScavengerScreen {
     if (this.params.screenImage && this.params.screenImage.params && this.params.screenImage.params.file) {
       const imageWrapper = document.createElement('div');
       imageWrapper.classList.add(`${this.baseClassName}-image-wrapper`);
+      if (this.params.screenText) {
+        imageWrapper.classList.add('small-margin-bottom');
+      }
 
       H5P.newRunnable(params.screenImage, contentId, H5P.jQuery(imageWrapper), false);
       const image = imageWrapper.querySelector('img');
@@ -42,10 +45,10 @@ export default class ARScavengerScreen {
       this.screen.appendChild(imageWrapper);
     }
 
-    if (this.params.titleScreenIntroduction) {
+    if (this.params.screenText) {
       const introduction = document.createElement('div');
       introduction.classList.add(`${this.baseClassName}-text`);
-      introduction.innerHTML = this.params.titleScreenIntroduction;
+      introduction.innerHTML = this.params.screenText;
       this.screen.appendChild(introduction);
     }
 
