@@ -17,6 +17,7 @@ export default class ContentHandlers {
     if (marker.actionType === 'h5p') {
 
       this.instantiateContent(markerId);
+      this.instances[markerId].setActivityStarted();
 
       this.currentInstanceId = markerId;
       this.action.attachInstance(this.instanceDOMs[markerId], markerId);
