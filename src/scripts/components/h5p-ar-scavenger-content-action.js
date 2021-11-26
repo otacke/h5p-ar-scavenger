@@ -67,12 +67,15 @@ export default class ARScavengerContentAction {
    */
   show() {
     this.container.classList.remove('h5p-ar-scavenger-display-none');
+    this.actionWrapper.setAttribute('tabindex', 0);
+    this.actionWrapper.focus();
   }
 
   /**
    * Show action.
    */
   hide() {
+    this.actionWrapper.setAttribute('tabindex', -1);
     this.container.classList.add('h5p-ar-scavenger-display-none');
   }
 
