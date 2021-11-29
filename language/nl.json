@@ -8,17 +8,19 @@
       "label": "Startscherm",
       "fields": [
         {
-          "placeholder": "Welkom bij ...",
-          "label": "Introductie"
+          "label": "Introductie",
+          "placeholder": "Welkom bij ..."
         },
         {
-          "label": "Titel voor schermafbeelding"
+          "label": "Title screen image"
         }
       ]
     },
     {
+      "label": "Markeringen",
       "fields": [
         {
+          "label": "Markeringen",
           "widgets": [
             {
               "label": "Standaard"
@@ -29,10 +31,15 @@
             "label": "Markering",
             "fields": [
               {
-                "label": "Markeringsafbeelding (origineel)"
+                "label": "Markeringsafbeelding (origineel)",
+                "description": "Upload the image that you want to create a marker for. Should be a square image or it will be cropped. Keep in mind that you will need a unique marker image for every interaction.",
+                "importantDescription": {
+                  "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
+                }
               },
               {
-                "label": "Markeringsafbeelding (patroon)"
+                "label": "Markeringsafbeelding (patroon)",
+                "description": "Download this image to use as a marker displayed on a screen or printed on paper."
               },
               {
                 "label": "Actietype",
@@ -40,36 +47,48 @@
                 "options": [
                   {
                     "label": "H5P-interactie"
+                  },
+                  {
+                    "label": "3D-model bestand"
                   }
                 ]
               },
               {
+                "label": "Interactie",
                 "fields": [
                   {
                     "label": "Interactie"
-                  }
-                ],
-                "label": "Interactie"
-              },
-              {
-                "fields": [
-                  {
-                    "label": "3D-model bestand"
                   },
                   {
+                    "label": "Dummy"
+                  }
+                ]
+              },
+              {
+                "label": "3D-model",
+                "fields": [
+                  {
+                    "label": "3D model file",
+                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file."
+                  },
+                  {
+                    "label": "Geometrie",
                     "fields": [
                       {
                         "label": "Schaal",
+                        "description": "Scale the model up or down to match your marker size.",
                         "fields": [
                           {
                             "label": "Percentage"
+                          },
+                          {
+                            "label": "Dummy"
                           }
                         ]
                       },
                       {
-                        "label": "Positie"
-                      },
-                      {
+                        "label": "Positie",
+                        "description": "Set the model's offset position relative to the marker.",
                         "fields": [
                           {
                             "label": "X-as"
@@ -80,22 +99,31 @@
                           {
                             "label": "Z-as"
                           }
-                        ],
+                        ]
+                      },
+                      {
                         "label": "Rotatie",
-                        "description": "Stel de rotatie in graden in."
+                        "description": "Stel de rotatie in graden in.",
+                        "fields": [
+                          {
+                            "label": "X-axis"
+                          },
+                          {
+                            "label": "Y-axis"
+                          },
+                          {
+                            "label": "Z-axis"
+                          }
+                        ]
                       }
-                    ],
-                    "label": "Geometrie"
+                    ]
                   }
-                ],
-                "label": "3D-model"
+                ]
               }
             ]
-          },
-          "label": "Markeringen"
+          }
         }
-      ],
-      "label": "Markeringen"
+      ]
     },
     {
       "label": "Toon eindscherm",
@@ -115,6 +143,14 @@
           "label": "Algehele feedback",
           "fields": [
             {
+              "widgets": [
+                {
+                  "label": "Standaard"
+                }
+              ],
+              "label": "Definieer aangepaste feedback voor elke scorereeks",
+              "description": "Druk op de \"Voeg scorereeks\"-knop om zoveel reeksen toe te voegen als nodig. Voorbeeld: 0-20% Onvoldoende, 21-91% Gemiddelde score, 91-100% Uitstekende score!",
+              "entity": "reeks",
               "field": {
                 "fields": [
                   {
@@ -125,21 +161,14 @@
                     "placeholder": "Vul de feedback in"
                   }
                 ]
-              },
-              "widgets": [
-                {
-                  "label": "Standaard"
-                }
-              ],
-              "label": "Definieer aangepaste feedback voor elke scorereeks",
-              "description": "Druk op de \"Voeg scorereeks\"-knop om zoveel reeksen toe te voegen als nodig. Voorbeeld: 0-20% Onvoldoende, 21-91% Gemiddelde score, 91-100% Uitstekende score!",
-              "entity": "reeks"
+              }
             }
           ]
         }
       ]
     },
     {
+      "label": "Gedragsinstellingen",
       "fields": [
         {
           "label": "Schakel \"Opnieuw\"-knop in",
@@ -150,6 +179,8 @@
           "description": "Indien aangevinkt, kunnen gebruikers de oplossing van alle interacties bekijken."
         },
         {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
           "options": [
             {
               "label": "Gebruik gedragsinstelling"
@@ -163,6 +194,8 @@
           ]
         },
         {
+          "label": "Override \"Retry\" button",
+          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
           "options": [
             {
               "label": "Gebruik gedragsinstelling"
@@ -174,11 +207,15 @@
               "label": "Knop nooit tonen"
             }
           ]
+        },
+        {
+          "label": "Fallback height",
+          "description": "Set a fallback heigth in px for cases when there are cross orgin resource sharing (CORS) issues."
         }
-      ],
-      "label": "Gedragsinstellingen"
+      ]
     },
     {
+      "label": "Localisatie",
       "fields": [
         {
           "label": "\"Start\"-knop",
@@ -208,12 +245,15 @@
           "label": "Fout: Geen markeringen",
           "default": "Is iemand vergeten markeringen toe te voegen?"
         },
-        {},
         {
+          "label": "Warning: Brave browser",
+          "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
+        },
+        {
+          "label": "Initialiseren inhoud",
           "default": "Initialiseren inhoud. Vergeet niet toegang tot camera toe te staan."
         }
-      ],
-      "label": "Localisatie"
+      ]
     },
     {
       "label": "Voorlezer",
@@ -227,9 +267,11 @@
           "default": "Volledig scherm sluiten"
         },
         {
+          "label": "'Switch view' button title (when action closed)",
           "default": "Wissel naar opgave"
         },
         {
+          "label": "'Switch view' button title (when action opened)",
           "default": "Wissel naar camera"
         },
         {
