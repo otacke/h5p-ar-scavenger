@@ -1,15 +1,15 @@
 {
   "semantics": [
     {
-      "label": "Show start screen",
-      "description": "If checked, the content will show the title screen when starting."
+      "label": "Toon startscherm",
+      "description": "Indien aangevinkt, wordt startscherm getoond bij aanvang."
     },
     {
-      "label": "Start screen",
+      "label": "Startscherm",
       "fields": [
         {
-          "label": "Introduction",
-          "placeholder": "Welcome to ..."
+          "label": "Introductie",
+          "placeholder": "Welkom bij ..."
         },
         {
           "label": "Title screen image"
@@ -17,47 +17,47 @@
       ]
     },
     {
-      "label": "Markers",
+      "label": "Markeringen",
       "fields": [
         {
-          "label": "Markers",
+          "label": "Markeringen",
           "widgets": [
             {
-              "label": "Default"
+              "label": "Standaard"
             }
           ],
-          "entity": "marker",
+          "entity": "markering",
           "field": {
-            "label": "Marker",
+            "label": "Markering",
             "fields": [
               {
-                "label": "Marker image (original)",
+                "label": "Markeringsafbeelding (origineel)",
                 "description": "Upload the image that you want to create a marker for. Should be a square image or it will be cropped. Keep in mind that you will need a unique marker image for every interaction.",
                 "importantDescription": {
                   "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
                 }
               },
               {
-                "label": "Marker image (pattern)",
+                "label": "Markeringsafbeelding (patroon)",
                 "description": "Download this image to use as a marker displayed on a screen or printed on paper."
               },
               {
-                "label": "Action type",
-                "description": "Action that should be triggered when the marker is found.",
+                "label": "Actietype",
+                "description": "Actie die wordt gestart wanneer die markering is gevonden.",
                 "options": [
                   {
-                    "label": "H5P interaction"
+                    "label": "H5P-interactie"
                   },
                   {
-                    "label": "3D model overlay"
+                    "label": "3D-model bestand"
                   }
                 ]
               },
               {
-                "label": "Interaction",
+                "label": "Interactie",
                 "fields": [
                   {
-                    "label": "Interaction"
+                    "label": "Interactie"
                   },
                   {
                     "label": "Dummy"
@@ -65,17 +65,17 @@
                 ]
               },
               {
-                "label": "3D Model",
+                "label": "3D-model",
                 "fields": [
                   {
                     "label": "3D model file",
                     "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file."
                   },
                   {
-                    "label": "Geometry",
+                    "label": "Geometrie",
                     "fields": [
                       {
-                        "label": "Scale",
+                        "label": "Schaal",
                         "description": "Scale the model up or down to match your marker size.",
                         "fields": [
                           {
@@ -87,23 +87,23 @@
                         ]
                       },
                       {
-                        "label": "Position",
+                        "label": "Positie",
                         "description": "Set the model's offset position relative to the marker.",
                         "fields": [
                           {
-                            "label": "X-offset"
+                            "label": "X-as"
                           },
                           {
-                            "label": "Y-offset"
+                            "label": "Y-as"
                           },
                           {
-                            "label": "Z-offset"
+                            "label": "Z-as"
                           }
                         ]
                       },
                       {
-                        "label": "Rotation",
-                        "description": "Set the rotation in degrees.",
+                        "label": "Rotatie",
+                        "description": "Stel de rotatie in graden in.",
                         "fields": [
                           {
                             "label": "X-axis"
@@ -126,39 +126,39 @@
       ]
     },
     {
-      "label": "Show end screen",
-      "description": "If checked, show an end screen when all interactions have been completed. The end screen will not be available if you only use 3D models though."
+      "label": "Toon eindscherm",
+      "description": "Indien aangevinkt, wordt eindscherm getoond als alle interacties zijn voltooid. Het eindscherm is niet beschikbaar als je enkel 3D-modellen gebruikt."
     },
     {
-      "label": "End screen",
+      "label": "Eindscherm",
       "fields": [
         {
-          "label": "end screen image"
+          "label": "Afbeelding voor eindscherm"
         },
         {
-          "label": "End screen text",
-          "placeholder": "You did it!"
+          "label": "Eindscherm tekst",
+          "placeholder": "Gelukt!"
         },
         {
-          "label": "Overall Feedback",
+          "label": "Algehele feedback",
           "fields": [
             {
               "widgets": [
                 {
-                  "label": "Default"
+                  "label": "Standaard"
                 }
               ],
-              "label": "Define custom feedback for any score range",
-              "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-              "entity": "range",
+              "label": "Definieer aangepaste feedback voor elke scorereeks",
+              "description": "Druk op de \"Voeg scorereeks\"-knop om zoveel reeksen toe te voegen als nodig. Voorbeeld: 0-20% Onvoldoende, 21-91% Gemiddelde score, 91-100% Uitstekende score!",
+              "entity": "reeks",
               "field": {
                 "fields": [
                   {
-                    "label": "Score Range"
+                    "label": "Scorereeks"
                   },
                   {
-                    "label": "Feedback for defined score range",
-                    "placeholder": "Fill in the feedback"
+                    "label": "Feedback voor de gedefinieerde scorereeks",
+                    "placeholder": "Vul de feedback in"
                   }
                 ]
               }
@@ -168,28 +168,28 @@
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Gedragsinstellingen",
       "fields": [
         {
-          "label": "Enable \"Retry\" button",
-          "description": "If checked, learners can retry the task."
+          "label": "Schakel \"Opnieuw\"-knop in",
+          "description": "Indien aangevinkt, kunnen gebruikers de taak opnieuw proberen."
         },
         {
-          "label": "Enable \"Solutions\" button",
-          "description": "If checked, learners can view the solutions of all interactions."
+          "label": "Schakel \"Oplossing\"-knop in",
+          "description": "Indien aangevinkt, kunnen gebruikers de oplossing van alle interacties bekijken."
         },
         {
           "label": "Override \"Show Solution\" button",
           "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
           "options": [
             {
-              "label": "Use behavioural setting"
+              "label": "Gebruik gedragsinstelling"
             },
             {
-              "label": "Always show button"
+              "label": "Knop altijd tonen"
             },
             {
-              "label": "Never show button"
+              "label": "Knop nooit tonen"
             }
           ]
         },
@@ -198,13 +198,13 @@
           "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
           "options": [
             {
-              "label": "Use behavioural setting"
+              "label": "Gebruik gedragsinstelling"
             },
             {
-              "label": "Always show button"
+              "label": "Knop altijd tonen"
             },
             {
-              "label": "Never show button"
+              "label": "Knop nooit tonen"
             }
           ]
         },
@@ -215,84 +215,84 @@
       ]
     },
     {
-      "label": "Localization",
+      "label": "Localisatie",
       "fields": [
         {
-          "label": "Start button",
+          "label": "\"Start\"-knop",
           "default": "Start"
         },
         {
-          "label": "Retry button",
-          "default": "Retry"
+          "label": "\"Opnieuw\"-knop",
+          "default": "Opnieuw"
         },
         {
-          "label": "Find a marker to see an interaction.",
-          "default": "Find a marker to see an interaction."
+          "label": "Zoek een markering om een interactie te zien.",
+          "default": "Zoek een markering om een interactie te zien."
         },
         {
-          "label": "Error: browser not supported",
-          "default": "It seems that your browser cannot run this content type, unfortunately."
+          "label": "Fout: browser niet ondersteund",
+          "default": "Het lijkt erop dat je browser dit inhoudstype jammer genoeg niet ondersteunt."
         },
         {
-          "label": "Error: No camera access",
-          "default": "Could not access camera."
+          "label": "Fout: geen toegang tot camera",
+          "default": "Kon geen toegang krijgen tot camera."
         },
         {
-          "label": "Error: No camera support",
-          "default": "Your browser does not seem to support a camera."
+          "label": "Fout: Geen camera-ondersteuning",
+          "default": "Je browser lijkt geen camera's te ondersteunen."
         },
         {
-          "label": "Error: No markers",
-          "default": "Did someone forget to add markers?"
+          "label": "Fout: Geen markeringen",
+          "default": "Is iemand vergeten markeringen toe te voegen?"
         },
         {
           "label": "Warning: Brave browser",
           "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
         },
         {
-          "label": "Initializing content",
-          "default": "Initializing content. Please don't forget to allow camera access."
+          "label": "Initialiseren inhoud",
+          "default": "Initialiseren inhoud. Vergeet niet toegang tot camera toe te staan."
         }
       ]
     },
     {
-      "label": "Readspeaker",
+      "label": "Voorlezer",
       "fields": [
         {
-          "label": "FullScreen button title: enter",
-          "default": "Enter fullscreen mode"
+          "label": "Titel \"Volledig scherm\"-knop: start",
+          "default": "Volledig scherm starten"
         },
         {
-          "label": "FullScreen button title: exit",
-          "default": "Exit fullscreen mode"
+          "label": "Titel \"Volledig scherm\"-knop: afsluiten",
+          "default": "Volledig scherm sluiten"
         },
         {
           "label": "'Switch view' button title (when action closed)",
-          "default": "Switch to exercise"
+          "default": "Wissel naar opgave"
         },
         {
           "label": "'Switch view' button title (when action opened)",
-          "default": "Switch to camera"
+          "default": "Wissel naar camera"
         },
         {
-          "label": "'Button disabled' message for 'switch view button'",
-          "default": "You cannot switch the view right now"
+          "label": "'Knop uitgeschakeld'-bericht voor 'Wissel weergave'-knop",
+          "default": "Je kunt de weergave nu niet wisselen"
         },
         {
-          "label": "'Quit' button title",
-          "default": "Quit and show evaluation"
+          "label": "Titel 'Stoppen'-knip",
+          "default": "Stoppen en resultaat tonen"
         },
         {
-          "label": "'Button disabled' message for 'quit button'",
-          "default": "You have not yet completed all exercises"
+          "label": "'Knop uitgeschakeld'-bericht voor 'Stoppen'-knop",
+          "default": "Je hebt nog niet alle opgaven voltooid"
         },
         {
-          "label": "Action opened",
-          "default": "The view has switched to an exercise."
+          "label": "Actie geopend",
+          "default": "De weergave is gewisseld naar een opgave."
         },
         {
-          "label": "Action closed",
-          "default": "The view has switched to the camera."
+          "label": "Actie gesloten",
+          "default": "De weergave is gewisseld naar de camera."
         }
       ]
     }
