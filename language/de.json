@@ -183,7 +183,7 @@
           "description": "Wenn die Option gewählt ist, können die Lernenden die Lösungen aller Aufgaben ansehen."
         },
         {
-          "label": "Override \"Show Solution\" button",
+          "label": "Überschreiben der Anzeigeoptionen des \\\"Lösungen anzeigen\\\"-Buttons",
           "description": "Diese Option erlaubt es, den \"Zeige Lösung\"-Button für alle Inhalte ein- oder auszublenden oder die jeweils gewählte Option in den Verhaltenseinstellungen zu benutzen.",
           "options": [
             {
@@ -198,7 +198,7 @@
           ]
         },
         {
-          "label": "Override \"Retry\" button",
+          "label": "Überschreiben der Anzeigeoptionen des \\\"Wiederholen\\\"-Buttons",
           "description": "Diese Option erlaubt es, den \"Wiederholen\"-Button für alle Inhalte ein- oder auszublenden oder die jeweils gewählte Option in den Verhaltenseinstellungen zu benutzen.",
           "options": [
             {
@@ -234,7 +234,7 @@
           "default": "Finde einen Marker, um eine Interaktion zu sehen."
         },
         {
-          "label": "Fehler: Browser wird nicht unterstützt.",
+          "label": "Fehler: Browser wird nicht unterstützt",
           "default": "Es scheint, dass dein Browser diesen Inhaltstyp leider nicht anzeigen kann."
         },
         {
