@@ -34,7 +34,7 @@
                 "label": "Markerbild (Original)",
                 "description": "Lade das Bild hoch, aus dem du einen Marker erstellen möchtest. Es sollte quadratisch sein, sonst wird es beschnitten. Bedenke, dass du für jede Interaktion einen neuen Marker brauchst.",
                 "importantDescription": {
-                  "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
+                  "description": "Bitte beachte einige der Kriterien für gute Markerbilder:<ul><li>Hoher Kontrast, idealerweise schwarz und weiß</li><li>Asymmetrie</li><li>Intern haben Marker eine Auflösung von 16 mal 16 Pixeln, und Bilder in höherer Auflösung können die Erkennungsrate verschlechtern</li><li>Einzelne Buchstaben oder kurze Wörter erzielen gute Ergebnisse</li></ul>"
                 }
               },
               {
@@ -60,7 +60,7 @@
                     "label": "Interaktion"
                   },
                   {
-                    "label": "Dummy"
+                    "label": "Platzhalter"
                   }
                 ]
               },
@@ -82,7 +82,7 @@
                             "label": "Prozentsatz"
                           },
                           {
-                            "label": "Dummy"
+                            "label": "Platzhalter"
                           }
                         ]
                       },
@@ -102,7 +102,7 @@
                         ]
                       },
                       {
-                        "label": "Rotation",
+                        "label": "Drehung",
                         "description": "Lege die Rotation in Grad fest.",
                         "fields": [
                           {
@@ -136,7 +136,7 @@
           "label": "Bild für den Endbildschirm"
         },
         {
-          "label": "Schlussworte",
+          "label": "Text auf dem Endbildschirm",
           "placeholder": "Geschafft!"
         },
         {
@@ -156,7 +156,10 @@
                   {
                     "label": "Punktebereich"
                   },
-                  {},
+                  {
+                    "label": "Rückmeldung für jeweiligen Punktebereich",
+                    "placeholder": "Trage die Rückmeldung ein"
+                  },
                   {
                     "label": "Rückmeldung für jeweiligen Punktebereich",
                     "placeholder": "Trage die Rückmeldung ein"
@@ -181,31 +184,31 @@
         },
         {
           "label": "Override \"Show Solution\" button",
-          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "description": "Diese Option erlaubt es, den \"Zeige Lösung\"-Button für alle Inhalte ein- oder auszublenden oder die jeweils gewählte Option in den Verhaltenseinstellungen zu benutzen.",
           "options": [
             {
-              "label": "Use behavioural setting"
+              "label": "Nutze Verhaltenseinstellung"
             },
             {
-              "label": "Always show button"
+              "label": "Button immer zeigen"
             },
             {
-              "label": "Never show button"
+              "label": "Button nie zeigen"
             }
           ]
         },
         {
           "label": "Override \"Retry\" button",
-          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "description": "Diese Option erlaubt es, den \"Wiederholen\"-Button für alle Inhalte ein- oder auszublenden oder die jeweils gewählte Option in den Verhaltenseinstellungen zu benutzen.",
           "options": [
             {
-              "label": "Use behavioural setting"
+              "label": "Nutze Verhaltenseinstellung"
             },
             {
-              "label": "Always show button"
+              "label": "Button immer zeigen"
             },
             {
-              "label": "Never show button"
+              "label": "Button nie zeigen"
             }
           ]
         },
@@ -257,7 +260,7 @@
       ]
     },
     {
-      "label": "Vorlesewerkzeuge",
+      "label": "Vorlesewerkzeug (Barrierefreiheit)",
       "fields": [
         {
           "label": "Vollbild-Button-Beschriftung: aktivieren",
