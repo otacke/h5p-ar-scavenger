@@ -209,7 +209,7 @@
         },
         {
           "label": "B planaren altuera",
-          "description": "Zehaztu ezazu altuera pixeletan cross origin resource sharing (CORS) arazoak dauden kasuetarako."
+          "description": "Zehaztu ezazu B planaren altuera pixeletan cross origin resource sharing (CORS) arazoak dauden kasuetarako."
         }
       ],
       "label": "Portaeraren ezarpenak"
@@ -231,7 +231,7 @@
         },
         {
           "label": "Errorea: nabigatzaile ez sostengatua",
-          "default": "Ematen duenez zure nabigatzailea tamalez ez da eduki-mota hau erakusteko gai."
+          "default": "Ematen duenez zure nabigatzailea tamalez ez da eduki mota hau erakusteko gai."
         },
         {
           "label": "Errorea: Kamerara sarbiderik ez",
