@@ -12,7 +12,7 @@
           "placeholder": "Welkom bij ..."
         },
         {
-          "label": "Title screen image"
+          "label": "Afbeelding voor titelscherm"
         }
       ]
     },
@@ -32,24 +32,24 @@
             "fields": [
               {
                 "label": "Markeringsafbeelding (origineel)",
-                "description": "Upload the image that you want to create a marker for. Should be a square image or it will be cropped. Keep in mind that you will need a unique marker image for every interaction.",
+                "description": "Upload de afbeelding waaruit je een markering wilt maken. Het moet een vierkant zijn anders wordt die bijgesneden. Onthoud dat je een aparte markeringsafbeelding nodig hebt voor ieder interactie.",
                 "importantDescription": {
-                  "description": "Please keep in mind some criteria for good marker images:<ul><li>High color contrast, ideally black and white</li><li>Asymmetry</li><li>The internal resolution of a marker is 16 x 16 pixels, using larger images can make marker detection worse</li><li>Single characters or short words yield good results</li></ul>"
+                  "description": "Houd de volgende criteria voor goede markeringsafbeeldingen in gedachte:<ul><li>Hoog kleurcontrast, idealiter zwart-wit</li><li>Asymmetrie</li><li>De interne resolutie van een markering is 16 x 16 pixels, grotere afbeeldingen kunnen detectie van markering bemoeilijken</li><li>Enkel teken of korte woorden geven goede resultaten</li></ul>"
                 }
               },
               {
                 "label": "Markeringsafbeelding (patroon)",
-                "description": "Download this image to use as a marker displayed on a screen or printed on paper."
+                "description": "Download deze afbeelding om het als markering voor op het beeldscherm of papier te gebruiken."
               },
               {
                 "label": "Actietype",
-                "description": "Actie die wordt gestart wanneer die markering is gevonden.",
+                "description": "Actie die wordt gestart wanneer de markering is gevonden.",
                 "options": [
                   {
                     "label": "H5P-interactie"
                   },
                   {
-                    "label": "3D-model bestand"
+                    "label": "3D-model-inpassing"
                   }
                 ]
               },
@@ -68,15 +68,15 @@
                 "label": "3D-model",
                 "fields": [
                   {
-                    "label": "3D model file",
-                    "description": "Upload a glTF (.glb / .gltf) file here. The preferred format is \"glTF 2.0 binary\" in a single file."
+                    "label": "3D-model bestand",
+                    "description": "Upload hier een glTF (.glb / .gltf)-bestand. De voorkeursopmaak is \"glTF 2.0 binary\" in een enkel bestand."
                   },
                   {
                     "label": "Geometrie",
                     "fields": [
                       {
                         "label": "Schaal",
-                        "description": "Scale the model up or down to match your marker size.",
+                        "description": "Schaal het model op of af overeenkomstig je markeringsgrootte.",
                         "fields": [
                           {
                             "label": "Percentage"
@@ -88,7 +88,22 @@
                       },
                       {
                         "label": "Positie",
-                        "description": "Set the model's offset position relative to the marker.",
+                        "description": "Stel de offset-positie van het model in t.o.v. de markering.",
+                        "fields": [
+                          {
+                            "label": "X-speling"
+                          },
+                          {
+                            "label": "Y-speling"
+                          },
+                          {
+                            "label": "Z-speling"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Rotatie",
+                        "description": "Stel de rotatie in graden in.",
                         "fields": [
                           {
                             "label": "X-as"
@@ -98,21 +113,6 @@
                           },
                           {
                             "label": "Z-as"
-                          }
-                        ]
-                      },
-                      {
-                        "label": "Rotatie",
-                        "description": "Stel de rotatie in graden in.",
-                        "fields": [
-                          {
-                            "label": "X-axis"
-                          },
-                          {
-                            "label": "Y-axis"
-                          },
-                          {
-                            "label": "Z-axis"
                           }
                         ]
                       }
@@ -127,16 +127,16 @@
     },
     {
       "label": "Toon eindscherm",
-      "description": "Indien aangevinkt, wordt eindscherm getoond als alle interacties zijn voltooid. Het eindscherm is niet beschikbaar als je enkel 3D-modellen gebruikt."
+      "description": "Indien aangevinkt, wordt een eindscherm getoond als alle interacties zijn voltooid. Het eindscherm is niet beschikbaar als je enkel 3D-modellen gebruikt."
     },
     {
       "label": "Eindscherm",
       "fields": [
         {
-          "label": "Afbeelding voor eindscherm"
+          "label": "afbeelding voor eindscherm"
         },
         {
-          "label": "Eindscherm tekst",
+          "label": "Tekst van eindscherm",
           "placeholder": "Gelukt!"
         },
         {
@@ -179,8 +179,8 @@
           "description": "Indien aangevinkt, kunnen gebruikers de oplossing van alle interacties bekijken."
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option allows to enable or disable the \"Show Solution\" button for all contents or to use their respective behavioural settings.",
+          "label": "Overschrijf \"Toon oplossing\"-knop",
+          "description": "Deze optie staat het in- of uitschakelen van de \"Toon oplossing\"-knop toe voor alle inhoud of om hun betreffende gedragsinstellingen te gebruiken.",
           "options": [
             {
               "label": "Gebruik gedragsinstelling"
@@ -194,8 +194,8 @@
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option allows to enable or disable the \"Retry\" button for all contents or to use their respective behavioural settings.",
+          "label": "Overschrijf \"Opnieuw\"-knop",
+          "description": "Deze optie staat het in- of uitschakelen van de \"Opnieuw\"-knop toe of om hun betreffende gedragsinstellingen te gebruiken.",
           "options": [
             {
               "label": "Gebruik gedragsinstelling"
@@ -209,7 +209,7 @@
           ]
         },
         {
-          "label": "Fallback height",
+          "label": "Hoogte terugval-optie",
           "description": "Set a fallback heigth in px for cases when there are cross orgin resource sharing (CORS) issues."
         }
       ]
@@ -218,11 +218,11 @@
       "label": "Localisatie",
       "fields": [
         {
-          "label": "\"Start\"-knop",
+          "label": "Tekst van \"Start\"-knop",
           "default": "Start"
         },
         {
-          "label": "\"Opnieuw\"-knop",
+          "label": "Tekst van \"Opnieuw\"-knop",
           "default": "Opnieuw"
         },
         {
@@ -234,7 +234,7 @@
           "default": "Het lijkt erop dat je browser dit inhoudstype jammer genoeg niet ondersteunt."
         },
         {
-          "label": "Fout: geen toegang tot camera",
+          "label": "Fout: Geen toegang tot camera",
           "default": "Kon geen toegang krijgen tot camera."
         },
         {
@@ -246,7 +246,7 @@
           "default": "Is iemand vergeten markeringen toe te voegen?"
         },
         {
-          "label": "Warning: Brave browser",
+          "label": "Waarschuwing: Brave browser",
           "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
         },
         {
@@ -256,15 +256,15 @@
       ]
     },
     {
-      "label": "Voorlezer",
+      "label": "Schermlezer",
       "fields": [
         {
-          "label": "Titel \"Volledig scherm\"-knop: start",
+          "label": "Titel van \"Volledig scherm\"-knop: start",
           "default": "Volledig scherm starten"
         },
         {
-          "label": "Titel \"Volledig scherm\"-knop: afsluiten",
-          "default": "Volledig scherm sluiten"
+          "label": "Titel van \"Volledig scherm\"-knop: afsluiten",
+          "default": "Volledig scherm afsluiten"
         },
         {
           "label": "'Switch view' button title (when action closed)",
@@ -275,15 +275,15 @@
           "default": "Wissel naar camera"
         },
         {
-          "label": "'Knop uitgeschakeld'-bericht voor 'Wissel weergave'-knop",
+          "label": "\"Knop uitgeschakeld\"-bericht voor \"Wissel weergave\"-knop",
           "default": "Je kunt de weergave nu niet wisselen"
         },
         {
-          "label": "Titel 'Stoppen'-knip",
+          "label": "Titel van \"Stoppen\"-knop",
           "default": "Stoppen en resultaat tonen"
         },
         {
-          "label": "'Knop uitgeschakeld'-bericht voor 'Stoppen'-knop",
+          "label": "\"Knop uitgeschakeld\"-bericht voor \"Stoppen\"-knop",
           "default": "Je hebt nog niet alle opgaven voltooid"
         },
         {
