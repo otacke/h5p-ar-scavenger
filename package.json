@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production ./node_modules/.bin/webpack",
-    "watch": "./node_modules/.bin/webpack --watch"
+    "build": "cross-env NODE_ENV=production webpack",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -19,19 +19,19 @@
   "author": "Oliver Tacke",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.0",
-    "@babel/plugin-transform-object-assign": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
+    "@babel/plugin-transform-object-assign": "^7.16.7",
+    "@babel/preset-env": "^7.16.10",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
-    "eslint": "^8.3.0",
-    "mini-css-extract-plugin": "^2.4.5",
+    "eslint": "^8.7.0",
+    "mini-css-extract-plugin": "^2.5.2",
     "regenerator-runtime": "^0.13.9",
-    "sass": "^1.43.5",
-    "sass-loader": "^12.3.0",
-    "webpack": "^5.64.4",
+    "sass": "^1.49.0",
+    "sass-loader": "^12.4.0",
+    "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1"
   }
 }
