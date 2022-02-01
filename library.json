@@ -2,8 +2,8 @@
   "title": "ARScavenger",
   "description": "Proof-of-Concept for AR in H5P",
   "majorVersion": 1,
-  "minorVersion": 2,
-  "patchVersion": 3,
+  "minorVersion": 3,
+  "patchVersion": 0,
   "runnable": 1,
   "author": "Oliver Tacke",
   "license": "MIT",
@@ -25,7 +25,7 @@
     {
       "machineName": "H5P.Question",
       "majorVersion": 1,
-      "minorVersion": 4
+      "minorVersion": 5
     },
     {
       "machineName": "H5P.JoubelUI",
