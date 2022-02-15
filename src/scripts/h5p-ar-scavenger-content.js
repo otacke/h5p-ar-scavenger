@@ -106,6 +106,8 @@ export default class ARScavengerContent {
       console.warn(message);
       this.handleInitializationFailed([message]);
     });
+
+    this.handleTitleScreenClosed();
   }
 
   /**
