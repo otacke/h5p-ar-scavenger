@@ -151,6 +151,8 @@ export default class ARScavenger extends H5P.Question {
       // Let xAPI event of children trigger first
       setTimeout(() => {
         const xAPIData = this.getXAPIData();
+        // interactionType is 'compound' for H5P report, but invalid xAPI spec
+        xAPIData.statement.object.definition.interactionType = 'other';
         const xAPIEvent = new H5P.XAPIEvent();
         xAPIEvent.data.children = xAPIData.children;
         xAPIEvent.data.statement = xAPIData.statement;
