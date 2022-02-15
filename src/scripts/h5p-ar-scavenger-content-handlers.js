@@ -63,7 +63,9 @@ export default class ContentHandlers {
    * Handle title screen closed.
    */
   handleTitleScreenClosed() {
-    this.screenTitle.hide();
+    if (this.screenTitle) {
+      this.screenTitle.hide();
+    }
     this.show();
 
     if (this.titlebar) {
