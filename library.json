@@ -1,9 +1,9 @@
 {
-  "title": "ARScavenger",
+  "title": "AR Scavenger (beta)",
   "description": "Proof-of-Concept for AR in H5P",
   "majorVersion": 1,
   "minorVersion": 2,
-  "patchVersion": 5,
+  "patchVersion": 6,
   "runnable": 1,
   "author": "Oliver Tacke",
   "license": "MIT",
