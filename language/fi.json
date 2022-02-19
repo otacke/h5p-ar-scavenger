@@ -157,10 +157,6 @@
                     "label": "Pisteraja"
                   },
                   {
-                    "label": "Feedback for defined score range",
-                    "placeholder": "Fill in the feedback"
-                  },
-                  {
                     "label": "Palaute määritellylle pisterajalle",
                     "placeholder": "Kirjoita palaute"
                   }
