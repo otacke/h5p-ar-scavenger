@@ -210,7 +210,7 @@
         },
         {
           "label": "Hoogte terugval-optie",
-          "description": "Set a fallback heigth in px for cases when there are cross orgin resource sharing (CORS) issues."
+          "description": "Stel een terugval hoogte in px in voor gevallen waarin het tot \"CORS\"-problemen komt."
         }
       ]
     },
@@ -247,7 +247,7 @@
         },
         {
           "label": "Waarschuwing: Brave browser",
-          "default": "You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working."
+          "default": "Het lijkt er op dat je de Brave browser gebruikt. Leuk! Maar de strikte privacy-instellingen daarvan verhinderen mogelijk de werking van de camera."
         },
         {
           "label": "Initialiseren inhoud",
@@ -267,11 +267,11 @@
           "default": "Volledig scherm afsluiten"
         },
         {
-          "label": "'Switch view' button title (when action closed)",
+          "label": "\"Weergave wisselen\"-knoptitel (als opgave gesloten is)",
           "default": "Wissel naar opgave"
         },
         {
-          "label": "'Switch view' button title (when action opened)",
+          "label": "\"Weergave wisselen\"-knoptitel (als opgave geopend is)",
           "default": "Wissel naar camera"
         },
         {
