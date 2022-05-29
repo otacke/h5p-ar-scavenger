@@ -27,7 +27,7 @@ export default class ARScavenger extends H5P.Question {
     // Sanitize params
     this.params = Util.extend({
       showTitleScreen: false,
-      canHasFullScreen: H5P.canHasFullScreen,
+      canHasFullScreen: this.isRoot() && H5P.fullscreenSupported === true,
       markers: [],
       showEndScreen: false,
       behaviour: {
@@ -132,7 +132,7 @@ export default class ARScavenger extends H5P.Question {
      * @param {object} event Event that is calling.
      */
     this.toggleFullScreen = () => {
-      if (H5P.canHasFullScreen !== true) {
+      if (this.params.canHasFullScreen) {
         return;
       }
 
