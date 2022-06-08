@@ -9,7 +9,7 @@
       "fields": [
         {
           "label": "Introducción",
-          "placeholder": "BienVenido a ..."
+          "placeholder": "Bienvenido a ..."
         },
         {
           "label": "Imagen de pantalla del título"
@@ -23,7 +23,7 @@
           "label": "Marcadores",
           "widgets": [
             {
-              "label": "Predeterminado"
+              "label": "Por defecto"
             }
           ],
           "entity": "marcador",
@@ -32,9 +32,9 @@
             "fields": [
               {
                 "label": "Imagen del marcador (original)",
-                "description": "Subir la imagen que quiere para crearle un marcador. Debería ser una imagen cuadrada o será recortada. Tenga en mente que usted necesitará una imagen única de marcador para cada interacción.",
+                "description": "Sube la imagen para la que quieras crear un marcador. Debería ser una imagen cuadrada o será recortada. Ten en cuenta que necesitarás una imagen única de marcador para cada interacción.",
                 "importantDescription": {
-                  "description": "Por favor tenga en cuenta algunos criterios para buenas imágenes de marcadores:<ul><li>Alto contraste de color, idealmente blanco y negro</li><li>Asimetría</li><li>La resolución interna de un marcador es de 16 por 16 pixeles, el usar imágenes más grandes puede hacer que empeore la detección del marcador</li><li>Un único caracter o palabras cortas dan buenos resultados</li></ul>"
+                  "description": "Por favor ten en cuenta algunos criterios para crear buenas imágenes de marcadores:<ul><li>Alto contraste de color, idealmente blanco y negro</li><li>Asimetría</li><li>La resolución interna de un marcador es de 16 por 16 pixeles, el uso imágenes mayores puede hacer que empeore la detección del marcador</li><li>Un único carácter o palabras cortas dan buenos resultados</li></ul>"
                 }
               },
               {
@@ -43,13 +43,13 @@
               },
               {
                 "label": "Tipo de acción",
-                "description": "Acción que debería ser disparada cuando el marcador es encontrado.",
+                "description": "Acción que debería ejecutarse cuando se encuentra el marcador.",
                 "options": [
                   {
                     "label": "Interacción H5P"
                   },
                   {
-                    "label": "Sobrepuesto modelo 3D"
+                    "label": "Superposición de modelo 3D"
                   }
                 ]
               },
@@ -76,7 +76,7 @@
                     "fields": [
                       {
                         "label": "Escala",
-                        "description": "Escalar el modelo hacia arriba o abajo para que coincida con el tamaño de su marcador.",
+                        "description": "Aumentar o disminuir el tamaño del modelo para que coincida con el tamaño del marcador.",
                         "fields": [
                           {
                             "label": "Porcentaje"
@@ -88,16 +88,16 @@
                       },
                       {
                         "label": "Posición",
-                        "description": "Configurar las posiciones de sesgo del modelo relativas al marcador.",
+                        "description": "Configura la posición de compensación del modelo relativa al marcador.",
                         "fields": [
                           {
-                            "label": "sesgo-X"
+                            "label": "Compensación-X"
                           },
                           {
-                            "label": "sesgo-Y"
+                            "label": "Compensación-Y"
                           },
                           {
-                            "label": "sesgo-Z"
+                            "label": "Compensación-Z"
                           }
                         ]
                       },
@@ -127,7 +127,7 @@
     },
     {
       "label": "Mostrar pantalla final",
-      "description": "Si se activa, mostrar una pantalla final cuando todas las interacciones hayan sido completadas. Aunque la pantalla final no estará disponible si usted solamente usa modelos 3D."
+      "description": "Si está marcado, muestra una pantalla final cuando se hayan completado todas las interacciones. Sin embargo, la pantalla final no estará disponible si solo usa modelos 3D."
     },
     {
       "label": "Pantalla final",
@@ -145,20 +145,20 @@
             {
               "widgets": [
                 {
-                  "label": "Predeterminado"
+                  "label": "Por defecto"
                 }
               ],
-              "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
-              "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje Promedio, 91-100% ¡Magnífico Puntaje!",
+              "label": "Definir retroalimentación personalizada para cualquier rango de puntuación",
+              "description": "Haz clic en el botón \"Añadir rango\" para añadir los rangos que necesites. Ejemplo: 0-20% Mala puntuación, 21-91% Puntuación Media, 91-100% ¡Puntuación Estupenda!",
               "entity": "rango",
               "field": {
                 "fields": [
                   {
-                    "label": "Rango del Puntaje"
+                    "label": "Rango de puntuación"
                   },
                   {
-                    "placeholder": "Complete la retroalimentación",
-                    "label": "Retroalimentación para rango de puntaje definido"
+                    "placeholder": "Escriba la retroalimentación",
+                    "label": "Realimentación para rango de puntuación definido"
                   }
                 ]
               }
@@ -168,19 +168,19 @@
       ]
     },
     {
-      "label": "Configuraciones del comportamiento",
+      "label": "Configuración del comportamiento",
       "fields": [
         {
-          "label": "Habilitar botón \"Reintentar\"",
-          "description": "Si se activa, los estudiantes pueden reintentar el trabajo."
+          "label": "Habilitar botón \"Intentar de nuevo\"",
+          "description": "Si se activa, los estudiantes pueden intentar la tarea de nuevo."
         },
         {
-          "label": "Habilitar botón \"Soluciones\"",
+          "label": "Habilitar botón \"Mostrar soluciones\"",
           "description": "Si se activa, los estudiantes pueden ver las soluciones de todas las interacciones."
         },
         {
-          "label": "Anular botón \"Mostrar Solución\"",
-          "description": "Esta opción permite habilitar o deshabilitar el botón \"Mostrar Solución\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
+          "label": "Ocultar el botón \"Mostrar soluciones\"",
+          "description": "Esta opción permite habilitar o deshabilitar el botón \"Mostrar Soluciones\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
           "options": [
             {
               "label": "Usar la configuración del comportamiento"
@@ -194,8 +194,8 @@
           ]
         },
         {
-          "label": "Anular botón \"Reintentar\"",
-          "description": "Esta opción permite habilitar o deshabilitar el botón \"Reintentar\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
+          "label": "Anular botón \"Intentar de nuevo\"",
+          "description": "Esta opción permite habilitar o deshabilitar el botón \"Intentar de nuevo\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
           "options": [
             {
               "label": "Usar la configuración del comportamiento"
@@ -209,8 +209,8 @@
           ]
         },
         {
-          "label": "Altura de plan B",
-          "description": "Configurar una altura de 'plan B' en px para casos en donde hay problemas de compartición de recurso de origen cruzado (CORS)."
+          "label": "Altura por defecto",
+          "description": "Configurar una altura por defecto en px para casos en los que haya problemas de compartimiento de recursos de origen cruzado (CORS)."
         }
       ]
     },
@@ -222,8 +222,8 @@
           "default": "Iniciar"
         },
         {
-          "label": "Botón Reintentar",
-          "default": "Reintentar"
+          "label": "Botón Intentar de nuevo",
+          "default": "Intentar de nuevo"
         },
         {
           "label": "Encontrar un marcador para ver una interacción.",
@@ -231,11 +231,11 @@
         },
         {
           "label": "Error: navegador no soportado",
-          "default": "Al parecer su navegador no puede correr este tipo de contenido, desafortunadamente."
+          "default": "Al parecer, desafortunadamente, tu navegador no puede ejecutar este tipo de contenido."
         },
         {
           "label": "Error: Sin acceso a cámara",
-          "default": "No se pudo acceder a cámara."
+          "default": "No se pudo acceder a la cámara."
         },
         {
           "label": "Error: Sin soporte de cámara",
@@ -247,51 +247,51 @@
         },
         {
           "label": "Advertencia: Navegador Brave",
-          "default": "Parece que Usted está usando el navegador Brave. ¡Lindo! Pero sus configuraciones de privacidad estrictas pueden impedir que funcione la cámara."
+          "default": "Parece que estás usando el navegador Brave. ¡Muy bien! Pero sus configuraciones de privacidad estrictas pueden impedir que funcione la cámara."
         },
         {
           "label": "Inicializando contenido",
-          "default": "Inicializando contenido. Por favor no olvide permitir el acceso a la cámara."
+          "default": "Inicializando contenido. Por favor no olvides permitir el acceso a la cámara."
         }
       ]
     },
     {
-      "label": "Lector de texto en voz alta",
+      "label": "Lector de pantalla",
       "fields": [
         {
-          "label": "Título de botón PantalllaCompleta: entrar",
-          "default": "Entrar a modo PantallaCompleta"
+          "label": "Título de botón Pantalla Completa: entrar",
+          "default": "Pasar a Pantalla Completa"
         },
         {
-          "label": "Título de botón PantallaCompleta: salir",
-          "default": "Salir del modo de PantallaCompleta"
+          "label": "Título de botón Pantalla Completa: salir",
+          "default": "Salir de Pantalla Completa"
         },
         {
-          "label": "Título de botón 'Cambiar vista' (cuando acción cerrado)",
+          "label": "Título de botón 'Cambiar vista' (cuando la acción está cerrada)",
           "default": "Cambiar al ejercicio"
         },
         {
-          "label": "Título de botón 'Cambiar vista' (cuando acción abierto)",
+          "label": "Título de botón 'Cambiar vista' (cuando la acción está abierta)",
           "default": "Cambiar a cámara"
         },
         {
           "label": "Mensaje 'Botón deshabilitado' para 'botón para cambiar vista'",
-          "default": "Usted no puede cambiar la vista en este momento"
+          "default": "No puedes cambiar la vista en este momento"
         },
         {
           "label": "Título de botón 'Salir'",
           "default": "Salir y mostrar evaluación"
         },
         {
-          "label": "Mensaje 'Botón deshabilitado' para 'botón abandonar'",
+          "label": "Mensaje 'Botón deshabilitado' para 'botón salir'",
           "default": "Usted aun no ha completado todos los ejercicios"
         },
         {
-          "label": "Acción abierto",
+          "label": "Acción abierta",
           "default": "La vista ha cambiado a un ejercicio."
         },
         {
-          "label": "Acción cerrado",
+          "label": "Acción cerrada",
           "default": "La vista ha cambiado a la cámara."
         }
       ]
