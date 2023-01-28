@@ -23,7 +23,7 @@
           "label": "Marcadores",
           "widgets": [
             {
-              "label": "Por defecto"
+              "label": "Predeterminado"
             }
           ],
           "entity": "marcador",
@@ -145,7 +145,7 @@
             {
               "widgets": [
                 {
-                  "label": "Por defecto"
+                  "label": "Predeterminado"
                 }
               ],
               "label": "Definir retroalimentación personalizada para cualquier rango de puntuación",
@@ -157,8 +157,8 @@
                     "label": "Rango de puntuación"
                   },
                   {
-                    "placeholder": "Escriba la retroalimentación",
-                    "label": "Realimentación para rango de puntuación definido"
+                    "placeholder": "Complete la retroalimentación",
+                    "label": "Retroalimentación para rango de puntuación definido"
                   }
                 ]
               }
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "label": "Configuración del comportamiento",
+      "label": "Configuraciones del comportamiento",
       "fields": [
         {
           "label": "Habilitar botón \"Intentar de nuevo\"",
