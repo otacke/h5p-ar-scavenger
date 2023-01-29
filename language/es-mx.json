@@ -43,13 +43,13 @@
               },
               {
                 "label": "Tipo de acción",
-                "description": "Acción que debería ser disparada cuando el marcador es encontrado.",
+                "description": "Acción que debería ejecutarse cuando se encuentra el marcador.",
                 "options": [
                   {
                     "label": "Interacción H5P"
                   },
                   {
-                    "label": "Sobrepuesto modelo 3D"
+                    "label": "Superposición de modelo 3D"
                   }
                 ]
               },
@@ -76,7 +76,7 @@
                     "fields": [
                       {
                         "label": "Escala",
-                        "description": "Escalar el modelo hacia arriba o abajo para que coincida con el tamaño de su marcador.",
+                        "description": "Aumentar o disminuir el tamaño del modelo para que coincida con el tamaño del marcador.",
                         "fields": [
                           {
                             "label": "Porcentaje"
@@ -88,16 +88,16 @@
                       },
                       {
                         "label": "Posición",
-                        "description": "Configurar las posiciones de sesgo del modelo relativas al marcador.",
+                        "description": "Configura la posición de compensación del modelo relativa al marcador.",
                         "fields": [
                           {
-                            "label": "sesgo-X"
+                            "label": "Compensación-X"
                           },
                           {
-                            "label": "sesgo-Y"
+                            "label": "Compensación-Y"
                           },
                           {
-                            "label": "sesgo-Z"
+                            "label": "Compensación-Z"
                           }
                         ]
                       },
@@ -172,14 +172,14 @@
       "fields": [
         {
           "label": "Habilitar botón \"Reintentar\"",
-          "description": "Si se activa, los estudiantes pueden reintentar el trabajo."
+          "description": "Si se activa, los estudiantes pueden intentar la tarea de nuevo."
         },
         {
-          "label": "Habilitar botón \"Soluciones\"",
+          "label": "Habilitar botón \"Mostrar soluciones\"",
           "description": "Si se activa, los estudiantes pueden ver las soluciones de todas las interacciones."
         },
         {
-          "label": "Anular botón \"Mostrar Solución\"",
+          "label": "Ocultar el botón \"Mostrar soluciones\"",
           "description": "Esta opción permite habilitar o deshabilitar el botón \"Mostrar Solución\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
           "options": [
             {
@@ -194,8 +194,8 @@
           ]
         },
         {
-          "label": "Anular botón \"Reintentar\"",
-          "description": "Esta opción permite habilitar o deshabilitar el botón \"Reintentar\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
+          "label": "Anular botón \"Intentar de nuevo\"",
+          "description": "Esta opción permite habilitar o deshabilitar el botón \"Intentar de nuevo\" para todos los contenidos o usar sus respectivas configuraciones del comportamiento.",
           "options": [
             {
               "label": "Usar la configuración del comportamiento"
@@ -209,21 +209,21 @@
           ]
         },
         {
-          "label": "Altura de plan B",
-          "description": "Configurar una altura de 'plan B' en px para casos en donde hay problemas de compartición de recurso de origen cruzado (CORS)."
+          "label": "Altura por defecto",
+          "description": "Configurar una altura por defecto en px para casos en los que haya problemas de compartimiento de recursos de origen cruzado (CORS)."
         }
       ]
     },
     {
-      "label": "Localización",
+      "label": "Adaptación local",
       "fields": [
         {
           "label": "Botón Iniciar",
           "default": "Iniciar"
         },
         {
-          "label": "Botón Reintentar",
-          "default": "Reintentar"
+          "label": "Botón Intentar de nuevo",
+          "default": "Intentar de nuevo"
         },
         {
           "label": "Encontrar un marcador para ver una interacción.",
@@ -231,7 +231,7 @@
         },
         {
           "label": "Error: navegador no soportado",
-          "default": "Al parecer su navegador no puede correr este tipo de contenido, desafortunadamente."
+          "default": "Al parecer, desafortunadamente, tu navegador no puede ejecutar este tipo de contenido."
         },
         {
           "label": "Error: Sin acceso a cámara",
@@ -267,11 +267,11 @@
           "default": "Salir del modo de PantallaCompleta"
         },
         {
-          "label": "Título de botón 'Cambiar vista' (cuando acción cerrado)",
+          "label": "Título de botón 'Cambiar vista' (cuando la acción está cerrada)",
           "default": "Cambiar al ejercicio"
         },
         {
-          "label": "Título de botón 'Cambiar vista' (cuando acción abierto)",
+          "label": "Título de botón 'Cambiar vista' (cuando la acción está abierta)",
           "default": "Cambiar a cámara"
         },
         {
