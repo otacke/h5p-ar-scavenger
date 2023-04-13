@@ -223,7 +223,7 @@
         },
         {
           "label": "Botón Intentar de nuevo",
-          "default": "Intentar de nuevo"
+          "default": "Reintentar"
         },
         {
           "label": "Encontrar un marcador para ver una interacción.",
