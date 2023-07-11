@@ -1,27 +1,31 @@
 {
   "globals": {
-    "H5P": true,
-    "H5PIntegration": true,
-    "H5PEditor": true
+    "H5P": "readonly",
+    "H5PEditor": "readonly",
+    "H5PIntegration": "readonly"
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es2020": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsdoc/recommended"
+  ],
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": "2020"
+    "ecmaVersion": 2020
   },
   "rules": {
     "valid-jsdoc": "off",
-    "semi": [2, "always"],
-    "indent": ["error", 2, {"SwitchCase": 1}],
+    "semi": ["error", "always"],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "brace-style": ["error", "stroustrup"],
-    "keyword-spacing": ["error", {"after": true}],
+    "keyword-spacing": ["error", { "after": true }],
     "comma-spacing": ["error", { "before": false, "after": true }],
-    "space-infix-ops": ["error", {"int32Hint": false}],
-    "eqeqeq": [2, "smart"],
+    "space-infix-ops": ["error", { "int32Hint": false }],
+    "eqeqeq": ["error", "smart"],
     "space-before-blocks": "error",
     "space-before-function-paren": ["error", {
       "anonymous": "always",
@@ -29,7 +33,18 @@
       "asyncArrow": "always"
     }],
     "no-extra-boolean-cast": "off",
-    "no-console": ["error", {"allow": ["warn", "error"]}],
-    "object-curly-spacing": ["error", "always"]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "quotes": ["error", "single"],
+    "arrow-parens": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "no-alert": ["error"]
+  },
+  "plugins": ["jsdoc"],
+  "settings": {
+    "jsdoc": {
+      "preferredTypes": {
+        "Function": "function"
+      }
+    }
   }
 }
