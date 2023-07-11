@@ -1,14 +1,22 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isProd = (nodeEnv === 'production');
+const mode = process.argv.includes('--mode=production') ?
+  'production' : 'development';
+const libraryName = process.env.npm_package_name;
 
 module.exports = {
-  mode: nodeEnv,
+  mode: mode,
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/scripts/components'),
+      '@scripts': path.resolve(__dirname, 'src/scripts'),
+      '@styles': path.resolve(__dirname, 'src/styles')
+    }
+  },
   optimization: {
-    minimize: isProd,
+    minimize: mode === 'production',
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -21,16 +29,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'h5p-ar-scavenger.css'
+      filename: `${libraryName}.css`
     })
   ],
   entry: {
-    dist: './src/entries/h5p-ar-scavenger.js'
+    dist: './src/entries/dist.js'
   },
   output: {
-    filename: 'h5p-ar-scavenger.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: `${libraryName}.js`,
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
   },
+  target: ['browserslist'],
   module: {
     rules: [
       {
@@ -70,5 +80,5 @@ module.exports = {
     children: true,
     errorDetails: true
   },
-  devtool: (isProd) ? undefined : 'eval-cheap-module-source-map'
+  ...(mode !== 'production' && { devtool: 'eval-cheap-module-source-map' })
 };

@@ -1,12 +1,11 @@
 // Import required classes
 import './h5p-ar-scavenger-content-camera.scss';
-import Util from '../h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util';
 
 /** Class representing the subject */
 export default class ARScavengerContentCamera {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameter from editor.
    * @param {object[]} params.markers Markers.
    * @param {object} [callbacks] Callbacks.
@@ -42,7 +41,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.container;
@@ -103,7 +102,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Set view to narrow mode.
-   * @param {boolean} [narrow = true] True will turn to narrow, else false
+   * @param {boolean} [narrow] True will turn to narrow, else false
    */
   setNarrowView(narrow = true) {
     if (narrow) {
@@ -123,7 +122,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Build iframe.
-   * @param {HTMLElement} iframe.
+   * @returns {HTMLElement} iframe.
    */
   buildIframe() {
     const iframe = document.createElement('iframe');
@@ -147,7 +146,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Build HTML for iframe.
-   * @return {HTMLElement}
+   * @returns {HTMLElement} HTML for iframe.
    */
   buildHTML() {
     const html = document.createElement('html');
@@ -159,7 +158,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Build Header.
-   * @return {HTMLElement} Header.
+   * @returns {HTMLElement} Header.
    */
   buildHeader() {
     const head = document.createElement('head');
@@ -191,7 +190,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Build body.
-   * @return {HTMLElement} Body.
+   * @returns {HTMLElement} Body.
    */
   buildBody() {
     const body = document.createElement('body');
@@ -206,7 +205,7 @@ export default class ARScavengerContentCamera {
 
   /**
    * Build Scene.
-   * @return {HTMLElement} Scene.
+   * @returns {HTMLElement} Scene.
    */
   buildScene() {
     const scene = document.createElement('a-scene');
@@ -292,7 +291,7 @@ export default class ARScavengerContentCamera {
   /**
    * Wait for video object to.
    * @param {function} callback Callback when video found.
-   * @param {number} [timeout=10000] Maximum timeout.
+   * @param {number} [timeout] Maximum timeout.
    */
   waitForVideo(callback, timeout = 10000) {
     if (!callback) {

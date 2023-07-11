@@ -1,16 +1,15 @@
 // Import required classes
 import './h5p-ar-scavenger-button.scss';
-import Util from '../h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util';
 
 /** Class representing the content */
 export default class ARScavengerButton {
   /**
-   * @constructor
-   *
-   * @param {object} params Parameter from editor.
+   * @class
+   * @param {object} [params] Parameter from editor.
    * @param {object} [callbacks] Callbacks.
    */
-  constructor(params, callbacks) {
+  constructor(params = {}, callbacks = {}) {
     // Set missing params
     this.params = Util.extend({
       a11y: {
@@ -41,8 +40,9 @@ export default class ARScavengerButton {
     this.disabled = this.params.disabled;
 
     // Sanitize callbacks
-    this.callbacks = callbacks || {};
-    this.callbacks.onClick = this.callbacks.onClick || (() => {});
+    this.callbacks = Util.extend({
+      onClick: () => {}
+    }, callbacks);
 
     // Button
     this.button = document.createElement('button');
@@ -83,7 +83,7 @@ export default class ARScavengerButton {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.button;
@@ -193,7 +193,7 @@ export default class ARScavengerButton {
 
   /**
    * Determine whether button is active.
-   * @return {boolean} True, if button is active, else false.
+   * @returns {boolean} True, if button is active, else false.
    */
   isActive() {
     return this.active;
@@ -201,7 +201,7 @@ export default class ARScavengerButton {
 
   /**
    * Determine whether button is disabled.
-   * @return {boolean} True, if button is disabled, else false.
+   * @returns {boolean} True, if button is disabled, else false.
    */
   isDisabled() {
     return this.disabled;

@@ -1,14 +1,14 @@
-import ARScavengerContentAction from './components/h5p-ar-scavenger-content-action';
-import ARScavengerContentCamera from './components/h5p-ar-scavenger-content-camera';
-import ARScavengerContentTitlebar from './components/h5p-ar-scavenger-content-titlebar';
-import ARScavengerScreenEnd from './components/h5p-ar-scavenger-screen-end';
-import ARScavengerScreenStart from './components/h5p-ar-scavenger-screen-start';
+import ARScavengerContentAction from '@components/h5p-ar-scavenger-content-action';
+import ARScavengerContentCamera from '@components/h5p-ar-scavenger-content-camera';
+import ARScavengerContentTitlebar from '@components/h5p-ar-scavenger-content-titlebar';
+import ARScavengerScreenEnd from '@components/h5p-ar-scavenger-screen-end';
+import ARScavengerScreenStart from '@components/h5p-ar-scavenger-screen-start';
 import Util from './h5p-ar-scavenger-util';
 
 export default class ContentSetup {
   /**
    * Create titlebar.
-   * @return {ARScavengerContentTitlebar} Titlebar.
+   * @returns {ARScavengerContentTitlebar} Titlebar.
    */
   buildTitleBar() {
     return new ARScavengerContentTitlebar(
@@ -35,6 +35,7 @@ export default class ContentSetup {
 
   /**
    * Build title screen
+   * @returns {ARScavengerScreenStart} Start screen.
    */
   buildTitleScreen() {
     return new ARScavengerScreenStart(
@@ -54,6 +55,7 @@ export default class ContentSetup {
 
   /**
    * Build title screen
+   * @returns {ARScavengerScreenEnd} End screen.
    */
   buildEndScreen() {
     return new ARScavengerScreenEnd(
@@ -76,12 +78,13 @@ export default class ContentSetup {
    * @param {object} params Parameters for Subject.
    * @param {object} callbacks Callbacks.
    * @param {boolean} isCameraMode Switch for action mode.
+   * @returns {ARScavengerContentCamera} Camera object.
    */
   buildCamera(params = {}, callbacks = {}, isCameraMode = true) {
     const camera = new ARScavengerContentCamera({
       contentId: params.contentId,
       fallbackHeight: params.fallbackHeight,
-      markers: params.markers.map(marker => ({
+      markers: params.markers.map((marker) => ({
         actionType: marker.actionType,
         markerPattern: marker.markerPattern,
         model: marker.model
@@ -114,7 +117,9 @@ export default class ContentSetup {
 
   /**
    * Create the action DOM.
-   * @param {object} params Paremeters for Subject.
+   * @param {object} [params] Paremeters for Subject.
+   * @param {object} [callbacks] Callbacks.
+   * @returns {ARScavengerContentAction} Action object.
    */
   buildAction(params = {}, callbacks = {}) {
     const action = new ARScavengerContentAction(params, callbacks);

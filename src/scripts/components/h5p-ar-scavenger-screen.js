@@ -3,16 +3,16 @@ import './h5p-ar-scavenger-screen.scss';
 /** Class representing a screen */
 export default class ARScavengerScreen {
   /**
-   * @constructor
-   *
-   * @param {object} params Parameter from editor.
+   * @class
+   * @param {object} [params] Parameter from editor.
    * @param {object} [callbacks] Callbacks.
+   * @param {number} contentId Content id.
    */
-  constructor(params, callbacks, contentId) {
+  constructor(params = {}, callbacks = {}, contentId) {
     this.params = params;
 
     // Sanitize callbacks
-    this.callbacks = callbacks || {};
+    this.callbacks = callbacks;
     this.callbacks.onClose = callbacks.onClose || (() => {});
 
     this.baseClassName = 'h5p-ar-scavenger-screen';
@@ -65,7 +65,7 @@ export default class ARScavengerScreen {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.screen;
@@ -74,7 +74,7 @@ export default class ARScavengerScreen {
   /**
    * Show title screen.
    * @param {object} params Parameters.
-   * @param {boolean} [focusStartButton] If true, start button will get focus.
+   * @param {boolean} [params.focusStartButton] If true, start button will get focus.
    */
   show(params = {}) {
     this.screen.classList.remove('h5p-ar-scavenger-display-none');

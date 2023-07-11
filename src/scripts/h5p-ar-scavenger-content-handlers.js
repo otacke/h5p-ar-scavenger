@@ -1,6 +1,7 @@
 export default class ContentHandlers {
   /**
    * Handle marker found.
+   * @param {Event} event Event.
    */
   handleMarkerFound(event) {
     if (!this.isShown) {
@@ -54,6 +55,8 @@ export default class ContentHandlers {
 
   /**
    * Handle marker lost.
+   * @param {Event} event Event.
+   * @returns {Event} event Event.
    */
   handleMarkerLost(event) {
     return event; // Dummy

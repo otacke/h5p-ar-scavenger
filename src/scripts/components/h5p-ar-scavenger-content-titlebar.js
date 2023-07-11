@@ -1,13 +1,12 @@
 // Import required classes
 import './h5p-ar-scavenger-content-titlebar.scss';
 import ARScavengerButton from './h5p-ar-scavenger-button';
-import Util from '../h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util';
 
 /** Class representing the content */
 export default class ARScavengerContentTitlebar {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameter from editor.
    * @param {boolean} params.canHasFullScreen If true, will have fullscreen button.
    * @param {boolean} params.buttonQuit If true, will have quit button.
@@ -110,7 +109,7 @@ export default class ARScavengerContentTitlebar {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.titleBar;
@@ -201,7 +200,7 @@ export default class ARScavengerContentTitlebar {
   /**
    * Determine whether a button is active.
    * @param {string} buttonId Button id.
-   * @return {boolean|null} Button active state or null if buttonId not found.
+   * @returns {boolean|null} Button active state or null if buttonId not found.
    */
   isButtonActive(buttonId) {
     if (!this.buttons[buttonId]) {
@@ -215,7 +214,7 @@ export default class ARScavengerContentTitlebar {
   /**
    * Determine whether a button is disabled.
    * @param {string} buttonId Button id.
-   * @return {boolean|null} Button disabled state or null if buttonId not found.
+   * @returns {boolean|null} Button disabled state or null if buttonId not found.
    */
   isButtonDisabled(buttonId) {
     if (!this.buttons[buttonId]) {

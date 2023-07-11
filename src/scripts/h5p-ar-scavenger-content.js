@@ -7,8 +7,7 @@ import ContentHandlers from './h5p-ar-scavenger-content-handlers.js';
 /** Class representing the content */
 export default class ARScavengerContent {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameters.
    * @param {number} contentId Content ID.
    * @param {object} [extras] Extras incl. previous state.
@@ -170,7 +169,7 @@ export default class ARScavengerContent {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.container;
@@ -194,6 +193,7 @@ export default class ARScavengerContent {
 
   /**
    * Resize content.
+   * @param {object} params Parameters.
    */
   resize(params) {
     if (!this.camera) {
@@ -276,15 +276,15 @@ export default class ARScavengerContent {
 
   /**
    * Check if result has been submitted or input has been given.
-   * @return {boolean} True, if answer was given.
+   * @returns {boolean} True, if answer was given.
    */
   getAnswerGiven() {
-    return this.instances.some((instance => (instance && typeof instance.getAnswerGiven === 'function' && instance.getAnswerGiven())));
+    return this.instances.some(((instance) => (instance && typeof instance.getAnswerGiven === 'function' && instance.getAnswerGiven())));
   }
 
   /**
    * Get latest score.
-   * @return {number} latest score.
+   * @returns {number} latest score.
    */
   getScore() {
     return this.instances.reduce((score, instance) => {
@@ -294,7 +294,7 @@ export default class ARScavengerContent {
 
   /**
    * Get maximum possible score
-   * @return {number} Score necessary for mastering.
+   * @returns {number} Score necessary for mastering.
    */
   getMaxScore() {
     return this.instances.reduce((maxScore, instance) => {
@@ -342,21 +342,21 @@ export default class ARScavengerContent {
 
   /**
    * Get xAPI data from all exercise instances.
-   * @return {object[]} XAPI data of all exercise instances.
+   * @returns {object[]} XAPI data of all exercise instances.
    */
   getXAPIDataFromChildren() {
     return this.instances
-      .map(child  => {
+      .map((child)  => {
         if (child && typeof child.getXAPIData === 'function') {
           return child.getXAPIData();
         }
       })
-      .filter(data => !!data);
+      .filter((data) => !!data);
   }
 
   /**
    * Get current state to be saved.
-   * @return {object} CurrentState.
+   * @returns {object} CurrentState.
    */
   getCurrentState() {
     return this.instances.map((instance) => {

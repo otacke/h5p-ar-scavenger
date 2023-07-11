@@ -1,13 +1,13 @@
 // Import required classes
 import './h5p-ar-scavenger-content-action.scss';
-import Util from '../h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util';
 
 /** Class representing the action */
 export default class ARScavengerContentAction {
   /**
-   * @constructor
-   *
-   * @param {object} params Parameter from editor.
+   * @class
+   * @param {object} [params] Parameter from editor.
+   * @param {object} [callbacks] Callbacks.
    */
   constructor(params, callbacks) {
     // Sanitize params
@@ -56,7 +56,7 @@ export default class ARScavengerContentAction {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.container;
@@ -81,22 +81,15 @@ export default class ARScavengerContentAction {
 
   /**
    * Toggle view between action visible/invisible.
+   * @param {boolean} state Toggle state.
    */
   toggleView(state) {
-    if (state === undefined) {
-      this.container.classList.toggle('h5p-ar-scavenger-action-mode');
-    }
-    else if (state) {
-      this.container.classList.add('h5p-ar-scavenger-action-mode');
-    }
-    else {
-      this.container.classList.remove('h5p-ar-scavenger-action-mode');
-    }
+    this.container.classList.toggle('h5p-ar-scavenger-action-mode', state);
   }
 
   /**
    * Attach instance to action.
-   * @param {H5P.ContentType} instance Instance.
+   * @param {HTMLElement} instanceDOM Instance.
    */
   attachInstance(instanceDOM) {
     this.content.removeChild(this.actionWrapper);

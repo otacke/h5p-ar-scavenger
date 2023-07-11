@@ -1,12 +1,11 @@
 // Import required classes
 import './h5p-ar-scavenger-feedback-section.scss';
-import Util from '../h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util';
 
 /** Class representing the content */
 export default class ARScavengerFeedbackSection {
   /**
-   * @constructor
-   *
+   * @class
    * @param {object} params Parameter from editor.
    * @param {object} [callbacks] Callbacks.
    */
@@ -34,7 +33,7 @@ export default class ARScavengerFeedbackSection {
 
   /**
    * Return the DOM for this class.
-   * @return {HTMLElement} DOM for this class.
+   * @returns {HTMLElement} DOM for this class.
    */
   getDOM() {
     return this.feedbackSection;
@@ -55,16 +54,16 @@ export default class ARScavengerFeedbackSection {
   }
 
   /**
-  * Set score.
-  * @param {number} [score=0] Score.
-  */
+   * Set score.
+   * @param {number} [score] Score.
+   */
   setScore(score = 0) {
     this.scoreBar.setScore(score);
   }
 
   /**
    * Set maximum score.
-   * @param {number} [score=0] Maximum score.
+   * @param {number} [score] Maximum score.
    */
   setMaxScore(score = 0) {
     this.scoreBar.setMaxScore(score);
@@ -72,7 +71,7 @@ export default class ARScavengerFeedbackSection {
 
   /**
    * Set score text.
-   * @param {string} [scoreText=''] Score text.
+   * @param {string} [scoreText] Score text.
    */
   setScoreText(scoreText = '') {
     this.scoreText.innerText = Util.htmlDecode(scoreText);

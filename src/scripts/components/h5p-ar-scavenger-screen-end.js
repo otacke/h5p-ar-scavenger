@@ -6,12 +6,12 @@ import ARScavengerFeedbackSection from './h5p-ar-scavenger-feedback-section';
 /** Class representing the end screen */
 export default class ARScavengerScreenEnd extends ARScavengerScreen {
   /**
-   * @constructor
-   *
-   * @param {object} params Parameter from editor.
+   * @class
+   * @param {object} [params] Parameter from editor.
    * @param {object} [callbacks] Callbacks.
+   * @param {number} contentId Content id.
    */
-  constructor(params, callbacks, contentId) {
+  constructor(params = {}, callbacks = {}, contentId) {
     super(params, callbacks, contentId);
 
     this.feedbackSection = new ARScavengerFeedbackSection({}, {});
@@ -20,7 +20,7 @@ export default class ARScavengerScreenEnd extends ARScavengerScreen {
 
   /**
    * Set score text.
-   * @param {string} [scoreText=''] Score text.
+   * @param {string} [scoreText] Score text.
    */
   setScoreText(scoreText = '') {
     this.feedbackSection.setScoreText(scoreText);
@@ -28,7 +28,7 @@ export default class ARScavengerScreenEnd extends ARScavengerScreen {
 
   /**
    * Set score.
-   * @param {number} [score=0] Score.
+   * @param {number} [score] Score.
    */
   setScore(score = 0) {
     this.feedbackSection.setScore(score);
@@ -36,7 +36,7 @@ export default class ARScavengerScreenEnd extends ARScavengerScreen {
 
   /**
    * Set maximum score.
-   * @param {number} [score=0] Maximum score.
+   * @param {number} [score] Maximum score.
    */
   setMaxScore(score = 0) {
     this.feedbackSection.setMaxScore(score);
