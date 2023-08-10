@@ -2,7 +2,7 @@
   "title": "AR Scavenger (beta)",
   "description": "Proof-of-Concept for AR in H5P",
   "majorVersion": 1,
-  "minorVersion": 3,
+  "minorVersion": 4,
   "patchVersion": 0,
   "runnable": 1,
   "author": "Oliver Tacke",
