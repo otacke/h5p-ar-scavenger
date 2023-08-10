@@ -122,20 +122,22 @@ export default class ARScavengerContent {
     const index = params.index;
     const machineName = params.machineName;
 
-    // Override instance settings for "Show solution button"
-    if (this.params.behaviour.overrideShowSolutionButton === 'always') {
-      params.interaction.params.behaviour.enableSolutionsButton = true;
-    }
-    else if (this.params.behaviour.overrideShowSolutionButton === 'never') {
-      params.interaction.params.behaviour.enableSolutionsButton = false;
-    }
+    if (params.interaction.params.behaviour) {
+      // Override instance settings for "Show solution button"
+      if (this.params.behaviour.overrideShowSolutionButton === 'always') {
+        params.interaction.params.behaviour.enableSolutionsButton = true;
+      }
+      else if (this.params.behaviour.overrideShowSolutionButton === 'never') {
+        params.interaction.params.behaviour.enableSolutionsButton = false;
+      }
 
-    // Override instance settings for "Retry button"
-    if (this.params.behaviour.overrideRetryButton === 'always') {
-      params.interaction.params.behaviour.enableRetry = true;
-    }
-    else if (this.params.behaviour.overrideRetryButton === 'never') {
-      params.interaction.params.behaviour.enableRetry = false;
+      // Override instance settings for "Retry button"
+      if (this.params.behaviour.overrideRetryButton === 'always') {
+        params.interaction.params.behaviour.enableRetry = true;
+      }
+      else if (this.params.behaviour.overrideRetryButton === 'never') {
+        params.interaction.params.behaviour.enableRetry = false;
+      }
     }
 
     this.instances[id] = H5P.newRunnable(
