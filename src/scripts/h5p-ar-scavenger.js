@@ -130,7 +130,7 @@ export default class ARScavenger extends H5P.Question {
      * Handle activation of fullscreen button.
      */
     this.toggleFullScreen = () => {
-      if (this.params.canHasFullScreen) {
+      if (!this.params.canHasFullScreen) {
         return;
       }
 
