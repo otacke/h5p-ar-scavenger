@@ -232,6 +232,7 @@ export default class ARScavenger extends H5P.Question {
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
    */
   resetTask() {
+    this.wasContentReset = true;
     this.content.reset();
   }
 
@@ -332,9 +333,14 @@ export default class ARScavenger extends H5P.Question {
 
   /**
    * Answer call to return the current state.
-   * @returns {object} Current state.
+   * @returns {object|undefined} Current state.
    */
   getCurrentState() {
+    if (!this.getAnswerGiven()) {
+      // Nothing relevant to store, but previous state in DB must be cleared after reset
+      return this.wasContentReset ? {} : undefined;
+    }
+
     return this.content.getCurrentState();
   }
 }
