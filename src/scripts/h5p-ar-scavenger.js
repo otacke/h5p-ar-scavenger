@@ -307,7 +307,7 @@ export default class ARScavenger extends H5P.Question {
    */
   isPassed() {
     return this.content.getScore() === this.content.getMaxScore();
-  };
+  }
 
   /**
    * Get tasks title.
