@@ -95,120 +95,6 @@ export default class ARScavenger extends H5P.Question {
     }
 
     /**
-     * Register the DOM elements with H5P.Question
-     */
-    this.registerDomElements = () => {
-      // On desktop, action might be wanted to be open on startup
-      this.params.behaviour.showActionOnStartup = this.params.behaviour.showActionOnStartup &&
-        document.querySelector('.h5p-container').offsetWidth >= ARScavenger.MIN_WIDTH_FOR_DUALVIEW;
-
-      this.content = new ARScavengerContent(this.params, this.contentId, this.extras, {
-        onFullScreen: this.toggleFullScreen,
-        onQuit: this.handleCompleted,
-        onRead: this.read,
-        onResize: this.resize
-      });
-
-      // Register content with H5P.Question
-      this.setContent(this.content.getDOM());
-
-      // Handle screen orientation change
-      if (screen && screen.orientation) {
-        screen.orientation.addEventListener('change', () => {
-          this.handleScreenOrientationChanged();
-        });
-      }
-      else {
-        // Deprecated, but screen.orientation not supported by iOS - surprise!
-        window.addEventListener('change', () => {
-          this.handleScreenOrientationChanged();
-        });
-      }
-    };
-
-    /**
-     * Handle activation of fullscreen button.
-     */
-    this.toggleFullScreen = () => {
-      if (!this.params.canHasFullScreen) {
-        return;
-      }
-
-      if (H5P.isFullscreen === true) {
-        H5P.exitFullScreen();
-      }
-      else {
-        H5P.fullScreen(H5P.jQuery(document.querySelector('.h5p-container')), this);
-      }
-    };
-
-    /**
-     * Handle content completed.
-     */
-    this.handleCompleted = () => {
-      // Let xAPI event of children trigger first
-      setTimeout(() => {
-        const xAPIData = this.getXAPIData();
-        // interactionType is 'compound' for H5P report, but invalid xAPI spec
-        xAPIData.statement.object.definition.interactionType = 'other';
-        const xAPIEvent = new H5P.XAPIEvent();
-        xAPIEvent.data.children = xAPIData.children;
-        xAPIEvent.data.statement = xAPIData.statement;
-
-        this.trigger(xAPIEvent);
-      }, 0);
-    };
-
-    /**
-     * Handle screen orientation changed.
-     */
-    this.handleScreenOrientationChanged = () => {
-      if (this.isInFullScreen) {
-        this.content.setFullScreen(true);
-      }
-      else {
-        this.resize();
-      }
-    };
-
-    /**
-     * Check if result has been submitted or input has been given.
-     * @returns {boolean} True, if answer was given.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
-     */
-    this.getAnswerGiven = () => this.content.getAnswerGiven();
-
-    /**
-     * Get latest score.
-     * @returns {number} latest score.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
-     */
-    this.getScore = () => this.content.getScore();
-
-    /**
-     * Get maximum possible score
-     * @returns {number} Score necessary for mastering.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
-     */
-    this.getMaxScore = () => this.content.getMaxScore();
-
-    /**
-     * Show solutions.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
-     */
-    this.showSolutions = () => {
-      this.content.showSolutions();
-    };
-
-    /**
-     * Reset task.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
-     */
-    this.resetTask = () => {
-      this.content.reset();
-    };
-
-    /**
      * Resize Listener.
      */
     this.on('resize', (event) => {
@@ -219,103 +105,237 @@ export default class ARScavenger extends H5P.Question {
 
       this.content.resize();
     });
+  }
 
-    /**
-     * Resize.
-     */
-    this.resize = () => {
-      this.trigger('resize', { break: true });
-    };
+  /**
+   * Register the DOM elements with H5P.Question
+   */
+  registerDomElements() {
+    // On desktop, action might be wanted to be open on startup
+    this.params.behaviour.showActionOnStartup = this.params.behaviour.showActionOnStartup &&
+      document.querySelector('.h5p-container').offsetWidth >= ARScavenger.MIN_WIDTH_FOR_DUALVIEW;
 
-    /**
-     * Get xAPI data.
-     * @returns {object} XAPI statement.
-     * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
-     */
-    this.getXAPIData = () => ({
-      children: this.content.getXAPIDataFromChildren(),
-      statement: this.getXAPIAnswerEvent().data.statement
+    this.content = new ARScavengerContent(this.params, this.contentId, this.extras, {
+      onFullScreen: () => {
+        this.toggleFullScreen();
+      },
+      onQuit: () => {
+        this.handleCompleted();
+      },
+      onRead: (text) => {
+        this.read(text);
+      },
+      onResize: () => {
+        this.resize();
+      }
     });
 
-    /**
-     * Build xAPI answer event.
-     * @returns {H5P.XAPIEvent} XAPI answer event.
-     */
-    this.getXAPIAnswerEvent = () => {
-      const xAPIEvent = this.createXAPIEvent('answered');
+    // Register content with H5P.Question
+    this.setContent(this.content.getDOM());
 
-      xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, this.getAnswerGiven(), this.isPassed());
+    // Handle screen orientation change
+    if (screen && screen.orientation) {
+      screen.orientation.addEventListener('change', () => {
+        this.handleScreenOrientationChanged();
+      });
+    }
+    else {
+      // Deprecated, but screen.orientation not supported by iOS - surprise!
+      window.addEventListener('change', () => {
+        this.handleScreenOrientationChanged();
+      });
+    }
+  }
 
-      return xAPIEvent;
+  /**
+   * Handle activation of fullscreen button.
+   */
+  toggleFullScreen() {
+    if (!this.params.canHasFullScreen) {
+      return;
+    }
+
+    if (H5P.isFullscreen === true) {
+      H5P.exitFullScreen();
+    }
+    else {
+      H5P.fullScreen(H5P.jQuery(document.querySelector('.h5p-container')), this);
+    }
+  }
+
+  /**
+   * Handle content completed.
+   */
+  handleCompleted() {
+    // Let xAPI event of children trigger first
+    setTimeout(() => {
+      const xAPIData = this.getXAPIData();
+      // interactionType is 'compound' for H5P report, but invalid xAPI spec
+      xAPIData.statement.object.definition.interactionType = 'other';
+      const xAPIEvent = new H5P.XAPIEvent();
+      xAPIEvent.data.children = xAPIData.children;
+      xAPIEvent.data.statement = xAPIData.statement;
+
+      this.trigger(xAPIEvent);
+    }, 0);
+  }
+
+  /**
+   * Handle screen orientation changed.
+   */
+  handleScreenOrientationChanged() {
+    if (this.isInFullScreen) {
+      this.content.setFullScreen(true);
+    }
+    else {
+      this.resize();
+    }
+  }
+
+  /**
+   * Check if result has been submitted or input has been given.
+   * @returns {boolean} True, if answer was given.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
+   */
+  getAnswerGiven() {
+    return this.content.getAnswerGiven();
+  }
+
+  /**
+   * Get latest score.
+   * @returns {number} latest score.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-2}
+   */
+  getScore() {
+    return this.content.getScore();
+  }
+
+  /**
+   * Get maximum possible score
+   * @returns {number} Score necessary for mastering.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-3}
+   */
+  getMaxScore() {
+    return this.content.getMaxScore();
+  }
+
+  /**
+   * Show solutions.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-4}
+   */
+  showSolutions() {
+    this.content.showSolutions();
+  }
+
+  /**
+   * Reset task.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-5}
+   */
+  resetTask() {
+    this.content.reset();
+  }
+
+  /**
+   * Resize.
+   */
+  resize() {
+    this.trigger('resize', { break: true });
+  }
+
+  /**
+   * Get xAPI data.
+   * @returns {object} XAPI statement.
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+   */
+  getXAPIData() {
+    return {
+      children: this.content.getXAPIDataFromChildren(),
+      statement: this.getXAPIAnswerEvent().data.statement
     };
+  }
 
-    /**
-     * Create an xAPI event.
-     * @param {string} verb Short id of the verb we want to trigger.
-     * @returns {H5P.XAPIEvent} Event template.
-     */
-    this.createXAPIEvent = (verb) => {
-      const xAPIEvent = this.createXAPIEventTemplate(verb);
-      Util.extend(
-        xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
-        this.getxAPIDefinition());
-      return xAPIEvent;
-    };
+  /**
+   * Build xAPI answer event.
+   * @returns {H5P.XAPIEvent} XAPI answer event.
+   */
+  getXAPIAnswerEvent() {
+    const xAPIEvent = this.createXAPIEvent('answered');
 
-    /**
-     * Get the xAPI definition for the xAPI object.
-     * @returns {object} XAPI definition.
-     */
-    this.getxAPIDefinition = () => {
-      const definition = {};
-      definition.name = {};
-      definition.name[this.languageTag] = this.getTitle();
-      // Fallback for h5p-php-reporting, expects en-US
-      definition.name['en-US'] = definition.name[this.languageTag];
-      definition.description = {};
-      definition.description[this.languageTag] = this.getDescription();
-      // Fallback for h5p-php-reporting, expects en-US
-      definition.description['en-US'] = definition.description[this.languageTag];
+    xAPIEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, this.getAnswerGiven(), this.isPassed());
 
-      definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
-      definition.interactionType = 'compound';
+    return xAPIEvent;
+  }
 
-      return definition;
-    };
+  /**
+   * Create an xAPI event.
+   * @param {string} verb Short id of the verb we want to trigger.
+   * @returns {H5P.XAPIEvent} Event template.
+   */
+  createXAPIEvent(verb) {
+    const xAPIEvent = this.createXAPIEventTemplate(verb);
+    Util.extend(
+      xAPIEvent.getVerifiedStatementValue(['object', 'definition']),
+      this.getxAPIDefinition());
+    return xAPIEvent;
+  }
 
-    /**
-     * Determine whether the task has been passed by the user.
-     * @returns {boolean} True if user passed or task is not scored.
-     */
-    this.isPassed = () => this.content.getScore() === this.content.getMaxScore();
+  /**
+   * Get the xAPI definition for the xAPI object.
+   * @returns {object} XAPI definition.
+   */
+  getxAPIDefinition() {
+    const definition = {};
+    definition.name = {};
+    definition.name[this.languageTag] = this.getTitle();
+    // Fallback for h5p-php-reporting, expects en-US
+    definition.name['en-US'] = definition.name[this.languageTag];
+    definition.description = {};
+    definition.description[this.languageTag] = this.getDescription();
+    // Fallback for h5p-php-reporting, expects en-US
+    definition.description['en-US'] = definition.description[this.languageTag];
 
-    /**
-     * Get tasks title.
-     * @returns {string} Title.
-     */
-    this.getTitle = () => {
-      let raw;
-      if (this.extras.metadata) {
-        raw = this.extras.metadata.title;
-      }
-      raw = raw || ARScavenger.DEFAULT_DESCRIPTION;
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+    definition.interactionType = 'compound';
 
-      return H5P.createTitle(raw);
-    };
+    return definition;
+  }
 
-    /**
-     * Get tasks description.
-     * @returns {string} Description.
-     */
-    this.getDescription = () => this.params.taskDescription || ARScavenger.DEFAULT_DESCRIPTION;
+  /**
+   * Determine whether the task has been passed by the user.
+   * @returns {boolean} True if user passed or task is not scored.
+   */
+  isPassed() {
+    return this.content.getScore() === this.content.getMaxScore();
+  };
 
-    /**
-     * Answer call to return the current state.
-     * @returns {object} Current state.
-     */
-    this.getCurrentState = () => {
-      return this.content.getCurrentState();
-    };
+  /**
+   * Get tasks title.
+   * @returns {string} Title.
+   */
+  getTitle() {
+    let raw;
+    if (this.extras.metadata) {
+      raw = this.extras.metadata.title;
+    }
+    raw = raw || ARScavenger.DEFAULT_DESCRIPTION;
+
+    return H5P.createTitle(raw);
+  }
+
+  /**
+   * Get tasks description.
+   * @returns {string} Description.
+   */
+  getDescription() {
+    return this.params.taskDescription || ARScavenger.DEFAULT_DESCRIPTION;
+  }
+
+  /**
+   * Answer call to return the current state.
+   * @returns {object} Current state.
+   */
+  getCurrentState() {
+    return this.content.getCurrentState();
   }
 }
 
