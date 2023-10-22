@@ -157,8 +157,8 @@
                     "label": "Vertinimo diapazonas"
                   },
                   {
-                    "label": "Atsiliepimas nustatytam balų diapazonui",
-                    "placeholder": "Užpildyti atsiliepimą"
+                    "label": "Atsiliepimas apibrėžtam balų diapazonui",
+                    "placeholder": "Užpildykite atsiliepimą"
                   }
                 ]
               }
