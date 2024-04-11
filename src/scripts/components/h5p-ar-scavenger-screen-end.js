@@ -1,7 +1,7 @@
 // Import required classes
 import './h5p-ar-scavenger-screen-end.scss';
-import ARScavengerScreen from './h5p-ar-scavenger-screen';
-import ARScavengerFeedbackSection from './h5p-ar-scavenger-feedback-section';
+import ARScavengerScreen from './h5p-ar-scavenger-screen.js';
+import ARScavengerFeedbackSection from './h5p-ar-scavenger-feedback-section.js';
 
 /** Class representing the end screen */
 export default class ARScavengerScreenEnd extends ARScavengerScreen {

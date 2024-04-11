@@ -1,7 +1,7 @@
 // Import required classes
 import './h5p-ar-scavenger-content-titlebar.scss';
-import ARScavengerButton from './h5p-ar-scavenger-button';
-import Util from '@scripts/h5p-ar-scavenger-util';
+import ARScavengerButton from './h5p-ar-scavenger-button.js';
+import Util from '@scripts/h5p-ar-scavenger-util.js';
 
 /** Class representing the content */
 export default class ARScavengerContentTitlebar {

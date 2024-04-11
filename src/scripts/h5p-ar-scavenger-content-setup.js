@@ -1,9 +1,9 @@
-import ARScavengerContentAction from '@components/h5p-ar-scavenger-content-action';
-import ARScavengerContentCamera from '@components/h5p-ar-scavenger-content-camera';
-import ARScavengerContentTitlebar from '@components/h5p-ar-scavenger-content-titlebar';
-import ARScavengerScreenEnd from '@components/h5p-ar-scavenger-screen-end';
-import ARScavengerScreenStart from '@components/h5p-ar-scavenger-screen-start';
-import Util from './h5p-ar-scavenger-util';
+import ARScavengerContentAction from '@components/h5p-ar-scavenger-content-action.js';
+import ARScavengerContentCamera from '@components/h5p-ar-scavenger-content-camera.js';
+import ARScavengerContentTitlebar from '@components/h5p-ar-scavenger-content-titlebar.js';
+import ARScavengerScreenEnd from '@components/h5p-ar-scavenger-screen-end.js';
+import ARScavengerScreenStart from '@components/h5p-ar-scavenger-screen-start.js';
+import Util from './h5p-ar-scavenger-util.js';
 
 export default class ContentSetup {
   /**

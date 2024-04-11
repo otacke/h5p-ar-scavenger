@@ -1,6 +1,6 @@
 // Import required classes
 import './h5p-ar-scavenger-content-camera.scss';
-import Util from '@scripts/h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util.js';
 
 /** Class representing the subject */
 export default class ARScavengerContentCamera {

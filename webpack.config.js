@@ -1,18 +1,28 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+import { dirname, resolve as _resolve, join } from 'path';
+import { fileURLToPath } from 'url';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TerserPlugin from 'terser-webpack-plugin'; // Provided by webpack
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const mode = process.argv.includes('--mode=production') ?
-  'production' : 'development';
+  'production' :
+  'development';
 const libraryName = process.env.npm_package_name;
 
-module.exports = {
+export default {
   mode: mode,
   resolve: {
     alias: {
-      '@components': path.resolve(__dirname, 'src/scripts/components'),
-      '@scripts': path.resolve(__dirname, 'src/scripts'),
-      '@styles': path.resolve(__dirname, 'src/styles')
+      '@assets': _resolve(__dirname, 'src/assets'),
+      '@components': _resolve(__dirname, 'src/scripts/components'),
+      '@mixins': _resolve(__dirname, 'src/scripts/mixins'),
+      '@models': _resolve(__dirname, 'src/scripts/models'),
+      '@root': _resolve(__dirname, './'),
+      '@scripts': _resolve(__dirname, 'src/scripts'),
+      '@services': _resolve(__dirname, 'src/scripts/services'),
+      '@styles': _resolve(__dirname, 'src/styles')
     }
   },
   optimization: {
@@ -20,12 +30,12 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          compress:{
+          compress: {
             drop_console: true,
           }
         }
-      }),
-    ],
+      })
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -37,7 +47,7 @@ module.exports = {
   },
   output: {
     filename: `${libraryName}.js`,
-    path: path.resolve(__dirname, 'dist'),
+    path: _resolve(__dirname, 'dist'),
     clean: true
   },
   target: ['browserslist'],
@@ -57,7 +67,9 @@ module.exports = {
               publicPath: ''
             }
           },
-          { loader: 'css-loader' },
+          {
+            loader: 'css-loader'
+          },
           {
             loader: 'sass-loader'
           }
@@ -65,20 +77,23 @@ module.exports = {
       },
       {
         test: /\.svg|\.jpg|\.png$/,
-        include: path.join(__dirname, 'src/images'),
+        include: join(__dirname, 'src/images'),
         type: 'asset/resource'
       },
       {
-        test: /\.eot|\.woff2|\.woff|\.ttf$/,
-        include: path.join(__dirname, 'src/fonts'),
+        test: /\.mp3|\.wav$/,
+        include: join(__dirname, 'src/audio'),
+        type: 'asset/resource'
+      },
+      {
+        test: /\.woff$/,
+        include: join(__dirname, 'src/fonts'),
         type: 'asset/resource'
       }
     ]
   },
   stats: {
-    colors: true,
-    children: true,
-    errorDetails: true
+    colors: true
   },
   ...(mode !== 'production' && { devtool: 'eval-cheap-module-source-map' })
 };

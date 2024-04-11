@@ -1,7 +1,7 @@
 // Import required classes
 import './h5p-ar-scavenger.scss';
-import ARScavengerContent from './h5p-ar-scavenger-content';
-import Util from './h5p-ar-scavenger-util';
+import ARScavengerContent from './h5p-ar-scavenger-content.js';
+import Util from './h5p-ar-scavenger-util.js';
 
 /** Class representing ARScavenger */
 export default class ARScavenger extends H5P.Question {

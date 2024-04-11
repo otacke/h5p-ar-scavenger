@@ -1,5 +1,5 @@
 // Import required classes
-import ARScavengerScreen from './h5p-ar-scavenger-screen';
+import ARScavengerScreen from './h5p-ar-scavenger-screen.js';
 
 /** Class representing the start screen */
 export default class ARScavengerScreenStart extends ARScavengerScreen {

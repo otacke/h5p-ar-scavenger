@@ -1,6 +1,6 @@
 // Import required classes
 import './h5p-ar-scavenger-button.scss';
-import Util from '@scripts/h5p-ar-scavenger-util';
+import Util from '@scripts/h5p-ar-scavenger-util.js';
 
 /** Class representing the content */
 export default class ARScavengerButton {

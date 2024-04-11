@@ -1,6 +1,6 @@
 // Import required classes
 import './h5p-ar-scavenger-content.scss';
-import Util from './h5p-ar-scavenger-util';
+import Util from './h5p-ar-scavenger-util.js';
 import ContentSetup from './h5p-ar-scavenger-content-setup.js';
 import ContentHandlers from './h5p-ar-scavenger-content-handlers.js';
 
