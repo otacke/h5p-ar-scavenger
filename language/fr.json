@@ -156,6 +156,7 @@
                   {
                     "label": "Gamme de notes"
                   },
+                  {},
                   {
                     "label": "Feedback pour une gamme de notes définie",
                     "placeholder": "Compléter le feedback"

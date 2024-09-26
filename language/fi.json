@@ -156,6 +156,7 @@
                   {
                     "label": "Pisteraja"
                   },
+                  {},
                   {
                     "label": "Palaute määritellylle pisterajalle",
                     "placeholder": "Kirjoita palaute"

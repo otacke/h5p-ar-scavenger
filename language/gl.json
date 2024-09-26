@@ -156,6 +156,7 @@
                   {
                     "label": "Rango de Puntuación"
                   },
+                  {},
                   {
                     "label": "Retroalimentación para o rango de puntuación definido",
                     "placeholder": "Escribe a retroalimentación"

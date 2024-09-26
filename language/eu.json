@@ -43,6 +43,7 @@
               },
               {
                 "label": "Ekintza mota",
+                "description": "Markatzailea aurkitzen denean abiarazi beharko den ekintza.",
                 "options": [
                   {
                     "label": "H5P interakzioa"
@@ -50,8 +51,7 @@
                   {
                     "label": "3D maketaren estaldura"
                   }
-                ],
-                "description": "Markatzailea aurkitzen denean abiarazi beharko den ekintza."
+                ]
               },
               {
                 "label": "Interakzioa",
@@ -65,14 +65,18 @@
                 ]
               },
               {
+                "label": "3D Maketa",
                 "fields": [
                   {
                     "label": "3D maketaren fitxategia",
                     "description": "Igo ezazu hona gITF fitxategia (.glb / .gltf). Hobetsitako formatua fitxategi bakarreko \"gITF 2.0 bitarra\" da."
                   },
                   {
+                    "label": "Geometria",
                     "fields": [
                       {
+                        "label": "Eskala",
+                        "description": "Eskalatu maketa gora edo behera zure markatzailearen tamainarekin bat egiteko.",
                         "fields": [
                           {
                             "label": "Ehunekoa"
@@ -80,13 +84,11 @@
                           {
                             "label": "Manikia"
                           }
-                        ],
-                        "label": "Eskala",
-                        "description": "Eskalatu maketa gora edo behera zure markatzailearen tamainarekin bat egiteko."
+                        ]
                       },
                       {
-                        "description": "Zehaztu maketaren offset-aren markatzailearekiko posizio erlatiboa.",
                         "label": "Posizioa",
+                        "description": "Zehaztu maketaren offset-aren markatzailearekiko posizio erlatiboa.",
                         "fields": [
                           {
                             "label": "X-offseta"
@@ -114,11 +116,9 @@
                           }
                         ]
                       }
-                    ],
-                    "label": "Geometria"
+                    ]
                   }
-                ],
-                "label": "3D Maketa"
+                ]
               }
             ]
           }
@@ -149,25 +149,27 @@
                 }
               ],
               "label": "Zehaztu ezazu edozein puntuazio-tarterako feedback pertsonalizatua",
+              "description": "Egin klik \"Gehitu tartea\" botoian behar dituzun tarte guztiak gehitzeko. Adibidez: 0-20% Puntuazio eskasa, 21-91% Batez besteko puntuazioa, 91-100% Puntuazio bikaina!",
               "entity": "tartea",
               "field": {
                 "fields": [
                   {
                     "label": "Puntuazio-tartea"
                   },
+                  {},
                   {
                     "label": "Zehaztutako tartearentzako feedbacka",
                     "placeholder": "Idatzi ezazu feedbacka"
                   }
                 ]
-              },
-              "description": "Egin klik \"Gehitu tartea\" botoian behar dituzun tarte guztiak gehitzeko. Adibidez: 0-20% Puntuazio eskasa, 21-91% Batez besteko puntuazioa, 91-100% Puntuazio bikaina!"
+              }
             }
           ]
         }
       ]
     },
     {
+      "label": "Portaeraren ezarpenak",
       "fields": [
         {
           "label": "Gaitu \"Saiatu berriro\" botoia",
@@ -179,6 +181,7 @@
         },
         {
           "label": "Baliogabetu \"Erakutsi emaitza\" botoia",
+          "description": "Aukera honek \"Erakutsi emaitza\" botoia eduki guztientzako gaitu ala desgaitzea edo bestela dagozkien portaera-ezarpenak erabiltzea ahalbidetzen du.",
           "options": [
             {
               "label": "Erabili portaeraren ezarpena"
@@ -189,8 +192,7 @@
             {
               "label": "Ezkutatu beti botoia"
             }
-          ],
-          "description": "Aukera honek \"Erakutsi emaitza\" botoia eduki guztientzako gaitu ala desgaitzea edo bestela dagozkien portaera-ezarpenak erabiltzea ahalbidetzen du."
+          ]
         },
         {
           "label": "Baliogabetu \"Saiatu berriro\" botoia",
@@ -211,8 +213,7 @@
           "label": "B planaren altuera",
           "description": "Zehaztu ezazu B planaren altuera pixeletan cross origin resource sharing (CORS) arazoak dauden kasuetarako."
         }
-      ],
-      "label": "Portaeraren ezarpenak"
+      ]
     },
     {
       "label": "Kokapena",
@@ -267,8 +268,8 @@
           "default": "Irten pantaila-osoko modutik"
         },
         {
-          "default": "Aldatu ariketara",
-          "label": "'Aldatu ikuspegia' botoiaren izenburua (ekintzak itxita daudenean)"
+          "label": "'Aldatu ikuspegia' botoiaren izenburua (ekintzak itxita daudenean)",
+          "default": "Aldatu ariketara"
         },
         {
           "label": "'Aldatu ikuspegia' botoiaren izenburua (ekintza zabalik dagoenean)",

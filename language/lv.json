@@ -20,6 +20,12 @@
       "label": "Marķieri",
       "fields": [
         {
+          "label": "Marķieri",
+          "widgets": [
+            {
+              "label": "Pēc noklusējuma"
+            }
+          ],
           "entity": "marķieris",
           "field": {
             "label": "Marķieris",
@@ -115,13 +121,7 @@
                 ]
               }
             ]
-          },
-          "label": "Marķieri",
-          "widgets": [
-            {
-              "label": "Pēc noklusējuma"
-            }
-          ]
+          }
         }
       ]
     },
@@ -143,25 +143,26 @@
           "label": "Kopējā atgriezeniskā saite",
           "fields": [
             {
-              "entity": "diapazons",
-              "field": {
-                "fields": [
-                  {
-                    "label": "Rezultātu diapazons"
-                  },
-                  {
-                    "label": "Atgriezeniskā saite noteiktajam rezultātu diapazonam",
-                    "placeholder": "Aizpildiet atgriezenisko saiti"
-                  }
-                ]
-              },
               "widgets": [
                 {
                   "label": "Pēc noklusējuma"
                 }
               ],
               "label": "Iestatiet pielāgotu atgriezenisko saiti katram rezultātu intervālam",
-              "description": "Klikšķiniet pogu \"Pievienot diapazonu\", lai pievienotu tik diapazonus cik vēlaties. Piemēram, 0-20% Slikts rezultāts, 21-91% Viduvējs rezultāts, 91-100% Lielisks rezultāts!"
+              "description": "Klikšķiniet pogu \"Pievienot diapazonu\", lai pievienotu tik diapazonus cik vēlaties. Piemēram, 0-20% Slikts rezultāts, 21-91% Viduvējs rezultāts, 91-100% Lielisks rezultāts!",
+              "entity": "diapazons",
+              "field": {
+                "fields": [
+                  {
+                    "label": "Rezultātu diapazons"
+                  },
+                  {},
+                  {
+                    "label": "Atgriezeniskā saite noteiktajam rezultātu diapazonam",
+                    "placeholder": "Aizpildiet atgriezenisko saiti"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -180,6 +181,7 @@
         },
         {
           "label": "Ignorēt pogu \"Rādīt risinājumu\"",
+          "description": "Šī opcija ļauj iespējot vai atspējot pogu \"Rādīt risinājumu\" visiem satura elementiem vai izmantot to specifiskos uzvedības iestatījumus.",
           "options": [
             {
               "label": "Izmantot uzvedības iestatījumu"
@@ -190,8 +192,7 @@
             {
               "label": "Nekad nerādīt pogu"
             }
-          ],
-          "description": "Šī opcija ļauj iespējot vai atspējot pogu \"Rādīt risinājumu\" visiem satura elementiem vai izmantot to specifiskos uzvedības iestatījumus."
+          ]
         },
         {
           "label": "Ignorēt pogu \"Mēģināt vēlreiz\"",
