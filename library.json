@@ -7,6 +7,10 @@
   "runnable": 1,
   "author": "Oliver Tacke",
   "license": "MIT",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 27
+  },
   "machineName": "H5P.ARScavenger",
   "embedTypes": [
     "iframe"
