@@ -1,4 +1,4 @@
-@import '../../styles/main';
+@use '@styles/main';
 
 .h5p-ar-scavenger-screen {
   display: flex;
@@ -22,9 +22,9 @@
 }
 
 .h5p-ar-scavenger-screen-image {
-  box-shadow: 0.5em 0.25em 3em 0 $color-shadow-dark;
-  -moz-box-shadow: 0.5em 0.25em 3em 0 $color-shadow-dark;
-  -webkit-box-shadow: 0.5em 0.25em 3em 0 $color-shadow-dark;
+  box-shadow: 0.5em 0.25em 3em 0 main.$color-shadow-dark;
+  -moz-box-shadow: 0.5em 0.25em 3em 0 main.$color-shadow-dark;
+  -webkit-box-shadow: 0.5em 0.25em 3em 0 main.$color-shadow-dark;
   position: absolute;
   left: 50%;
   max-height: 15em;
@@ -34,7 +34,7 @@
 }
 
 .h5p-ar-scavenger-screen-image-bar {
-  background-color: $color-primary-5;
+  background-color: main.$color-primary-5;
   background-size: cover;
   height: 70%;
   width: 100%;

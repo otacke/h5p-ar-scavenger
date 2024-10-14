@@ -1,62 +1,62 @@
-@import "@styles/main";
+@use "@styles/main";
 
 .h5p-ar-scavenger-title-bar {
   align-items: center;
-  background-color: $color-text-light;
+  background-color: main.$color-text-light;
   background-size: cover;
-  box-shadow: 0.5em 0.5em 2em $color-shadow-light;
+  box-shadow: 0.5em 0.5em 2em main.$color-shadow-light;
   display: flex;
   overflow: hidden;
   padding: .5em;
 
   .h5p-ar-scavenger-title {
-    color: $color-text-dark;
+    color: main.$color-text-dark;
     flex-grow: 1;
     font-size: 1.15em;
     font-weight: 700;
     margin: 0;
     overflow: hidden;
     padding: 0 1rem;
-    text-decoration: none solid $color-text-dark;
+    text-decoration: none solid main.$color-text-dark;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .h5p-ar-scavenger-button {
     &.h5p-ar-scavenger-button-fullscreen {
-      background-image: $icon-button-enter-fullscreen-blue;
+      background-image: main.$icon-button-enter-fullscreen-blue;
 
       &.h5p-ar-scavenger-button-active {
-        background-image: $icon-button-exit-fullscreen-blue;
+        background-image: main.$icon-button-exit-fullscreen-blue;
         background-color: initial;
 
         &:hover {
-          background-color: $color-primary-5;
+          background-color: main.$color-primary-5;
         }
       }
     }
 
     &.h5p-ar-scavenger-button-switch-view {
-      background-image: $icon-button-task-blue;
+      background-image: main.$icon-button-task-blue;
 
       &.h5p-ar-scavenger-button-active {
-        background-image: $icon-button-camera-white;
+        background-image: main.$icon-button-camera-white;
       }
 
       &.h5p-ar-scavenger-button-disabled {
-        background-image: $icon-button-camera-grey;
+        background-image: main.$icon-button-camera-grey;
       }
     }
 
     &.h5p-ar-scavenger-button-quit {
-      background-image: $icon-button-quit-blue;
+      background-image: main.$icon-button-quit-blue;
 
       &.h5p-ar-scavenger-button-active {
-        background-image: $icon-button-quit-white;
+        background-image: main.$icon-button-quit-white;
       }
 
       &.h5p-ar-scavenger-button-disabled {
-        background-image: $icon-button-quit-grey;
+        background-image: main.$icon-button-quit-grey;
       }
     }
   }
