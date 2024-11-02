@@ -5,6 +5,9 @@ import ARScavengerScreenEnd from '@components/h5p-ar-scavenger-screen-end.js';
 import ARScavengerScreenStart from '@components/h5p-ar-scavenger-screen-start.js';
 import Util from './h5p-ar-scavenger-util.js';
 
+/** @constant {number} RESIZE_TIMEOUT_MS Resize timeout in ms. */
+const RESIZE_TIMEOUT_MS = 100;
+
 export default class ContentSetup {
   /**
    * Create titlebar.
@@ -109,7 +112,7 @@ export default class ContentSetup {
           this.instances[this.currentInstanceId].trigger('resize');
         }
         this.resize();
-      }, 100);
+      }, RESIZE_TIMEOUT_MS);
     });
 
     return camera;

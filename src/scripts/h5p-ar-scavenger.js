@@ -3,6 +3,15 @@ import './h5p-ar-scavenger.scss';
 import ARScavengerContent from './h5p-ar-scavenger-content.js';
 import Util from './h5p-ar-scavenger-util.js';
 
+/** @constant {number} FULLSCREEN_TIMEOUT Timout before resizing after entering fullscreen. */
+const FULLSCREEN_TIMEOUT = 250;
+
+/** @constant {string} DEFAULT_DESCRIPTION Default content type description. */
+const DEFAULT_DESCRIPTION = 'ARScavenger';
+
+/** @constant {number} MIN_WIDTH_FOR_DUALVIEW Breakpoint for dual view. */
+const MIN_WIDTH_FOR_DUALVIEW = 1024;
+
 /** Class representing ARScavenger */
 export default class ARScavenger extends H5P.Question {
   /**
@@ -44,6 +53,7 @@ export default class ARScavenger extends H5P.Question {
         errorNoCameraAccess: 'Could not access camera.',
         errorNoCameraSupport: 'Your browser does not seem to support a camera.',
         errorNoMarkers: 'Did someone forget to add markers?',
+        // eslint-disable-next-line max-len
         warningBrave: 'You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working.',
         initializingContent: 'Initializing content. Please don\'t forget to allow camera access.'
       },
@@ -58,7 +68,7 @@ export default class ARScavenger extends H5P.Question {
         actionOpened: 'The view has switched to an exercise.',
         actionClosed: 'The view has switched to the camera.',
       },
-      minWidthForDualView: ARScavenger.MIN_WIDTH_FOR_DUALVIEW
+      minWidthForDualView: MIN_WIDTH_FOR_DUALVIEW
     }, params);
 
     // Filter out incomplete markers
@@ -85,7 +95,7 @@ export default class ARScavenger extends H5P.Question {
         setTimeout(() => {
           this.content.setFullScreen(true);
           this.isInFullScreen = true;
-        }, 250); // Needs time to get into fullscreen for window.innerHeight
+        }, FULLSCREEN_TIMEOUT); // Needs time to get into fullscreen for window.innerHeight
       });
 
       this.on('exitFullScreen', () => {
@@ -113,7 +123,7 @@ export default class ARScavenger extends H5P.Question {
   registerDomElements() {
     // On desktop, action might be wanted to be open on startup
     this.params.behaviour.showActionOnStartup = this.params.behaviour.showActionOnStartup &&
-      document.querySelector('.h5p-container').offsetWidth >= ARScavenger.MIN_WIDTH_FOR_DUALVIEW;
+      document.querySelector('.h5p-container').offsetWidth >= MIN_WIDTH_FOR_DUALVIEW;
 
     this.content = new ARScavengerContent(this.params, this.contentId, this.extras, {
       onFullScreen: () => {
@@ -318,7 +328,7 @@ export default class ARScavenger extends H5P.Question {
     if (this.extras.metadata) {
       raw = this.extras.metadata.title;
     }
-    raw = raw || ARScavenger.DEFAULT_DESCRIPTION;
+    raw = raw || DEFAULT_DESCRIPTION;
 
     return H5P.createTitle(raw);
   }
@@ -328,7 +338,7 @@ export default class ARScavenger extends H5P.Question {
    * @returns {string} Description.
    */
   getDescription() {
-    return this.params.taskDescription || ARScavenger.DEFAULT_DESCRIPTION;
+    return this.params.taskDescription || DEFAULT_DESCRIPTION;
   }
 
   /**
@@ -344,9 +354,3 @@ export default class ARScavenger extends H5P.Question {
     return this.content.getCurrentState();
   }
 }
-
-/** @constant {string} */
-ARScavenger.DEFAULT_DESCRIPTION = 'ARScavenger';
-
-/** @constant {number} */
-ARScavenger.MIN_WIDTH_FOR_DUALVIEW = 1024;

@@ -4,6 +4,9 @@ import Util from './h5p-ar-scavenger-util.js';
 import ContentSetup from './h5p-ar-scavenger-content-setup.js';
 import ContentHandlers from './h5p-ar-scavenger-content-handlers.js';
 
+/** @constant {number} RESIZE_TIMEOUT_MS Resize timeout in ms. */
+const RESIZE_TIMEOUT_MS = 100;
+
 /** Class representing the content */
 export default class ARScavengerContent {
   /**
@@ -243,14 +246,14 @@ export default class ARScavengerContent {
         const maxHeight = window.innerHeight - this.titlebar.getDOM().offsetHeight;
         this.camera.resizeIframeHeight(maxHeight);
         this.action.resizeIframeHeight(maxHeight);
-      }, 100);
+      }, RESIZE_TIMEOUT_MS);
     }
     else {
       // Give browser some time to exit from fullscreen mode
       setTimeout(() => {
         this.camera.resizeIframeHeight(null);
         this.action.resizeIframeHeight(null);
-      }, 100);
+      }, RESIZE_TIMEOUT_MS);
 
       // FullScreen button cannot know about exiting full screen with escape key
       this.titlebar.toggleButtonActive('fullscreen', false);
@@ -281,7 +284,7 @@ export default class ARScavengerContent {
    * @returns {boolean} True, if answer was given.
    */
   getAnswerGiven() {
-    return this.instances.some(((instance) => (instance && typeof instance.getAnswerGiven === 'function' && instance.getAnswerGiven())));
+    return this.instances.some(((instance) => instance?.getAnswerGiven?.()));
   }
 
   /**

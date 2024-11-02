@@ -37,7 +37,7 @@ export default class ARScavengerContentTitlebar {
     this.buttons = {};
 
     // Button for switching views
-    this.buttons['switchView'] = new ARScavengerButton(
+    this.buttons.switchView = new ARScavengerButton(
       {
         a11y: {
           inactive: this.params.a11y.buttonSwitchViewAction,
@@ -55,7 +55,7 @@ export default class ARScavengerContentTitlebar {
         onClick: this.callbacks.onClickButtonSwitchView
       }
     );
-    this.titleBar.appendChild(this.buttons['switchView'].getDOM());
+    this.titleBar.appendChild(this.buttons.switchView.getDOM());
 
     // Title
     const titleDOM = document.createElement('div');
@@ -65,7 +65,7 @@ export default class ARScavengerContentTitlebar {
     this.titleBar.appendChild(titleDOM);
 
     // Button for quitting
-    this.buttons['quit'] = new ARScavengerButton(
+    this.buttons.quit = new ARScavengerButton(
       {
         a11y: {
           active: this.params.a11y.buttonQuit,
@@ -82,11 +82,11 @@ export default class ARScavengerContentTitlebar {
         onClick: this.callbacks.onClickButtonQuit
       }
     );
-    this.buttons['quit'].hide();
-    this.titleBar.appendChild(this.buttons['quit'].getDOM());
+    this.buttons.quit.hide();
+    this.titleBar.appendChild(this.buttons.quit.getDOM());
 
     if (this.params.canHasFullScreen) {
-      this.buttons['fullscreen'] = new ARScavengerButton(
+      this.buttons.fullscreen = new ARScavengerButton(
         {
           a11y: {
             active: this.params.a11y.buttonFullScreenExit,
@@ -103,7 +103,7 @@ export default class ARScavengerContentTitlebar {
           onClick: callbacks.onClickButtonFullScreen
         }
       );
-      this.titleBar.appendChild(this.buttons['fullscreen'].getDOM());
+      this.titleBar.appendChild(this.buttons.fullscreen.getDOM());
     }
   }
 

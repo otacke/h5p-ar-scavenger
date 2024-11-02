@@ -2,6 +2,12 @@
 import './h5p-ar-scavenger-content-camera.scss';
 import Util from '@scripts/h5p-ar-scavenger-util.js';
 
+/** @constant {number} WAIT_FOR_VIDEO_MAX_MS Maximum time to wait for video. */
+const WAIT_FOR_VIDEO_MAX_MS = 10000;
+
+/** @constant {number} WAIT_FOR_VIDEO_TIMEOUT_MS Timeout for waiting for video. */
+const WAIT_FOR_VIDEO_TIMEOUT_MS = 100;
+
 /** Class representing the subject */
 export default class ARScavengerContentCamera {
   /**
@@ -73,7 +79,8 @@ export default class ARScavengerContentCamera {
     }
     else {
       this.container.style.maxWidth = `${document.body.offsetWidth - contentMarginHorizontal}px`;
-      this.iframe.style.height = `${(this.container.offsetWidth - contentMarginHorizontal) / this.videoRatio || this.params.fallbackHeight}px`;
+      this.iframe.style.height =
+        `${(this.container.offsetWidth - contentMarginHorizontal) / this.videoRatio || this.params.fallbackHeight}px`;
     }
 
     this.callbacks.onResize();
@@ -235,12 +242,18 @@ export default class ARScavengerContentCamera {
           asset.appendChild(assetItem);
           scene.appendChild(asset);
 
-          const scale = `${marker.model.geometry.scale.scale / 100} ${marker.model.geometry.scale.scale / 100} ${marker.model.geometry.scale.scale / 100}`;
-          const rotation = `${marker.model.geometry.rotation.x} ${marker.model.geometry.rotation.y} ${marker.model.geometry.rotation.z}`;
-          const position = `${marker.model.geometry.position.x} ${marker.model.geometry.position.y} ${marker.model.geometry.position.z}`;
+          // eslint-disable-next-line no-magic-numbers
+          const scalePercentage = marker.model.geometry.scale.scale / 100;
+          const scale = `${scalePercentage} ${scalePercentage} ${scalePercentage}`;
+
+          const rotationX = marker.model.geometry.rotation.x;
+          const rotationY = marker.model.geometry.rotation.y;
+          const rotationZ = marker.model.geometry.rotation.z;
+          const rotation = `${rotationX} ${rotationY} ${rotationZ}`;
+          const position = `${rotationX} ${rotationY} ${rotationZ}`;
 
           const entity = document.createElement('a-entity');
-          entity.setAttribute('gltf-model', '#' + id);
+          entity.setAttribute('gltf-model', `#${  id}`);
           entity.setAttribute('scale', scale);
           entity.setAttribute('rotation', rotation);
           entity.setAttribute('position', position);
@@ -293,7 +306,7 @@ export default class ARScavengerContentCamera {
    * @param {function} callback Callback when video found.
    * @param {number} [timeout] Maximum timeout.
    */
-  waitForVideo(callback, timeout = 10000) {
+  waitForVideo(callback, timeout = WAIT_FOR_VIDEO_MAX_MS) {
     if (!callback) {
       return;
     }
@@ -308,8 +321,8 @@ export default class ARScavengerContentCamera {
     }
     else {
       setTimeout(() => {
-        this.waitForVideo(callback, timeout - 100);
-      }, 100);
+        this.waitForVideo(callback, timeout - WAIT_FOR_VIDEO_TIMEOUT_MS);
+      }, WAIT_FOR_VIDEO_TIMEOUT_MS);
     }
   }
 
