@@ -1,0 +1,301 @@
+{
+  "semantics": [
+    {
+      "label": "Afișează ecranul de pornire",
+      "description": "Dacă este bifat, conținutul va afișa ecranul cu titlu la pornire."
+    },
+    {
+      "label": "Ecran de pornire",
+      "fields": [
+        {
+          "label": "Introducere",
+          "placeholder": "Bun venit la..."
+        },
+        {
+          "label": "Imagine ecran titlu"
+        }
+      ]
+    },
+    {
+      "label": "Markere",
+      "fields": [
+        {
+          "label": "Markere",
+          "widgets": [
+            {
+              "label": "Implicit"
+            }
+          ],
+          "entity": "marker",
+          "field": {
+            "label": "Marker",
+            "fields": [
+              {
+                "label": "Imagine marker (original)",
+                "description": "Încarcă imaginea pentru care dorești să creezi un marker. Ar trebui să fie o imagine pătrată, altfel va fi decupată. Reține că vei avea nevoie de o imagine de marker unică pentru fiecare interacțiune.",
+                "importantDescription": {
+                  "description": "Te rugăm să ții cont de câteva criterii pentru imagini bune de marker:<ul><li>Contrast ridicat de culoare, ideal alb-negru</li><li>Asimetrie</li><li>Rezoluția internă a unui marker este de 16 x 16 pixeli, utilizarea unor imagini mai mari poate înrăutăți detectarea markerului</li><li>Caracterele unice sau cuvintele scurte dau rezultate bune</li></ul>"
+                }
+              },
+              {
+                "label": "Imagine marker (șablon)",
+                "description": "Descarcă această imagine pentru a o folosi ca marker afișat pe un ecran sau tipărit pe hârtie."
+              },
+              {
+                "label": "Tip acțiune",
+                "description": "Acțiunea care ar trebui declanșată la găsirea markerului.",
+                "options": [
+                  {
+                    "label": "Interacțiune H5P"
+                  },
+                  {
+                    "label": "Suprapunere model 3D"
+                  }
+                ]
+              },
+              {
+                "label": "Interacțiune",
+                "fields": [
+                  {
+                    "label": "Interacțiune"
+                  },
+                  {
+                    "label": "Dummy"
+                  }
+                ]
+              },
+              {
+                "label": "Model 3D",
+                "fields": [
+                  {
+                    "label": "Fișier model 3D",
+                    "description": "Încarcă aici un fișier glTF (.glb / .gltf). Formatul preferat este \"glTF 2.0 binar\" într-un singur fișier."
+                  },
+                  {
+                    "label": "Geometrie",
+                    "fields": [
+                      {
+                        "label": "Scară",
+                        "description": "Scalează modelul în sus sau în jos pentru a se potrivi cu dimensiunea markerului.",
+                        "fields": [
+                          {
+                            "label": "Procentaj"
+                          },
+                          {
+                            "label": "Dummy"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Poziție",
+                        "description": "Setează poziția de offset a modelului în raport cu markerul.",
+                        "fields": [
+                          {
+                            "label": "Offset-X"
+                          },
+                          {
+                            "label": "Offset-Y"
+                          },
+                          {
+                            "label": "Offset-Z"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Rotație",
+                        "description": "Setează rotația în grade.",
+                        "fields": [
+                          {
+                            "label": "Axa-X"
+                          },
+                          {
+                            "label": "Axa-Y"
+                          },
+                          {
+                            "label": "Axa-Z"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Afișează ecranul final",
+      "description": "Dacă este bifat, afișează un ecran final când toate interacțiunile au fost finalizate. Ecranul final nu va fi disponibil dacă folosești doar modele 3D."
+    },
+    {
+      "label": "Ecran final",
+      "fields": [
+        {
+          "label": "imagine ecran final"
+        },
+        {
+          "label": "Text ecran final",
+          "placeholder": "Ai reușit!"
+        },
+        {
+          "label": "Feedback general",
+          "fields": [
+            {
+              "widgets": [
+                {
+                  "label": "Implicit"
+                }
+              ],
+              "label": "Definește feedback personalizat pentru orice interval de scor",
+              "description": "Fă clic pe butonul \"Adaugă interval\" pentru a adăuga câte intervale ai nevoie. Exemplu: 0-20% Scor slab, 21-91% Scor mediu, 91-100% Scor excelent!",
+              "entity": "range",
+              "field": {
+                "fields": [
+                  {
+                    "label": "Interval scor"
+                  },
+                  {},
+                  {
+                    "label": "Feedback pentru intervalul de scor definit",
+                    "placeholder": "Completează feedback-ul"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Setări comportamentale",
+      "fields": [
+        {
+          "label": "Activează butonul \"Reîncearcă\"",
+          "description": "Dacă este bifat, cursanții pot reîncerca sarcina."
+        },
+        {
+          "label": "Activează butonul \"Soluții\"",
+          "description": "Dacă este bifat, cursanții pot vizualiza soluțiile tuturor interacțiunilor."
+        },
+        {
+          "label": "Suprascrie butonul \"Afișează soluția\"",
+          "description": "Această opțiune permite activarea sau dezactivarea butonului \"Afișează soluția\" pentru tot conținutul sau utilizarea setărilor lor comportamentale respective.",
+          "options": [
+            {
+              "label": "Utilizează setarea comportamentală"
+            },
+            {
+              "label": "Afișează întotdeauna butonul"
+            },
+            {
+              "label": "Nu afișa niciodată butonul"
+            }
+          ]
+        },
+        {
+          "label": "Suprascrie butonul \"Reîncearcă\"",
+          "description": "Această opțiune permite activarea sau dezactivarea butonului \"Reîncearcă\" pentru tot conținutul sau utilizarea setărilor lor comportamentale respective.",
+          "options": [
+            {
+              "label": "Utilizează setarea comportamentală"
+            },
+            {
+              "label": "Afișează întotdeauna butonul"
+            },
+            {
+              "label": "Nu afișa niciodată butonul"
+            }
+          ]
+        },
+        {
+          "label": "Înălțime de rezervă",
+          "description": "Setează o înălțime de rezervă în px pentru cazurile în care există probleme de partajare a resurselor între origini (CORS)."
+        }
+      ]
+    },
+    {
+      "label": "Localizare",
+      "fields": [
+        {
+          "label": "Buton Start",
+          "default": "Start"
+        },
+        {
+          "label": "Buton Reîncearcă",
+          "default": "Reîncearcă"
+        },
+        {
+          "label": "Găsește un marker pentru a vedea o interacțiune.",
+          "default": "Găsește un marker pentru a vedea o interacțiune."
+        },
+        {
+          "label": "Eroare: browserul nu este acceptat",
+          "default": "Se pare că browserul tău nu poate rula acest tip de conținut, din păcate."
+        },
+        {
+          "label": "Eroare: Fără acces la cameră",
+          "default": "Nu s-a putut accesa camera."
+        },
+        {
+          "label": "Eroare: Fără suport pentru cameră",
+          "default": "Browserul tău nu pare să accepte o cameră."
+        },
+        {
+          "label": "Eroare: Fără markere",
+          "default": "A uitat cineva să adauge markere?"
+        },
+        {
+          "label": "Avertisment: browser Brave",
+          "default": "Se pare că folosești browserul Brave. Frumos! Dar setările sale stricte de confidențialitate pot împiedica funcționarea camerei."
+        },
+        {
+          "label": "Inițializare conținut",
+          "default": "Se inițializează conținutul. Te rugăm să nu uiți să permiți accesul la cameră."
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Titlu buton ecran complet: intră",
+          "default": "Intră în modul ecran complet"
+        },
+        {
+          "label": "Titlu buton ecran complet: ieși",
+          "default": "Ieși din modul ecran complet"
+        },
+        {
+          "label": "Titlu buton 'Comută vizualizare' (când acțiunea este închisă)",
+          "default": "Comută la exercițiu"
+        },
+        {
+          "label": "Titlu buton 'Comută vizualizare' (când acțiunea este deschisă)",
+          "default": "Comută la cameră"
+        },
+        {
+          "label": "Mesaj 'Buton dezactivat' pentru 'butonul de comutare vizualizare'",
+          "default": "Nu poți comuta vizualizarea în acest moment"
+        },
+        {
+          "label": "Titlu buton 'Renunță'",
+          "default": "Renunță și afișează evaluarea"
+        },
+        {
+          "label": "Mesaj 'Buton dezactivat' pentru 'butonul de renunțare'",
+          "default": "Nu ai finalizat încă toate exercițiile"
+        },
+        {
+          "label": "Acțiune deschisă",
+          "default": "Vizualizarea a comutat la un exercițiu."
+        },
+        {
+          "label": "Acțiune închisă",
+          "default": "Vizualizarea a comutat la cameră."
+        }
+      ]
+    }
+  ]
+}
