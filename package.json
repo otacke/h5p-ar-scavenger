@@ -19,7 +19,7 @@
   "author": "Oliver Tacke",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.4",
     "@babel/plugin-transform-object-assign": "^7.27.1",
     "@babel/preset-env": "^7.28.3",
     "babel-loader": "^10.0.0",
@@ -27,11 +27,11 @@
     "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
     "mini-css-extract-plugin": "^2.9.4",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.91.0",
+    "sass": "^1.92.1",
     "sass-loader": "^16.0.5",
-    "stylelint": "^16.23.1",
+    "stylelint": "^16.24.0",
     "stylelint-config-recommended": "^17.0.0",
-    "stylelint-config-recommended-scss": "^16.0.0",
+    "stylelint-config-recommended-scss": "^16.0.1",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1"
   },
