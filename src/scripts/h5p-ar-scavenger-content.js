@@ -94,8 +94,8 @@ export default class ARScavengerContent {
     window.navigator.mediaDevices.getUserMedia({
       video: { // Potentially 4K
         width: 4096,
-        height: 2160
-      }
+        height: 2160,
+      },
     }).then((stream) => {
       // Free stream, otherwise some devices fail as camera seems to be in use
       stream.getTracks().forEach((track) => {
@@ -148,7 +148,7 @@ export default class ARScavengerContent {
       params.contentId,
       H5P.jQuery(params.actionWrapper),
       true,
-      { previousState: params.previousState }
+      { previousState: params.previousState },
     );
 
     this.instances[id].on('resize', () => {

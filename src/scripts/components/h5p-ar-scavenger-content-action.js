@@ -13,8 +13,8 @@ export default class ARScavengerContentAction {
     // Sanitize params
     this.params = Util.extend({
       l10n: {
-        nothingToSee: ''
-      }
+        nothingToSee: '',
+      },
     }, params || {});
 
     // Sanitize callbacks

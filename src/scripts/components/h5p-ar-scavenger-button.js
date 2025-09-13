@@ -15,12 +15,12 @@ export default class ARScavengerButton {
       a11y: {
         active: '',
         disabled: '',
-        inactive: ''
+        inactive: '',
       },
       active: false,
       classes: [],
       disabled: false,
-      type: 'pulse'
+      type: 'pulse',
     }, params || {});
 
     if (!Array.isArray(this.params.classes)) {
@@ -41,7 +41,7 @@ export default class ARScavengerButton {
 
     // Sanitize callbacks
     this.callbacks = Util.extend({
-      onClick: () => {}
+      onClick: () => {},
     }, callbacks);
 
     // Button

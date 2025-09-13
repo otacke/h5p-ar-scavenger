@@ -26,13 +26,13 @@ export default class ContentSetup {
           buttonQuit: this.params.a11y.buttonQuit,
           buttonQuitDisabled: this.params.a11y.buttonQuitDisabled,
         },
-        canHasFullScreen: this.params.canHasFullScreen
+        canHasFullScreen: this.params.canHasFullScreen,
       },
       {
         onClickButtonFullScreen: (event) => this.callbacks.onFullScreen(event),
         onClickButtonQuit: (event) => this.handleQuit(event),
-        onClickButtonSwitchView: () => this.handleSwitchView()
-      }
+        onClickButtonSwitchView: () => this.handleSwitchView(),
+      },
     );
   }
 
@@ -46,12 +46,12 @@ export default class ContentSetup {
         id: 'title',
         screenImage: this.params.titleScreen.titleScreenImage,
         screenText: this.params.titleScreen.titleScreenIntroduction,
-        l10n: { 'buttonText': this.params.l10n.start }
+        l10n: { 'buttonText': this.params.l10n.start },
       },
       {
         onClose: () => {
           this.handleTitleScreenClosed();
-        }
+        },
       },
       this.contentId);
   }
@@ -66,12 +66,12 @@ export default class ContentSetup {
         id: 'end',
         screenImage: this.params.endScreen.endScreenImage,
         screenText: this.params.endScreen.endScreenOutro,
-        l10n: { 'buttonText': this.params.l10n.retry }
+        l10n: { 'buttonText': this.params.l10n.retry },
       },
       {
         onClose: () => {
           this.handleRetry();
-        }
+        },
       },
       this.contentId);
   }
@@ -90,8 +90,8 @@ export default class ContentSetup {
       markers: params.markers.map((marker) => ({
         actionType: marker.actionType,
         markerPattern: marker.markerPattern,
-        model: marker.model
-      }))
+        model: marker.model,
+      })),
     }, callbacks);
     const subjectContainer = camera.getDOM();
 
@@ -180,7 +180,7 @@ export default class ContentSetup {
       {
         contentId: this.contentId,
         markers: this.params.markers,
-        fallbackHeight: this.params.behaviour.fallbackHeight
+        fallbackHeight: this.params.behaviour.fallbackHeight,
       },
       {
         onResize: () => {
@@ -191,16 +191,16 @@ export default class ContentSetup {
         },
         onMarkerLost: (event) => {
           this.handleMarkerLost(event);
-        }
+        },
       },
-      this.isCameraMode
+      this.isCameraMode,
     );
 
     // Action
     this.action = this.buildAction({
       l10n: {
-        nothingToSee: this.params.l10n.nothingToSee
-      }
+        nothingToSee: this.params.l10n.nothingToSee,
+      },
     }, {});
 
     // Panel
@@ -250,7 +250,7 @@ export default class ContentSetup {
       // Sanitization
       this.markersFound[index] = this.markersFound[index] || {
         actionType: marker.actionType,
-        completed: false
+        completed: false,
       };
 
       if (marker.actionType !== 'h5p') {
@@ -284,10 +284,10 @@ export default class ContentSetup {
             actionWrapper: actionWrapper,
             previousState: previousState,
             index: index,
-            machineName: actionMachineName
+            machineName: actionMachineName,
           },
           on: () => {},
-          trigger: () => {}
+          trigger: () => {},
         };
 
         this.instancesH5P++;

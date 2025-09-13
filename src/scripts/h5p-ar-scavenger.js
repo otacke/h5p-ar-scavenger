@@ -43,7 +43,7 @@ export default class ARScavenger extends H5P.Question {
         enableRetry: false,
         overrideShowSolutionButton: 'useBehavioural',
         overrideRetryButton: 'useBehavioural',
-        fallbackHeight: 400
+        fallbackHeight: 400,
       },
       l10n: {
         start: 'Start',
@@ -53,9 +53,9 @@ export default class ARScavenger extends H5P.Question {
         errorNoCameraAccess: 'Could not access camera.',
         errorNoCameraSupport: 'Your browser does not seem to support a camera.',
         errorNoMarkers: 'Did someone forget to add markers?',
-        // eslint-disable-next-line max-len
+        // eslint-disable-next-line @stylistic/js/max-len
         warningBrave: 'You seem to be using the Brave browser. Nice! But its strict privacy settings may prevent the camera from working.',
-        initializingContent: 'Initializing content. Please don\'t forget to allow camera access.'
+        initializingContent: 'Initializing content. Please don\'t forget to allow camera access.',
       },
       a11y: {
         buttonFullScreenEnter: 'Enter fullscreen mode',
@@ -68,7 +68,7 @@ export default class ARScavenger extends H5P.Question {
         actionOpened: 'The view has switched to an exercise.',
         actionClosed: 'The view has switched to the camera.',
       },
-      minWidthForDualView: MIN_WIDTH_FOR_DUALVIEW
+      minWidthForDualView: MIN_WIDTH_FOR_DUALVIEW,
     }, params);
 
     // Filter out incomplete markers
@@ -77,14 +77,14 @@ export default class ARScavenger extends H5P.Question {
         (
           marker.actionType === 'h5p' && marker.interaction && marker.interaction.interaction ||
           marker.actionType === 'model' && marker.model && marker.model.file
-        )
+        ),
     );
 
     // Sanitize extras
     this.extras = Util.extend({
       metadata: {
         title: 'ARScavenger',
-      }
+      },
     }, extras);
 
     const defaultLanguage = extras.metadata.defaultLanguage || 'en';
@@ -137,7 +137,7 @@ export default class ARScavenger extends H5P.Question {
       },
       onResize: () => {
         this.resize();
-      }
+      },
     });
 
     // Register content with H5P.Question
@@ -261,7 +261,7 @@ export default class ARScavenger extends H5P.Question {
   getXAPIData() {
     return {
       children: this.content.getXAPIDataFromChildren(),
-      statement: this.getXAPIAnswerEvent().data.statement
+      statement: this.getXAPIAnswerEvent().data.statement,
     };
   }
 

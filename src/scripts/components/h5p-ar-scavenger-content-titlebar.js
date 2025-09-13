@@ -22,7 +22,7 @@ export default class ARScavengerContentTitlebar {
     this.params = Util.extend({
       title: '',
       a11y: {
-      }
+      },
     }, params || {});
 
     // Sanitize callbacks
@@ -46,14 +46,14 @@ export default class ARScavengerContentTitlebar {
         },
         classes: [
           'h5p-ar-scavenger-button',
-          'h5p-ar-scavenger-button-switch-view'
+          'h5p-ar-scavenger-button-switch-view',
         ],
         type: 'toggle',
-        active: true
+        active: true,
       },
       {
-        onClick: this.callbacks.onClickButtonSwitchView
-      }
+        onClick: this.callbacks.onClickButtonSwitchView,
+      },
     );
     this.titleBar.appendChild(this.buttons.switchView.getDOM());
 
@@ -73,14 +73,14 @@ export default class ARScavengerContentTitlebar {
         },
         classes: [
           'h5p-ar-scavenger-button',
-          'h5p-ar-scavenger-button-quit'
+          'h5p-ar-scavenger-button-quit',
         ],
         disabled: true,
-        type: 'pulse'
+        type: 'pulse',
       },
       {
-        onClick: this.callbacks.onClickButtonQuit
-      }
+        onClick: this.callbacks.onClickButtonQuit,
+      },
     );
     this.buttons.quit.hide();
     this.titleBar.appendChild(this.buttons.quit.getDOM());
@@ -90,18 +90,18 @@ export default class ARScavengerContentTitlebar {
         {
           a11y: {
             active: this.params.a11y.buttonFullScreenExit,
-            inactive: this.params.a11y.buttonFullScreenEnter
+            inactive: this.params.a11y.buttonFullScreenEnter,
           },
           classes: [
             'h5p-ar-scavenger-button',
-            'h5p-ar-scavenger-button-fullscreen'
+            'h5p-ar-scavenger-button-fullscreen',
           ],
           disabled: false,
-          type: 'toggle'
+          type: 'toggle',
         },
         {
-          onClick: callbacks.onClickButtonFullScreen
-        }
+          onClick: callbacks.onClickButtonFullScreen,
+        },
       );
       this.titleBar.appendChild(this.buttons.fullscreen.getDOM());
     }

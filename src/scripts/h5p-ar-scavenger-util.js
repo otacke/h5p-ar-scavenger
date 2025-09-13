@@ -97,7 +97,7 @@ class Util {
         }
 
         if (Object.getOwnPropertyNames(masterPrototype).includes(property)) {
-          // eslint-disable-next-line max-len
+          // eslint-disable-next-line @stylistic/js/max-len
           throw (`Class ${masterPrototype.constructor.name} already contains ${property}. Cannot add ${mixinPrototype.constructor.name}`);
         }
 

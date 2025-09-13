@@ -20,7 +20,7 @@ export default class ARScavengerContentCamera {
   constructor(params, callbacks) {
     // Sanitize params
     this.params = Util.extend({
-      fallbackHeight: 400
+      fallbackHeight: 400,
     }, params || {});
 
     // Sanitize callbacks
@@ -242,7 +242,7 @@ export default class ARScavengerContentCamera {
           asset.appendChild(assetItem);
           scene.appendChild(asset);
 
-          // eslint-disable-next-line no-magic-numbers
+           
           const scalePercentage = marker.model.geometry.scale.scale / 100;
           const scale = `${scalePercentage} ${scalePercentage} ${scalePercentage}`;
 

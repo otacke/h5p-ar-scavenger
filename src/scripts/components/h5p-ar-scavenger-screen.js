@@ -56,7 +56,7 @@ export default class ARScavengerScreen {
     this.button = H5P.JoubelUI.createButton({
       class: `${this.baseClassName}-button-close`,
       text: this.params.l10n.buttonText,
-      click: this.callbacks.onClose
+      click: this.callbacks.onClose,
     }).get(0);
 
     this.hide();
