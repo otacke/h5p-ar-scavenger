@@ -27,7 +27,7 @@
     "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
     "mini-css-extract-plugin": "^2.9.4",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.92.1",
+    "sass": "^1.93.2",
     "sass-loader": "^16.0.5",
     "stylelint": "^16.24.0",
     "stylelint-config-recommended": "^17.0.0",
