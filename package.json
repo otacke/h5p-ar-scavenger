@@ -19,9 +19,9 @@
   "author": "Oliver Tacke",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.28.5",
+    "@babel/core": "^7.28.6",
     "@babel/plugin-transform-object-assign": "^7.27.1",
-    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-env": "^7.28.6",
     "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
