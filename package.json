@@ -22,7 +22,7 @@
     "@babel/core": "^7.29.0",
     "@babel/plugin-transform-object-assign": "^7.27.1",
     "@babel/preset-env": "^7.29.0",
-    "babel-loader": "^10.0.0",
+    "babel-loader": "^10.1.0",
     "css-loader": "^7.1.4",
     "eslint-config-snordian-h5p": "github:otacke/eslint-config-snordian-h5p",
     "mini-css-extract-plugin": "^2.10.0",
