@@ -29,10 +29,10 @@
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.99.0",
     "sass-loader": "^16.0.7",
-    "stylelint": "^17.6.0",
+    "stylelint": "^17.8.0",
     "stylelint-config-recommended": "^18.0.0",
-    "stylelint-config-recommended-scss": "^17.0.0",
-    "webpack": "^5.105.4",
+    "stylelint-config-recommended-scss": "^17.0.1",
+    "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2"
   },
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
