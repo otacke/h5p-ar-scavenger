@@ -1,0 +1,301 @@
+{
+  "semantics": [
+    {
+      "label": "Tampilkan layar awal",
+      "description": "Jika dicentang, konten akan menampilkan layar judul ketika memulai."
+    },
+    {
+      "label": "Layar awal",
+      "fields": [
+        {
+          "label": "Perkenalan",
+          "placeholder": "Selamat datang di ..."
+        },
+        {
+          "label": "Gambar layar judul"
+        }
+      ]
+    },
+    {
+      "label": "Penanda",
+      "fields": [
+        {
+          "label": "Penanda",
+          "widgets": [
+            {
+              "label": "Bawaan"
+            }
+          ],
+          "entity": "penanda",
+          "field": {
+            "label": "Penanda",
+            "fields": [
+              {
+                "label": "Gambar penanda (asli)",
+                "description": "Unggah gambar ingin Anda buat penandanya. Seharusnya gambar persegi atau akan dipotong. Ingat bahwa Anda akan memerlukan gambar penanda unik untuk setiap interaksi.",
+                "importantDescription": {
+                  "description": "Ingat kriteria berikut untuk gambar penanda baik:<ul><li>Kontras warna tinggi, idealnya hitam putih</li><li>Asimetris</li><li>Resolusi internal penanda adalah 16 x 16 piksel, menggunakan gambar lebih besar dapat membuat deteksi penanda lebih buruk</li><li>Karakter tunggal atau kata pendek memberikan hasil bagus</li></ul>"
+                }
+              },
+              {
+                "label": "Gambar penanda (pola)",
+                "description": "Unduh gambar ini untuk digunakan sebagai penanda ditampilkan di layar atau dicetak di atas kertas."
+              },
+              {
+                "label": "Jenis tindakan",
+                "description": "Tindakan yang harus dipicu ketika penanda ditemukan.",
+                "options": [
+                  {
+                    "label": "Interaksi H5P"
+                  },
+                  {
+                    "label": "Lapisan model 3D"
+                  }
+                ]
+              },
+              {
+                "label": "Interaksi",
+                "fields": [
+                  {
+                    "label": "Interaksi"
+                  },
+                  {
+                    "label": "Dummy"
+                  }
+                ]
+              },
+              {
+                "label": "Model 3D",
+                "fields": [
+                  {
+                    "label": "File model 3D",
+                    "description": "Unggah berkas glTF (.glb / .gltf) di sini. Format yang disukai adalah \"glTF 2.0 binary\" dalam satu berkas."
+                  },
+                  {
+                    "label": "Geometri",
+                    "fields": [
+                      {
+                        "label": "Skala",
+                        "description": "Sesuaikan skala model ke ukuran penanda.",
+                        "fields": [
+                          {
+                            "label": "Persentase"
+                          },
+                          {
+                            "label": "Dummy"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Posisi",
+                        "description": "Sesuaikan posisi offset model relatif terhadap penanda.",
+                        "fields": [
+                          {
+                            "label": "X-offset"
+                          },
+                          {
+                            "label": "Y-offset"
+                          },
+                          {
+                            "label": "Z-offset"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Rotasi",
+                        "description": "Sesuaikan rotasi dalam derajat.",
+                        "fields": [
+                          {
+                            "label": "Sumbu X"
+                          },
+                          {
+                            "label": "Sumbu Y"
+                          },
+                          {
+                            "label": "Sumbu Z"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Tampilkan layar akhir",
+      "description": "Jika dicentang, tampilkan layar akhir ketika semua interaksi telah selesai. Layar akhir tidak akan tersedia jika Anda hanya menggunakan model 3D."
+    },
+    {
+      "label": "Layar akhir",
+      "fields": [
+        {
+          "label": "Gambar layar akhir"
+        },
+        {
+          "label": "Teks layar akhir",
+          "placeholder": "Anda berhasil!"
+        },
+        {
+          "label": "Umpan balik keseluruhan",
+          "fields": [
+            {
+              "widgets": [
+                {
+                  "label": "Bawaan"
+                }
+              ],
+              "label": "Tentukan umpan balik khusus untuk setiap rentang skor",
+              "description": "Klik tombol \"Tambahkan rentang\" untuk menambahkan rentang sebanyak yang Anda butuhkan. Contoh: 0-20% Skor buruk, 21-91% Skor rata-rata, 91-100% Skor bagus!",
+              "entity": "rentang",
+              "field": {
+                "fields": [
+                  {
+                    "label": "Rentang Skor"
+                  },
+                  {},
+                  {
+                    "label": "Umpan balik untuk rentang skor ditentukan",
+                    "placeholder": "Isi umpan balik"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Pengaturan perilaku",
+      "fields": [
+        {
+          "label": "Aktifkan tombol \"Coba lagi\"",
+          "description": "Jika dicentang, peserta didik dapat mencoba kembali tugas."
+        },
+        {
+          "label": "Aktifkan tombol \"Solusi\"",
+          "description": "Jika dicentang, peserta didik dapat melihat solusi dari semua interaksi."
+        },
+        {
+          "label": "Timpa tombol \"Tampilkan Solusi\"",
+          "description": "Opsi ini mengizinkan untuk mengaktifkan atau menonaktifkan tombol \"Tampilkan Solusi\" untuk semua konten atau untuk menggunakan pengaturan perilaku yang sesuai.",
+          "options": [
+            {
+              "label": "Gunakan pengaturan perilaku"
+            },
+            {
+              "label": "Selalu tampilkan tombol"
+            },
+            {
+              "label": "Jangan pernah tampilkan tombol"
+            }
+          ]
+        },
+        {
+          "label": "Timpa tombol \"Coba lagi\"",
+          "description": "Opsi ini mengizinkan untuk mengaktifkan atau menonaktifkan tombol \"Coba lagi\" untuk semua konten atau untuk menggunakan pengaturan perilaku yang sesuai.",
+          "options": [
+            {
+              "label": "Gunakan pengaturan perilaku"
+            },
+            {
+              "label": "Selalu tampilkan tombol"
+            },
+            {
+              "label": "Jangan pernah tampilkan tombol"
+            }
+          ]
+        },
+        {
+          "label": "Tinggi cadangan",
+          "description": "Atur tinggi cadangan dalam px untuk kasus ketika ada masalah lintas sumber daya bersama (CORS)."
+        }
+      ]
+    },
+    {
+      "label": "Lokalisasi",
+      "fields": [
+        {
+          "label": "Tombol Mulai",
+          "default": "Mulai"
+        },
+        {
+          "label": "Tombol Coba lagi",
+          "default": "Coba lagi"
+        },
+        {
+          "label": "Temukan penanda untuk melihat interaksi.",
+          "default": "Temukan penanda untuk melihat interaksi."
+        },
+        {
+          "label": "Galat: peramban tidak didukung",
+          "default": "Tampaknya peramban Anda tidak dapat menjalankan jenis konten ini, sayangnya."
+        },
+        {
+          "label": "Galat: Tidak ada akses kamera",
+          "default": "Tidak dapat mengakses kamera."
+        },
+        {
+          "label": "Galat: Tidak ada dukungan kamera",
+          "default": "Peramban Anda tampaknya tidak mendukung kamera."
+        },
+        {
+          "label": "Galat: Tidak ada penanda",
+          "default": "Apakah seseorang lupa menambahkan penanda?"
+        },
+        {
+          "label": "Peringatan: Peramban Brave",
+          "default": "Tampaknya Anda menggunakan peramban Brave. Bagus! Tetapi pengaturan privasi yang ketat mungkin mencegah kamera berfungsi."
+        },
+        {
+          "label": "Memulai konten",
+          "default": "Memulai konten. Jangan lupa untuk mengizinkan akses kamera."
+        }
+      ]
+    },
+    {
+      "label": "Readspeaker",
+      "fields": [
+        {
+          "label": "Tombol layar penuh: masuk",
+          "default": "Masuk mode layar penuh"
+        },
+        {
+          "label": "Tombol layar penuh: keluar",
+          "default": "Keluar dari mode layar penuh"
+        },
+        {
+          "label": "Judul tombol 'Ubah tampilan' (saat tindakan ditutup)",
+          "default": "Pindah ke latihan"
+        },
+        {
+          "label": "Judul tombol 'Ubah tampilan' (saat tindakan dibuka)",
+          "default": "Pindah ke kamera"
+        },
+        {
+          "label": "Pesan 'Tombol dinonaktifkan' untuk 'tombol ubah tampilan'",
+          "default": "Anda tidak dapat mengubah tampilan saat ini"
+        },
+        {
+          "label": "Judul tombol 'Keluar'",
+          "default": "Keluar dan tampilkan evaluasi"
+        },
+        {
+          "label": "Pesan 'Tombol dinonaktifkan' untuk 'tombol keluar'",
+          "default": "Anda belum menyelesaikan semua latihan"
+        },
+        {
+          "label": "Tindakan dibuka",
+          "default": "Tampilan telah beralih ke latihan."
+        },
+        {
+          "label": "Tindakan ditutup",
+          "default": "Tampilan telah beralih ke kamera."
+        }
+      ]
+    }
+  ]
+}
